@@ -1,0 +1,14 @@
+{
+  "name": "AgroDoc — plant disease doctor",
+  "short_name": "AgroDoc",
+  "description": "Photograph a leaf, get the most likely disease and what to do. Free and offline.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#16261C",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

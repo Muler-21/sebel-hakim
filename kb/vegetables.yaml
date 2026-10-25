@@ -1,0 +1,218 @@
+diseases:
+# ============================== TOMATO ==============================
+- id: tomato.healthy
+  crop: tomato
+  type: healthy
+  name: {en: Healthy tomato, am: ጤናማ ቲማቲም}
+  synonyms: ["Tomato___healthy", tomato healthy, healthy]
+
+- id: tomato.late_blight
+  crop: tomato
+  type: oomycete
+  severity: critical
+  name: {en: Late blight}
+  scientific: Phytophthora infestans
+  synonyms: ["Tomato___Late_blight", tomato late blight, late blight, tomato leaf late blight]
+  symptoms:
+    - Large, greasy grey-green to brown patches on leaves; white mould underneath in humid weather
+    - Brown streaks on stems; firm brown blotches on fruit
+  spread: Airborne spores from infected potato or tomato; cool, wet weather. Very fast.
+  cultural:
+    - Do not plant next to potatoes; use resistant varieties; stake and prune for airflow
+    - Water at the base, not on leaves; remove and bury infected plants immediately
+  biological:
+    - Bacillus-based products give weak protection only
+  chemical:
+    - Protectants (mancozeb, chlorothalonil, copper) before rainy spells
+    - Systemics (metalaxyl-M + mancozeb, cymoxanil, dimethomorph) after first symptoms; rotate groups
+  prevention: Resistant varieties and a preventive spray plan in the wet season.
+
+- id: tomato.early_blight
+  crop: tomato
+  type: fungal
+  severity: medium
+  name: {en: Early blight}
+  scientific: Alternaria solani / A. linariae
+  synonyms: ["Tomato___Early_blight", tomato early blight, early blight, tomato early blight leaf]
+  symptoms:
+    - Brown spots with concentric rings on older leaves, yellowing around spots
+    - Dark sunken spots near the stem end of fruit
+  spread: Soil and residue; rain splash; warm, humid weather.
+  cultural:
+    - Rotate 2–3 years away from tomato, potato, pepper and eggplant
+    - Mulch, stake, remove lower leaves touching soil, water at the base
+  biological:
+    - Bacillus subtilis / Trichoderma products
+  chemical:
+    - Mancozeb, chlorothalonil, copper, or difenoconazole / azoxystrobin at first spots
+  prevention: Rotation and mulching.
+
+- id: tomato.bacterial_spot
+  crop: tomato
+  type: bacterial
+  severity: medium
+  name: {en: Bacterial spot}
+  scientific: Xanthomonas spp.
+  synonyms: ["Tomato___Bacterial_spot", tomato bacterial spot, bacterial spot, tomato leaf bacterial spot]
+  symptoms:
+    - Small, dark, greasy spots on leaves, sometimes with a yellow halo; scabby spots on fruit
+  spread: Seed, transplants, rain splash and handling wet plants.
+  cultural:
+    - Clean seed and transplants; avoid overhead irrigation; do not work in wet plants; rotation
+  biological:
+    - Bacillus-based products and bacteriophages (where registered)
+  chemical:
+    - Copper products (often mixed with mancozeb) as protection; resistance to copper is common
+  prevention: Clean seed and rotation.
+
+- id: tomato.leaf_mold
+  crop: tomato
+  type: fungal
+  severity: medium
+  name: {en: Leaf mould}
+  scientific: Passalora fulva (Cladosporium fulvum)
+  synonyms: ["Tomato___Leaf_Mold", tomato leaf mold, leaf mold, leaf mould, tomato mold leaf]
+  symptoms:
+    - Pale yellow patches on the upper leaf surface; olive-green to brown velvety mould underneath
+  spread: Very high humidity (over 85%), especially in greenhouses and tunnels.
+  cultural:
+    - Ventilate greenhouses; reduce humidity; prune for airflow; resistant varieties
+  biological:
+    - Bacillus-based products
+  chemical:
+    - Chlorothalonil, mancozeb or difenoconazole if needed
+  prevention: Good ventilation.
+
+- id: tomato.septoria_leaf_spot
+  crop: tomato
+  type: fungal
+  severity: medium
+  name: {en: Septoria leaf spot}
+  scientific: Septoria lycopersici
+  synonyms: ["Tomato___Septoria_leaf_spot", tomato septoria leaf spot, septoria leaf spot, septoria]
+  symptoms:
+    - Many small round spots with a grey-white centre and dark border on lower leaves; tiny black dots inside
+  spread: Residue and weeds; rain splash; warm, wet weather.
+  cultural:
+    - Rotation; remove lower infected leaves; mulch; control nightshade weeds
+  biological:
+    - Bacillus-based products
+  chemical:
+    - Chlorothalonil, mancozeb or copper at first spots
+  prevention: Rotation and field hygiene.
+
+- id: tomato.spider_mites
+  crop: tomato
+  type: pest
+  severity: medium
+  name: {en: Spider mite damage}
+  scientific: Tetranychus urticae / T. evansi
+  synonyms: ["Tomato___Spider_mites Two-spotted_spider_mite", spider mites, two spotted spider mite, spider mite]
+  symptoms:
+    - Fine yellow speckling on leaves, bronzing, fine webbing on the underside
+  spread: Hot, dry, dusty conditions; overuse of broad-spectrum insecticides.
+  cultural:
+    - Avoid drought stress; spray water under leaves; remove heavily infested leaves
+  biological:
+    - Predatory mites (Phytoseiulus); neem oil; insecticidal soap
+  chemical:
+    - Specific acaricides (e.g. abamectin, spiromesifen); rotate actives; avoid pyrethroids that worsen outbreaks
+  prevention: Protect natural enemies.
+
+- id: tomato.target_spot
+  crop: tomato
+  type: fungal
+  severity: medium
+  name: {en: Target spot}
+  scientific: Corynespora cassiicola
+  synonyms: ["Tomato___Target_Spot", target spot, tomato target spot]
+  symptoms:
+    - Brown spots with light rings that can merge; spots on fruit near the stem
+  spread: Residue; warm, humid weather.
+  cultural:
+    - Rotation; pruning for airflow; remove residue
+  biological:
+    - Bacillus-based products
+  chemical:
+    - Chlorothalonil, mancozeb, or azoxystrobin / difenoconazole
+  prevention: Rotation and airflow.
+
+- id: tomato.yellow_leaf_curl_virus
+  crop: tomato
+  type: viral
+  severity: high
+  name: {en: Tomato yellow leaf curl virus (TYLCV)}
+  scientific: Begomovirus (whitefly Bemisia tabaci)
+  synonyms: ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", yellow leaf curl virus, tylcv, tomato yellow leaf curl, yellow virus, leaf curl]
+  symptoms:
+    - Small, upward-curled leaves with yellow edges; stunted, bushy plants; few fruits
+  spread: Whiteflies.
+  cultural:
+    - Resistant varieties; insect-proof nurseries; remove infected plants early; yellow sticky traps; control weeds
+  biological:
+    - Conserve whitefly enemies; neem-based products
+  chemical:
+    - No cure; whitefly control in nurseries and early growth only on advice
+  prevention: Clean, protected seedlings and resistant varieties.
+
+- id: tomato.mosaic_virus
+  crop: tomato
+  type: viral
+  severity: medium
+  name: {en: Tomato mosaic virus}
+  scientific: Tomato mosaic virus / Tobacco mosaic virus (Tobamovirus)
+  synonyms: ["Tomato___Tomato_mosaic_virus", mosaic virus, tomato mosaic virus, tomv]
+  symptoms:
+    - Light and dark green mosaic, fern-like or distorted leaves, uneven fruit ripening
+  spread: 'Contact: hands, tools, clothing, tobacco products, seed.'
+  cultural:
+    - Wash hands and tools; do not smoke while handling plants; remove infected plants; resistant varieties
+  biological:
+    - None
+  chemical:
+    - No cure
+  prevention: Hygiene and clean seed.
+
+# ============================== PEPPER ==============================
+- id: pepper.healthy
+  crop: pepper
+  type: healthy
+  name: {en: Healthy pepper, am: ጤናማ ቃሪያ}
+  synonyms: ["Pepper,_bell___healthy", pepper healthy, bell pepper healthy, healthy]
+
+- id: pepper.bacterial_spot
+  crop: pepper
+  type: bacterial
+  severity: medium
+  name: {en: Bacterial spot}
+  scientific: Xanthomonas spp.
+  synonyms: ["Pepper,_bell___Bacterial_spot", pepper bacterial spot, bell pepper bacterial spot, bell_pepper leaf spot, bacterial spot]
+  symptoms:
+    - Small water-soaked spots turning brown; yellow leaves drop; raised scabby spots on fruit
+  spread: Seed, transplants, rain splash.
+  cultural:
+    - Clean seed and transplants; rotation; avoid overhead watering
+  biological:
+    - Bacillus-based products
+  chemical:
+    - Copper (often with mancozeb) as protection
+  prevention: Clean seed and rotation.
+
+# ============================== SQUASH ==============================
+- id: squash.powdery_mildew
+  crop: squash
+  type: fungal
+  severity: medium
+  name: {en: Powdery mildew}
+  scientific: Podosphaera xanthii / Golovinomyces spp.
+  synonyms: ["Squash___Powdery_mildew", squash powdery mildew, powdery mildew]
+  symptoms:
+    - White powdery patches on leaves and stems; leaves yellow and dry
+  spread: Wind; warm days and cool nights; does not need rain.
+  cultural:
+    - Resistant varieties; good spacing; remove old infected leaves
+  biological:
+    - 'Sulphur, potassium bicarbonate, milk sprays (1 part milk : 9 parts water) or Bacillus products'
+  chemical:
+    - Sulphur, or triazoles / strobilurins at first patches; rotate groups
+  prevention: Resistant varieties and spacing.

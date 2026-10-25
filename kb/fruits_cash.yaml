@@ -1,0 +1,607 @@
+diseases:
+# ============================== BANANA ==============================
+- id: banana.healthy
+  crop: banana
+  type: healthy
+  name: {en: Healthy banana, am: ጤናማ ሙዝ}
+  synonyms: [healthy, banana healthy, healthy banana]
+
+- id: banana.black_sigatoka
+  crop: banana
+  type: fungal
+  severity: high
+  name: {en: Black Sigatoka (black leaf streak)}
+  scientific: Pseudocercospora fijiensis
+  synonyms: [black sigatoka, sigatoka, black leaf streak, bs]
+  symptoms:
+    - Small reddish-brown streaks parallel to leaf veins that become black spots with grey centres
+    - Large dead leaf areas; bunches ripen early and are small
+  spread: Wind and rain; warm, wet weather.
+  cultural:
+    - Cut and remove (de-leaf) infected leaves and leaf parts every 1–2 weeks
+    - Good drainage, correct spacing, weed control; tolerant varieties
+  biological:
+    - Bacillus-based products in integrated programmes
+  chemical:
+    - Mineral oil plus protectants (mancozeb, chlorothalonil) or systemics (triazoles, strobilurins) in commercial plantations; rotate groups
+  prevention: Regular leaf sanitation.
+
+- id: banana.fusarium_wilt
+  crop: banana
+  type: fungal
+  severity: critical
+  name: {en: Fusarium wilt (Panama disease)}
+  scientific: Fusarium oxysporum f. sp. cubense (incl. Tropical Race 4)
+  synonyms: [fusarium wilt, panama disease, fusarium, fwb]
+  symptoms:
+    - Older leaves turn yellow from the edges and collapse around the stem like a skirt
+    - Splitting of the pseudostem base; reddish-brown streaks inside when cut
+  spread: Soil, infected suckers, water, tools, shoes and vehicles. Survives decades in soil.
+  cultural:
+    - Plant clean tissue-culture plantlets of resistant varieties
+    - Do not move soil, suckers or tools from infected fields; disinfect boots and tools
+    - Destroy infected plants on the spot; do not replant bananas there
+  biological:
+    - Soil health and Trichoderma may reduce disease; no cure
+  chemical:
+    - No effective chemical cure
+  prevention: Quarantine, clean planting material, resistant varieties.
+  notes: Tropical Race 4 is a quarantine pest. Report suspected cases to the plant-protection service.
+
+- id: banana.xanthomonas_wilt
+  crop: banana
+  type: bacterial
+  severity: critical
+  name: {en: Banana Xanthomonas wilt (BXW)}
+  scientific: Xanthomonas vasicola pv. musacearum
+  synonyms: [banana xanthomonas wilt, bxw, xanthomonas wilt, banana bacterial wilt]
+  symptoms:
+    - Yellowing and wilting leaves; fruits ripen early and unevenly with brown stains inside; male bud shrivels
+    - Yellow bacterial ooze from cut stems
+  spread: Insects visiting the male flower, contaminated tools, infected suckers. Major threat in East and Central Africa.
+  cultural:
+    - Remove the male bud with a forked stick as soon as the last hand forms
+    - Disinfect tools (fire or bleach) between plants; use clean suckers
+    - Cut down and bury infected plants (single diseased stem removal)
+  biological:
+    - None
+  chemical:
+    - No chemical cure; bleach for tool disinfection only
+  prevention: De-budding and tool hygiene.
+  notes: Report new outbreaks to extension; community action is needed.
+
+# ============================== MANGO ==============================
+- id: mango.healthy
+  crop: mango
+  type: healthy
+  name: {en: Healthy mango, am: ጤናማ ማንጎ}
+  synonyms: [healthy, mango healthy]
+
+- id: mango.anthracnose
+  crop: mango
+  type: fungal
+  severity: high
+  name: {en: Anthracnose}
+  scientific: Colletotrichum gloeosporioides
+  synonyms: [anthracnose, mango anthracnose]
+  symptoms:
+    - Dark irregular spots on leaves, blackened flowers, dark sunken spots on fruit that grow during ripening
+  spread: Rain and dew during flowering and fruit set.
+  cultural:
+    - Prune for airflow; remove dead twigs and fallen leaves; harvest carefully
+  biological:
+    - Bacillus-based products; hot-water dip of fruit (52–55 °C for 5 minutes) after harvest
+  chemical:
+    - Copper, mancozeb or azoxystrobin during flowering and fruit set in wet weather
+  prevention: Orchard hygiene.
+
+- id: mango.bacterial_canker
+  crop: mango
+  type: bacterial
+  severity: high
+  name: {en: Bacterial black spot (canker)}
+  scientific: Xanthomonas citri pv. mangiferaeindicae
+  synonyms: [bacterial canker, mango bacterial canker, bacterial black spot]
+  symptoms:
+    - Raised black, angular spots with a yellow halo on leaves; cracked black spots on fruit
+  spread: Wind-driven rain, wounds, infected planting material.
+  cultural:
+    - Windbreaks; prune and burn infected twigs; disinfect tools; clean planting material
+  biological:
+    - None reliable
+  chemical:
+    - Copper sprays after pruning and before rainy periods
+  prevention: Windbreaks and hygiene.
+
+- id: mango.powdery_mildew
+  crop: mango
+  type: fungal
+  severity: medium
+  name: {en: Powdery mildew}
+  scientific: Erysiphe (Oidium) mangiferae
+  synonyms: [powdery mildew, mango powdery mildew]
+  symptoms:
+    - White powder on young leaves, flowers and young fruit; flowers drop
+  spread: Wind; cool nights and dry days during flowering.
+  cultural:
+    - Prune for airflow; remove infected panicles
+  biological:
+    - Sulphur sprays
+  chemical:
+    - Sulphur or triazoles at flowering
+  prevention: Monitor at flowering.
+
+- id: mango.sooty_mould
+  crop: mango
+  type: fungal
+  severity: low
+  name: {en: Sooty mould}
+  scientific: Capnodium spp. (grows on honeydew from insects)
+  synonyms: [sooty mould, sooty mold, mango sooty mould]
+  symptoms:
+    - Black, soot-like coating on leaves that can be rubbed off
+  spread: Grows on honeydew from scales, mealybugs, aphids and hoppers.
+  cultural:
+    - Control the sap-sucking insects; prune for light and airflow
+  biological:
+    - Conserve ladybirds and parasitoids; soap or oil sprays against the insects
+  chemical:
+    - Treat the insects, not the mould
+  prevention: Control honeydew-producing insects.
+
+- id: mango.die_back
+  crop: mango
+  type: fungal
+  severity: medium
+  name: {en: Die back}
+  scientific: Lasiodiplodia theobromae
+  synonyms: [die back, dieback, mango die back]
+  symptoms:
+    - Twigs dry from the tip backwards; leaves turn brown and stay attached; gum on branches
+  spread: Wounds, stress and infected wood.
+  cultural:
+    - Cut 10 cm below the dead part into healthy wood and burn cuttings; seal large cuts
+  biological:
+    - Trichoderma paste on pruning wounds
+  chemical:
+    - Copper paste or spray after pruning
+  prevention: Good tree nutrition and pruning hygiene.
+
+- id: mango.gall_midge
+  crop: mango
+  type: pest
+  severity: medium
+  name: {en: Gall midge damage}
+  scientific: Procontarinia spp.
+  synonyms: [gall midge, mango gall midge]
+  symptoms:
+    - Small raised warty galls on leaves; damaged flowers and young fruit
+  spread: Flying midges; larvae drop to the soil to pupate.
+  cultural:
+    - Remove and destroy galled leaves; plough soil under trees to expose pupae
+  biological:
+    - Conserve parasitoids
+  chemical:
+    - Only on advice at flushing / flowering
+  prevention: Orchard sanitation.
+
+- id: mango.cutting_weevil
+  crop: mango
+  type: pest
+  severity: low
+  name: {en: Leaf-cutting weevil damage}
+  scientific: Deporaus marginatus
+  synonyms: [cutting weevil, mango cutting weevil]
+  symptoms:
+    - Young leaves cut off neatly near the base, as if with scissors
+  spread: Adult weevils lay eggs in tender leaves.
+  cultural:
+    - Collect and destroy fallen cut leaves
+  biological:
+    - Conserve natural enemies
+  chemical:
+    - Only at heavy infestation during new flushes
+  prevention: Sanitation during flushing.
+
+# ============================== CITRUS ==============================
+- id: citrus.healthy
+  crop: citrus
+  type: healthy
+  name: {en: Healthy citrus, am: ጤናማ ብርቱካን}
+  synonyms: [healthy, citrus healthy]
+
+- id: citrus.greening
+  crop: citrus
+  type: bacterial
+  severity: critical
+  name: {en: Citrus greening (HLB)}
+  scientific: Candidatus Liberibacter spp. (psyllids)
+  synonyms: ["Orange___Haunglongbing_(Citrus_greening)", citrus greening, greening, hlb, huanglongbing]
+  symptoms:
+    - Blotchy yellow mottling that is not the same on both halves of the leaf; small, lopsided, bitter fruit that stays green
+  spread: Psyllids (African citrus psyllid Trioza erytreae; Asian Diaphorina citri) and infected budwood.
+  cultural:
+    - Plant certified disease-free seedlings; remove infected trees; control psyllids area-wide
+  biological:
+    - Psyllid parasitoids (e.g. Tamarixia radiata)
+  chemical:
+    - No cure; psyllid control on extension advice
+  prevention: Clean nursery stock and psyllid management.
+  notes: Report suspected HLB; it is a quarantine disease in many countries.
+
+- id: citrus.canker
+  crop: citrus
+  type: bacterial
+  severity: high
+  name: {en: Citrus canker}
+  scientific: Xanthomonas citri subsp. citri
+  synonyms: [canker, citrus canker]
+  symptoms:
+    - Raised, corky brown spots with a yellow halo on leaves, twigs and fruit
+  spread: Wind-driven rain, leaf miners, contaminated tools.
+  cultural:
+    - Windbreaks; prune infected twigs; control leaf miner; disinfect tools
+  biological:
+    - None reliable
+  chemical:
+    - Copper sprays on new flushes and young fruit
+  prevention: Windbreaks and clean planting material.
+
+- id: citrus.black_spot
+  crop: citrus
+  type: fungal
+  severity: medium
+  name: {en: Citrus black spot}
+  scientific: Phyllosticta citricarpa
+  synonyms: [black spot, citrus black spot]
+  symptoms:
+    - Hard, sunken spots with brown edges and grey centres on fruit; small spots on leaves
+  spread: Leaf litter and rain during fruit development.
+  cultural:
+    - Remove leaf litter; prune
+  biological:
+    - None reliable
+  chemical:
+    - Copper or strobilurins during the susceptible fruit period
+  prevention: Orchard hygiene.
+
+- id: citrus.melanose
+  crop: citrus
+  type: fungal
+  severity: low
+  name: {en: Melanose}
+  scientific: Diaporthe citri
+  synonyms: [melanose, citrus melanose]
+  symptoms:
+    - Small, raised, rough dark brown dots on leaves and fruit, like sandpaper
+  spread: Dead twigs in the tree; rain.
+  cultural:
+    - Prune out dead wood
+  biological:
+    - None
+  chemical:
+    - Copper after petal fall in wet regions
+  prevention: Remove dead wood.
+
+# ============================== APPLE ==============================
+- id: apple.healthy
+  crop: apple
+  type: healthy
+  name: {en: Healthy apple, am: ጤናማ ፖም}
+  synonyms: ["Apple___healthy", apple healthy, healthy]
+
+- id: apple.scab
+  crop: apple
+  type: fungal
+  severity: medium
+  name: {en: Apple scab}
+  scientific: Venturia inaequalis
+  synonyms: ["Apple___Apple_scab", apple scab, scab, apple scab leaf]
+  symptoms:
+    - Olive-green to black velvety spots on leaves and fruit; fruit cracks
+  spread: Fallen leaves; spring rains.
+  cultural:
+    - Rake and destroy fallen leaves; prune for airflow; resistant varieties
+  biological:
+    - Sulphur, lime-sulphur
+  chemical:
+    - Captan, dithiocarbamates or triazoles during wet spring periods
+  prevention: Leaf litter removal.
+
+- id: apple.black_rot
+  crop: apple
+  type: fungal
+  severity: medium
+  name: {en: Black rot / frog-eye leaf spot}
+  scientific: Botryosphaeria obtusa
+  synonyms: ["Apple___Black_rot", apple black rot, black rot, frog eye leaf spot, frog_eye_leaf_spot]
+  symptoms:
+    - Leaf spots with purple edges and tan centres ("frog-eye"); fruit rot with rings; cankers on limbs
+  spread: Dead wood, mummified fruit; warm, wet weather.
+  cultural:
+    - Remove mummified fruit and dead wood; prune out cankers
+  biological:
+    - None reliable
+  chemical:
+    - Captan or strobilurins in the season
+  prevention: Sanitation.
+
+- id: apple.cedar_rust
+  crop: apple
+  type: fungal
+  severity: low
+  name: {en: Cedar apple rust}
+  scientific: Gymnosporangium spp.
+  synonyms: ["Apple___Cedar_apple_rust", cedar apple rust, apple rust, rust]
+  symptoms:
+    - Bright yellow-orange spots on leaves, later with small tubes underneath
+  spread: Alternates between juniper (cedar) and apple.
+  cultural:
+    - Resistant varieties; remove nearby junipers where practical
+  biological:
+    - None
+  chemical:
+    - Triazoles (e.g. myclobutanil) in spring
+  prevention: Resistant varieties.
+
+- id: apple.powdery_mildew
+  crop: apple
+  type: fungal
+  severity: low
+  name: {en: Powdery mildew}
+  scientific: Podosphaera leucotricha
+  synonyms: [apple powdery mildew, powdery mildew, powdery_mildew]
+  symptoms:
+    - White powdery coating on young leaves and shoots
+  spread: Infected buds; dry warm days, humid nights.
+  cultural:
+    - Prune out infected shoots
+  biological:
+    - Sulphur
+  chemical:
+    - Sulphur or triazoles
+  prevention: Remove infected shoots in winter pruning.
+
+# ============================== GRAPE ==============================
+- id: grape.healthy
+  crop: grape
+  type: healthy
+  name: {en: Healthy grape, am: ጤናማ ወይን}
+  synonyms: ["Grape___healthy", grape healthy, healthy]
+
+- id: grape.black_rot
+  crop: grape
+  type: fungal
+  severity: high
+  name: {en: Black rot}
+  scientific: Guignardia bidwellii
+  synonyms: ["Grape___Black_rot", grape black rot, black rot, grape leaf black rot]
+  symptoms:
+    - Tan leaf spots with dark borders and black dots; berries shrivel into hard black mummies
+  spread: Mummies and canes; warm, wet weather.
+  cultural:
+    - Remove mummies and infected canes; open canopy
+  biological:
+    - None reliable
+  chemical:
+    - Mancozeb, captan or triazoles from early shoot growth to berry set
+  prevention: Sanitation.
+
+- id: grape.esca
+  crop: grape
+  type: fungal
+  severity: high
+  name: {en: Esca (black measles)}
+  scientific: Phaeomoniella chlamydospora and other trunk fungi
+  synonyms: ["Grape___Esca_(Black_Measles)", esca, black measles]
+  symptoms:
+    - 'Tiger-stripe leaves: yellow or red between veins with dry centres; dark spots on berries; sudden vine collapse'
+  spread: Pruning wounds.
+  cultural:
+    - Prune in dry weather; protect large cuts; remove dead vines
+  biological:
+    - Trichoderma wound protectants
+  chemical:
+    - No curative treatment
+  prevention: Pruning-wound protection.
+
+- id: grape.leaf_blight
+  crop: grape
+  type: fungal
+  severity: medium
+  name: {en: Leaf blight (Isariopsis leaf spot)}
+  scientific: Pseudocercospora vitis
+  synonyms: ["Grape___Leaf_blight_(Isariopsis_Leaf_Spot)", isariopsis leaf spot, grape leaf blight, leaf blight]
+  symptoms:
+    - Dark red-brown irregular spots on leaves; early leaf drop
+  spread: Warm, humid weather.
+  cultural:
+    - Open canopy; remove infected leaves
+  biological:
+    - None reliable
+  chemical:
+    - Mancozeb or copper if severe
+  prevention: Canopy management.
+
+# ============================== STONE FRUIT & BERRIES ==============================
+- id: peach.healthy
+  crop: peach
+  type: healthy
+  name: {en: Healthy peach, am: ጤናማ ኮክ}
+  synonyms: ["Peach___healthy", peach healthy]
+
+- id: peach.bacterial_spot
+  crop: peach
+  type: bacterial
+  severity: medium
+  name: {en: Bacterial spot}
+  scientific: Xanthomonas arboricola pv. pruni
+  synonyms: ["Peach___Bacterial_spot", peach bacterial spot]
+  symptoms:
+    - Small angular dark spots that fall out ("shot holes"); cracked spots on fruit
+  spread: Wind-driven rain; sandy soils.
+  cultural:
+    - Resistant varieties; windbreaks; balanced nitrogen
+  biological:
+    - None reliable
+  chemical:
+    - Copper at leaf fall and early spring; oxytetracycline where registered
+  prevention: Resistant varieties.
+
+- id: cherry.healthy
+  crop: cherry
+  type: healthy
+  name: {en: Healthy cherry}
+  synonyms: ["Cherry_(including_sour)___healthy", cherry healthy]
+
+- id: cherry.powdery_mildew
+  crop: cherry
+  type: fungal
+  severity: low
+  name: {en: Powdery mildew}
+  scientific: Podosphaera clandestina
+  synonyms: ["Cherry_(including_sour)___Powdery_mildew", cherry powdery mildew]
+  symptoms:
+    - White powdery patches on young leaves; leaves curl
+  spread: Wind; warm days and humid nights.
+  cultural:
+    - Prune for airflow; remove root suckers
+  biological:
+    - Sulphur
+  chemical:
+    - Sulphur or triazoles
+  prevention: Airflow.
+
+- id: strawberry.healthy
+  crop: strawberry
+  type: healthy
+  name: {en: Healthy strawberry}
+  synonyms: ["Strawberry___healthy", strawberry healthy]
+
+- id: strawberry.leaf_scorch
+  crop: strawberry
+  type: fungal
+  severity: medium
+  name: {en: Leaf scorch}
+  scientific: Diplocarpon earlianum
+  synonyms: ["Strawberry___Leaf_scorch", leaf scorch, strawberry leaf scorch]
+  symptoms:
+    - Many small purple spots that merge; leaves look burnt
+  spread: Infected plants and rain splash.
+  cultural:
+    - Clean planting material; remove old leaves after harvest; drip irrigation
+  biological:
+    - None reliable
+  chemical:
+    - Captan or triazoles if severe
+  prevention: Clean plants.
+
+- id: blueberry.healthy
+  crop: blueberry
+  type: healthy
+  name: {en: Healthy blueberry}
+  synonyms: ["Blueberry___healthy", blueberry healthy]
+
+- id: raspberry.healthy
+  crop: raspberry
+  type: healthy
+  name: {en: Healthy raspberry}
+  synonyms: ["Raspberry___healthy", raspberry healthy]
+
+# ============================== COFFEE ==============================
+- id: coffee.healthy
+  crop: coffee
+  type: healthy
+  name: {en: Healthy coffee, am: ጤናማ ቡና}
+  synonyms: [healthy, coffee healthy]
+
+- id: coffee.leaf_rust
+  crop: coffee
+  type: fungal
+  severity: high
+  name: {en: Coffee leaf rust}
+  scientific: Hemileia vastatrix
+  synonyms: [rust, leaf rust, coffee leaf rust, rust_level_1, rust_level_2, rust_level_3, rust_level_4]
+  symptoms:
+    - Yellow-orange powdery spots on the underside of leaves; pale yellow patches on top
+    - Heavy leaf fall and branch die-back
+  spread: Wind and rain splash; warm, humid weather; more severe at lower altitudes and on heavily bearing trees.
+  cultural:
+    - Resistant varieties; shade management; balanced nutrition; prune for airflow
+  biological:
+    - None proven at field scale
+  chemical:
+    - Copper-based protectants before the rainy season; triazoles (e.g. cyproconazole) where registered
+  prevention: Resistant varieties and good farm management.
+
+- id: coffee.cercospora
+  crop: coffee
+  type: fungal
+  severity: medium
+  name: {en: Brown eye spot (Cercospora)}
+  scientific: Cercospora coffeicola
+  synonyms: [cercospora, brown eye spot, coffee cercospora]
+  symptoms:
+    - Round brown spots with a light grey centre and yellow halo ("eye"); spots on berries
+  spread: Wind and splash; stressed, under-fertilised, unshaded trees.
+  cultural:
+    - Shade; balanced nutrition (especially nitrogen and potassium); weed control
+  biological:
+    - None reliable
+  chemical:
+    - Copper-based fungicides
+  prevention: Balanced nutrition and shade.
+
+- id: coffee.phoma
+  crop: coffee
+  type: fungal
+  severity: medium
+  name: {en: Phoma leaf spot}
+  scientific: Phoma spp.
+  synonyms: [phoma, coffee phoma]
+  symptoms:
+    - Dark brown irregular spots, often at the leaf edges and tips; die-back of young shoots
+  spread: Cold winds and high altitude; wounds.
+  cultural:
+    - Windbreaks; avoid cold, exposed sites
+  biological:
+    - None reliable
+  chemical:
+    - Copper or strobilurins on advice
+  prevention: Windbreaks.
+
+- id: coffee.leaf_miner
+  crop: coffee
+  type: pest
+  severity: medium
+  name: {en: Leaf miner damage}
+  scientific: Leucoptera spp.
+  synonyms: [leaf miner, miner, coffee leaf miner]
+  symptoms:
+    - Irregular brown blotch mines on the upper leaf surface; leaves drop
+  spread: Moths; dry seasons.
+  cultural:
+    - Shade and windbreaks; avoid excessive insecticides
+  biological:
+    - Conserve parasitoid wasps
+  chemical:
+    - Only if thresholds are exceeded, using recommended insecticides
+  prevention: Conserve natural enemies.
+
+- id: coffee.red_spider_mite
+  crop: coffee
+  type: pest
+  severity: low
+  name: {en: Red spider mite damage}
+  scientific: Oligonychus coffeae
+  synonyms: [red spider mite, red_spider_mite, spider mite]
+  symptoms:
+    - Upper leaf surface turns dull bronze-brown; fine webbing
+  spread: Dry weather and dust.
+  cultural:
+    - Shade; reduce dust; avoid broad-spectrum insecticides
+  biological:
+    - Predatory mites
+  chemical:
+    - Specific acaricides only if severe
+  prevention: Protect natural enemies.

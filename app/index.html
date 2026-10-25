@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#16261C">
+<meta name="description" content="Free, offline plant disease diagnosis: photograph a leaf, get the most likely disease and what to do.">
+<title>AgroDoc — plant disease doctor</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="bar">
+  <div class="brand"><img src="icon.svg" alt="" width="28" height="28"><span>AgroDoc</span></div>
+  <label class="lang"><span class="sr" data-i="lang">Language</span>
+    <select id="lang" aria-label="Language"></select>
+  </label>
+</header>
+
+<main>
+  <!-- ======================= DIAGNOSE ======================= -->
+  <section id="v-diagnose" class="view" aria-labelledby="t-diagnose">
+    <h1 id="t-diagnose" class="sr" data-i="tab_diagnose">Diagnose</h1>
+
+    <div id="capture">
+      <label class="shoot" for="cam">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6c14 10 22 22 22 34a22 22 0 0 1-44 0C10 28 18 16 32 6Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 14v44M32 30l-10-8M32 40l12-9M32 50l-9-6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+        <span data-i="take_photo">Take a photo of the leaf</span>
+      </label>
+      <input id="cam" type="file" accept="image/*" capture="environment" hidden>
+      <label class="link-btn" for="gal" data-i="choose_photo">Choose from gallery</label>
+      <input id="gal" type="file" accept="image/*" hidden>
+      <p class="tip" data-i="tip">Fill the frame with one affected leaf, in daylight, in focus.</p>
+
+      <fieldset class="crop-pick">
+        <legend><span data-i="which_crop">Which crop is it?</span> <small data-i="which_crop_hint">Optional</small></legend>
+        <select id="crop"></select>
+      </fieldset>
+      <p id="model-state" class="state" role="status"></p>
+    </div>
+
+    <div id="result" hidden>
+      <div class="photo-row">
+        <img id="photo" alt="Your leaf photo">
+        <div>
+          <p class="kicker" data-i="most_likely">Most likely</p>
+          <h2 id="r-name"></h2>
+          <p id="r-crop" class="muted"></p>
+          <div class="meter" aria-hidden="true"><i id="r-bar"></i></div>
+          <p id="r-conf" class="muted"></p>
+        </div>
+      </div>
+      <p id="r-unsure" class="warn" hidden data-i="not_sure"></p>
+      <p id="r-sev" class="sev"></p>
+      <div id="r-advice"></div>
+      <div id="r-others"></div>
+      <p class="fine" data-i="disclaimer"></p>
+      <button id="again" class="primary" type="button" data-i="new_photo">Check another leaf</button>
+    </div>
+
+    <div id="busy" class="busy" hidden><span class="spinner" aria-hidden="true"></span><span data-i="analysing">Checking the leaf…</span></div>
+  </section>
+
+  <!-- ======================= LIBRARY ======================= -->
+  <section id="v-library" class="view" hidden aria-labelledby="t-library">
+    <h1 id="t-library" data-i="tab_library">Library</h1>
+    <div class="filters">
+      <input id="q" type="search" autocomplete="off">
+      <select id="lib-crop"></select>
+    </div>
+    <ul id="lib-list" class="lib"></ul>
+    <div id="lib-detail" hidden></div>
+  </section>
+
+  <!-- ======================= ABOUT ======================= -->
+  <section id="v-about" class="view" hidden aria-labelledby="t-about">
+    <h1 id="t-about" data-i="tab_about">About</h1>
+    <p data-i="about_body"></p>
+    <dl class="facts">
+      <div><dt data-i="about_model">AI model</dt><dd id="a-model"></dd></div>
+      <div><dt data-i="classes_n">diseases the AI can recognise</dt><dd id="a-classes"></dd></div>
+      <div><dt data-i="kb_n">diseases in the library</dt><dd id="a-kb"></dd></div>
+    </dl>
+    <p class="muted" data-i="about_data"></p>
+    <p class="fine" data-i="disclaimer"></p>
+  </section>
+</main>
+
+<nav class="tabs" aria-label="Sections">
+  <button data-view="diagnose" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-i="tab_diagnose">Diagnose</span></button>
+  <button data-view="library"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h10l4 4v12H5z M9 10h6M9 14h6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-i="tab_library">Library</span></button>
+  <button data-view="about"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i="tab_about">About</span></button>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>

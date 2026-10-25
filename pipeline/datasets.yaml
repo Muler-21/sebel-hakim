@@ -1,0 +1,321 @@
+# Public plant-disease image datasets used for training.
+#
+# host types and what `ref` means:
+#   github     owner/repo (git clone, optional `subdir`)
+#   zenodo     record id
+#   mendeley   dataset id + `version`
+#   dataverse  DOI (Harvard Dataverse)
+#   kaggle     owner/dataset   (needs ~/.kaggle/kaggle.json)
+#   kaggle_comp competition name (you must accept the rules on kaggle.com first)
+#   hf         Hugging Face dataset repo id
+#   manual     download yourself into data/raw/<id>/ (see `url`)
+#
+# field:   lab (plain background) · field (real conditions) · mixed
+# licence: copy of what the source states; "check" means confirm on the source page.
+# commercial: false for NC licences. Set `--commercial-only` in prepare.py to drop those.
+#
+# label: how classes are read
+#   folder → class = name of the folder the image is in (optionally `label_depth`)
+#   csv    → `csv: {file, image_col, label_col, image_dir}`
+# crop: set for single-crop datasets so generic folder names ("healthy", "rust") map correctly.
+
+datasets:
+  # ---------------------------- broad multi-crop ----------------------------
+  - id: plantvillage
+    name: PlantVillage (color)
+    host: github
+    ref: spMohanty/PlantVillage-Dataset
+    subdir: raw/color
+    crops: [apple, blueberry, cherry, maize, grape, citrus, peach, pepper, potato, raspberry, soybean, squash, strawberry, tomato]
+    images: 54305
+    field: lab
+    region: USA
+    licence: CC BY-SA 4.0 (check)
+    commercial: true
+    label: folder
+    weight: 0.5            # down-weighted: lab images dominate otherwise
+
+  - id: plantdoc
+    name: PlantDoc (classification)
+    host: github
+    ref: pratikkayal/PlantDoc-Dataset
+    crops: [apple, pepper, blueberry, cherry, maize, grape, peach, potato, raspberry, soybean, squash, strawberry, tomato]
+    images: 2598
+    field: field
+    region: web images
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: plantwild
+    name: PlantWild (in-the-wild, 89+ classes)
+    host: hf
+    ref: uqtwei2/PlantWild
+    crops: [many]
+    field: field
+    region: web images
+    licence: CC BY-NC-ND 4.0
+    commercial: false
+    label: folder
+
+  - id: plantseg
+    name: PlantSeg (in-the-wild, 115 classes)
+    host: zenodo
+    ref: "17719108"
+    crops: [many]
+    images: 7774
+    field: field
+    region: web images
+    licence: CC BY-NC 4.0
+    commercial: false
+    label: folder
+    note: Segmentation dataset; prepare.py uses the class folders of the images.
+
+  - id: bd_crop_vegetable
+    name: Bangladesh crop & vegetable plant disease
+    host: hf
+    ref: Saon110/bd-crop-vegetable-plant-disease-dataset
+    crops: [many]
+    field: mixed
+    region: Bangladesh
+    licence: check
+    commercial: unknown
+    label: folder
+
+  # ---------------------------- Africa ----------------------------
+  - id: cassava_kaggle
+    name: Cassava Leaf Disease (Makerere / NaCRRI, Uganda)
+    host: kaggle_comp
+    ref: cassava-leaf-disease-classification
+    crop: cassava
+    images: 21397
+    field: field
+    region: Uganda
+    licence: competition rules (non-commercial research use)
+    commercial: false
+    label: csv
+    csv: {file: train.csv, image_col: image_id, label_col: label, image_dir: train_images}
+
+  - id: makerere_cassava
+    name: Makerere University Cassava Image Dataset
+    host: dataverse
+    ref: doi:10.7910/DVN/T4RB0B
+    crop: cassava
+    field: field
+    region: Uganda
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: makerere_maize
+    name: Makerere University Maize Image Dataset (MSV, MLB)
+    host: dataverse
+    ref: doi:10.7910/DVN/LPGHKK
+    crop: maize
+    field: field
+    region: Uganda
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: makerere_beans
+    name: Makerere University Beans Image Dataset
+    host: dataverse
+    ref: doi:10.7910/DVN/TCKVEW
+    crop: bean
+    field: field
+    region: Uganda
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: ibean
+    name: iBean (AI Lab Makerere)
+    host: hf
+    ref: AI-Lab-Makerere/beans
+    crop: bean
+    images: 1295
+    field: field
+    region: Uganda
+    licence: MIT
+    commercial: true
+    label: folder
+
+  - id: tanzania_maize
+    name: Labeled dataset of healthy and diseased maize (MLN, FAW) — Tanzania
+    host: zenodo
+    ref: "15685236"
+    crop: maize
+    field: field
+    region: Tanzania
+    licence: check
+    commercial: unknown
+    label: folder
+
+  - id: fieldplant
+    name: FieldPlant (maize, cassava, tomato) — Cameroon
+    host: manual
+    url: https://universe.roboflow.com  (search "FieldPlant")
+    crops: [maize, cassava, tomato]
+    images: 5170
+    field: field
+    region: Cameroon
+    licence: check
+    commercial: unknown
+    label: folder
+    note: Export from Roboflow as "folder" classification format into data/raw/fieldplant/.
+
+  - id: banana_tanzania
+    name: Banana leaves imagery (Black Sigatoka, Fusarium wilt) — Tanzania
+    host: manual
+    url: https://dspace.nm-aist.ac.tz/handle/20.500.12479/3003
+    crop: banana
+    field: field
+    region: Tanzania
+    licence: check
+    commercial: unknown
+    label: folder
+
+  - id: cgiar_wheat_rust
+    name: CGIAR Computer Vision for Crop Disease (wheat rust) — Ethiopia
+    host: manual
+    url: https://zindi.africa/competitions/iclr-workshop-challenge-1-cgiar-computer-vision-for-crop-disease/data
+    crop: wheat
+    field: field
+    region: Ethiopia
+    licence: Zindi competition rules
+    commercial: false
+    label: folder
+    note: Log in to Zindi, accept the rules, download, unzip into data/raw/cgiar_wheat_rust/.
+
+  - id: wheat_diseases_zenodo
+    name: Wheat Plant Diseases Dataset
+    host: zenodo
+    ref: "15056570"
+    crop: wheat
+    field: mixed
+    licence: check
+    commercial: unknown
+    label: folder
+
+  - id: wheat_leaf_mendeley
+    name: Wheat Leaf Dataset
+    host: mendeley
+    ref: wgd66f8n6h
+    version: 1
+    crop: wheat
+    field: field
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  # ---------------------------- single crops elsewhere ----------------------------
+  - id: paddy_doctor
+    name: Paddy Doctor (10 rice classes)
+    host: kaggle_comp
+    ref: paddy-disease-classification
+    crop: rice
+    images: 10407
+    field: field
+    region: India
+    licence: competition rules
+    commercial: false
+    label: folder
+    label_dir: train_images
+
+  - id: plant_pathology_2021
+    name: Plant Pathology 2021 (apple, FGVC8)
+    host: kaggle_comp
+    ref: plant-pathology-2021-fgvc8
+    crop: apple
+    images: 18632
+    field: field
+    region: USA
+    licence: competition rules
+    commercial: false
+    label: csv
+    csv: {file: train.csv, image_col: image, label_col: labels, image_dir: train_images, multi_label_sep: " "}
+
+  - id: corn_kaggle
+    name: Corn or Maize Leaf Disease
+    host: kaggle
+    ref: smaranjitghose/corn-or-maize-leaf-disease-dataset
+    crop: maize
+    images: 4188
+    field: mixed
+    licence: check
+    commercial: unknown
+    label: folder
+
+  - id: potato_uncontrolled
+    name: Potato Leaf Disease Dataset in Uncontrolled Environment
+    host: mendeley
+    ref: ptz377bwb8
+    version: 1
+    crop: potato
+    images: 3076
+    field: field
+    region: Indonesia
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: rocole
+    name: RoCoLe robusta coffee leaves
+    host: mendeley
+    ref: c5yvn32dzg
+    version: 2
+    crop: coffee
+    images: 1560
+    field: field
+    region: Ecuador
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: bracol
+    name: BRACOL Arabica coffee leaves
+    host: mendeley
+    ref: yy2k5y8mxg
+    version: 1
+    crop: coffee
+    field: field
+    region: Brazil
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: mangoleafbd
+    name: MangoLeafBD
+    host: mendeley
+    ref: hxsnvwty3r
+    version: 1
+    crop: mango
+    images: 4000
+    field: field
+    region: Bangladesh
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: groundnut_leaf
+    name: Groundnut leaf dataset
+    host: mendeley
+    ref: x6x5jkk873
+    version: 2
+    crop: groundnut
+    field: field
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+
+  - id: sorghum_disease
+    name: Sorghum Disease Image Dataset
+    host: mendeley
+    ref: fgb3cmfrg2
+    version: 1
+    crop: sorghum
+    field: field
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder

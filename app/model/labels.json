@@ -1,0 +1,196 @@
+{
+ "model": "placeholder (colour only \u2014 not a real model)",
+ "img": 224,
+ "mean": [
+  0.485,
+  0.456,
+  0.406
+ ],
+ "std": [
+  0.229,
+  0.224,
+  0.225
+ ],
+ "temperature": 1.0,
+ "classes": [
+  {
+   "id": "apple.black_rot",
+   "crop": "apple",
+   "type": "fungal"
+  },
+  {
+   "id": "apple.healthy",
+   "crop": "apple",
+   "type": "healthy"
+  },
+  {
+   "id": "apple.scab",
+   "crop": "apple",
+   "type": "fungal"
+  },
+  {
+   "id": "blueberry.healthy",
+   "crop": "blueberry",
+   "type": "healthy"
+  },
+  {
+   "id": "cherry.healthy",
+   "crop": "cherry",
+   "type": "healthy"
+  },
+  {
+   "id": "cherry.powdery_mildew",
+   "crop": "cherry",
+   "type": "fungal"
+  },
+  {
+   "id": "citrus.greening",
+   "crop": "citrus",
+   "type": "bacterial"
+  },
+  {
+   "id": "grape.black_rot",
+   "crop": "grape",
+   "type": "fungal"
+  },
+  {
+   "id": "grape.esca",
+   "crop": "grape",
+   "type": "fungal"
+  },
+  {
+   "id": "grape.healthy",
+   "crop": "grape",
+   "type": "healthy"
+  },
+  {
+   "id": "grape.leaf_blight",
+   "crop": "grape",
+   "type": "fungal"
+  },
+  {
+   "id": "maize.gray_leaf_spot",
+   "crop": "maize",
+   "type": "fungal"
+  },
+  {
+   "id": "maize.healthy",
+   "crop": "maize",
+   "type": "healthy"
+  },
+  {
+   "id": "maize.northern_leaf_blight",
+   "crop": "maize",
+   "type": "fungal"
+  },
+  {
+   "id": "peach.bacterial_spot",
+   "crop": "peach",
+   "type": "bacterial"
+  },
+  {
+   "id": "peach.healthy",
+   "crop": "peach",
+   "type": "healthy"
+  },
+  {
+   "id": "pepper.bacterial_spot",
+   "crop": "pepper",
+   "type": "bacterial"
+  },
+  {
+   "id": "pepper.healthy",
+   "crop": "pepper",
+   "type": "healthy"
+  },
+  {
+   "id": "potato.early_blight",
+   "crop": "potato",
+   "type": "fungal"
+  },
+  {
+   "id": "potato.late_blight",
+   "crop": "potato",
+   "type": "oomycete"
+  },
+  {
+   "id": "raspberry.healthy",
+   "crop": "raspberry",
+   "type": "healthy"
+  },
+  {
+   "id": "soybean.healthy",
+   "crop": "soybean",
+   "type": "healthy"
+  },
+  {
+   "id": "squash.powdery_mildew",
+   "crop": "squash",
+   "type": "fungal"
+  },
+  {
+   "id": "strawberry.healthy",
+   "crop": "strawberry",
+   "type": "healthy"
+  },
+  {
+   "id": "strawberry.leaf_scorch",
+   "crop": "strawberry",
+   "type": "fungal"
+  },
+  {
+   "id": "tomato.bacterial_spot",
+   "crop": "tomato",
+   "type": "bacterial"
+  },
+  {
+   "id": "tomato.early_blight",
+   "crop": "tomato",
+   "type": "fungal"
+  },
+  {
+   "id": "tomato.healthy",
+   "crop": "tomato",
+   "type": "healthy"
+  },
+  {
+   "id": "tomato.late_blight",
+   "crop": "tomato",
+   "type": "oomycete"
+  },
+  {
+   "id": "tomato.leaf_mold",
+   "crop": "tomato",
+   "type": "fungal"
+  },
+  {
+   "id": "tomato.mosaic_virus",
+   "crop": "tomato",
+   "type": "viral"
+  },
+  {
+   "id": "tomato.septoria_leaf_spot",
+   "crop": "tomato",
+   "type": "fungal"
+  },
+  {
+   "id": "tomato.spider_mites",
+   "crop": "tomato",
+   "type": "pest"
+  },
+  {
+   "id": "tomato.target_spot",
+   "crop": "tomato",
+   "type": "fungal"
+  },
+  {
+   "id": "tomato.yellow_leaf_curl_virus",
+   "crop": "tomato",
+   "type": "viral"
+  }
+ ],
+ "files": {
+  "fp32": "model.onnx"
+ },
+ "placeholder": true
+}

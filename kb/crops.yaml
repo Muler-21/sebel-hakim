@@ -1,0 +1,40 @@
+# Crops the app knows. `group` drives the crop picker in the app.
+# Missing translations fall back to English.
+crops:
+  # ---- cereals ----
+  - {id: maize,      group: cereal,    name: {en: Maize (corn), am: በቆሎ, fr: Maïs, sw: Mahindi}}
+  - {id: wheat,      group: cereal,    name: {en: Wheat, am: ስንዴ, fr: Blé, sw: Ngano}}
+  - {id: rice,       group: cereal,    name: {en: Rice, am: ሩዝ, fr: Riz, sw: Mpunga}}
+  - {id: sorghum,    group: cereal,    name: {en: Sorghum, am: ማሽላ, fr: Sorgho, sw: Mtama}}
+  # ---- legumes ----
+  - {id: bean,       group: legume,    name: {en: Common bean, am: ቦሎቄ, fr: Haricot, sw: Maharage}}
+  - {id: soybean,    group: legume,    name: {en: Soybean, am: አኩሪ አተር, fr: Soja, sw: Soya}}
+  - {id: groundnut,  group: legume,    name: {en: Groundnut (peanut), am: ለውዝ, fr: Arachide, sw: Karanga}}
+  # ---- roots & tubers ----
+  - {id: cassava,    group: root,      name: {en: Cassava, am: ካሳቫ, fr: Manioc, sw: Muhogo}}
+  - {id: potato,     group: root,      name: {en: Potato, am: ድንች, fr: Pomme de terre, sw: Viazi}}
+  # ---- vegetables ----
+  - {id: tomato,     group: vegetable, name: {en: Tomato, am: ቲማቲም, fr: Tomate, sw: Nyanya}}
+  - {id: pepper,     group: vegetable, name: {en: Pepper (capsicum), am: ቃሪያ, fr: Poivron, sw: Pilipili hoho}}
+  - {id: squash,     group: vegetable, name: {en: Squash / pumpkin, am: ዱባ, fr: Courge, sw: Maboga}}
+  # ---- fruits ----
+  - {id: banana,     group: fruit,     name: {en: Banana, am: ሙዝ, fr: Banane, sw: Ndizi}}
+  - {id: mango,      group: fruit,     name: {en: Mango, am: ማንጎ, fr: Mangue, sw: Embe}}
+  - {id: citrus,     group: fruit,     name: {en: Citrus (orange), am: ብርቱካን, fr: Agrumes, sw: Chungwa}}
+  - {id: apple,      group: fruit,     name: {en: Apple, am: ፖም, fr: Pomme, sw: Tufaha}}
+  - {id: grape,      group: fruit,     name: {en: Grape, am: ወይን, fr: Raisin, sw: Zabibu}}
+  - {id: peach,      group: fruit,     name: {en: Peach, am: ኮክ, fr: Pêche, sw: Pichi}}
+  - {id: cherry,     group: fruit,     name: {en: Cherry, am: ቼሪ, fr: Cerise}}
+  - {id: strawberry, group: fruit,     name: {en: Strawberry, am: እንጆሪ, fr: Fraise, sw: Stroberi}}
+  - {id: blueberry,  group: fruit,     name: {en: Blueberry, fr: Myrtille}}
+  - {id: raspberry,  group: fruit,     name: {en: Raspberry, fr: Framboise}}
+  # ---- cash / beverage ----
+  - {id: coffee,     group: cash,      name: {en: Coffee, am: ቡና, fr: Café, sw: Kahawa}}
+
+groups:
+  cereal:    {en: Cereals, am: የእህል ሰብሎች, fr: Céréales, sw: Nafaka}
+  legume:    {en: Legumes, am: ጥራጥሬዎች, fr: Légumineuses, sw: Mikunde}
+  root:      {en: Roots & tubers, am: የሥራ ሥር ሰብሎች, fr: Racines et tubercules, sw: Mazao ya mizizi}
+  vegetable: {en: Vegetables, am: አትክልቶች, fr: Légumes, sw: Mboga}
+  fruit:     {en: Fruits, am: ፍራፍሬዎች, fr: Fruits, sw: Matunda}
+  cash:      {en: Cash crops, am: የገበያ ሰብሎች, fr: Cultures de rente, sw: Mazao ya biashara}

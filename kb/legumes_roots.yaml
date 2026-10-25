@@ -1,0 +1,357 @@
+diseases:
+# ============================== COMMON BEAN ==============================
+- id: bean.healthy
+  crop: bean
+  type: healthy
+  name: {en: Healthy bean, am: ጤናማ ቦሎቄ}
+  synonyms: [healthy, bean healthy, healthy bean]
+
+- id: bean.angular_leaf_spot
+  crop: bean
+  type: fungal
+  severity: high
+  name: {en: Angular leaf spot}
+  scientific: Pseudocercospora griseola
+  synonyms: [angular leaf spot, angular_leaf_spot, als]
+  symptoms:
+    - Angular brown or grey spots bounded by leaf veins, often with a yellow edge
+    - Spots join; leaves drop early; brown spots on pods
+  spread: Seed and crop residue; rain splash and wind; warm, humid weather. One of the most damaging bean diseases in Africa.
+  cultural:
+    - Plant clean (certified) seed of resistant varieties
+    - Rotate for at least two seasons; bury or remove residue
+    - Avoid working in the field when leaves are wet
+  biological:
+    - Trichoderma or Bacillus seed treatment gives partial protection
+  chemical:
+    - Seed treatment; foliar mancozeb, chlorothalonil, or triazole sprays at first symptoms on susceptible varieties
+  prevention: Clean seed of resistant varieties.
+
+- id: bean.rust
+  crop: bean
+  type: fungal
+  severity: medium
+  name: {en: Bean rust}
+  scientific: Uromyces appendiculatus
+  synonyms: [bean rust, bean_rust, rust]
+  symptoms:
+    - Small reddish-brown powdery pustules, often with a yellow halo, mostly on the leaf underside
+  spread: Wind-blown spores; long dew periods at 17–27 °C.
+  cultural:
+    - Resistant varieties; rotation; destroy volunteer beans and residue
+  biological:
+    - None proven at field scale
+  chemical:
+    - Triazoles (e.g. tebuconazole) or mancozeb at first pustules
+  prevention: Resistant varieties.
+
+# ============================== SOYBEAN ==============================
+- id: soybean.healthy
+  crop: soybean
+  type: healthy
+  name: {en: Healthy soybean, am: ጤናማ አኩሪ አተር}
+  synonyms: [soybean healthy, "Soybean___healthy", healthy soybean]
+
+# ============================== GROUNDNUT ==============================
+- id: groundnut.healthy
+  crop: groundnut
+  type: healthy
+  name: {en: Healthy groundnut, am: ጤናማ ለውዝ}
+  synonyms: [healthy, groundnut healthy, healthy leaf, healthy_leaf]
+
+- id: groundnut.early_leaf_spot
+  crop: groundnut
+  type: fungal
+  severity: medium
+  name: {en: Early leaf spot}
+  scientific: Passalora arachidicola (Cercospora arachidicola)
+  synonyms: [early leaf spot, early_leaf_spot, early leafspot]
+  symptoms:
+    - Round brown spots with a clear yellow halo, mainly on the upper leaf surface
+  spread: Residue, rain splash; warm, humid weather.
+  cultural:
+    - Rotate 2–3 years away from groundnut; bury residue; resistant varieties; remove volunteers
+  biological:
+    - Trichoderma and neem-based sprays give partial control
+  chemical:
+    - Chlorothalonil, mancozeb or triazoles (e.g. tebuconazole) from 30–35 days after sowing in high-risk areas
+  prevention: Rotation and residue management.
+
+- id: groundnut.late_leaf_spot
+  crop: groundnut
+  type: fungal
+  severity: high
+  name: {en: Late leaf spot}
+  scientific: Nothopassalora personata (Cercospora personata)
+  synonyms: [late leaf spot, late_leaf_spot, late leafspot]
+  symptoms:
+    - Dark brown to black round spots, usually without a strong halo; dark tufts on the leaf underside
+    - Heavy defoliation before harvest
+  spread: Residue and wind; warm, wet weather late in the season.
+  cultural:
+    - Rotation; residue burial; resistant varieties; timely harvest
+  biological:
+    - Partial control with Trichoderma / neem
+  chemical:
+    - Chlorothalonil, mancozeb or triazoles as for early leaf spot
+  prevention: Rotation and resistant varieties.
+
+- id: groundnut.rust
+  crop: groundnut
+  type: fungal
+  severity: medium
+  name: {en: Groundnut rust}
+  scientific: Puccinia arachidis
+  synonyms: [groundnut rust, rust]
+  symptoms:
+    - Orange-brown pustules on the leaf underside that burst and release powdery spores
+  spread: Wind; high humidity.
+  cultural:
+    - Resistant varieties; remove volunteers; early sowing
+  biological:
+    - None proven at field scale
+  chemical:
+    - Triazoles or chlorothalonil at first pustules
+  prevention: Resistant varieties.
+
+- id: groundnut.rosette
+  crop: groundnut
+  type: viral
+  severity: high
+  name: {en: Groundnut rosette}
+  scientific: Groundnut rosette disease complex (spread by Aphis craccivora)
+  synonyms: [rosette, groundnut rosette]
+  symptoms:
+    - Stunted, bushy plants with small, curled, yellow (chlorotic) or dark green mottled leaves
+  spread: Aphids; worst in late-sown, sparse stands. Unique to Africa.
+  cultural:
+    - Resistant varieties; early sowing; dense, uniform plant stands; uproot early infected plants
+  biological:
+    - Conserve aphid predators (ladybirds, lacewings)
+  chemical:
+    - No cure; aphid control only on extension advice
+  prevention: Early dense sowing with resistant varieties.
+
+# ============================== CASSAVA ==============================
+- id: cassava.healthy
+  crop: cassava
+  type: healthy
+  name: {en: Healthy cassava, am: ጤናማ ካሳቫ}
+  synonyms: [healthy, cassava healthy, healthy cassava, "4"]
+
+- id: cassava.mosaic
+  crop: cassava
+  type: viral
+  severity: high
+  name: {en: Cassava mosaic disease (CMD)}
+  scientific: Cassava mosaic begomoviruses (whitefly Bemisia tabaci)
+  synonyms: [cassava mosaic disease, cmd, mosaic, cassava mosaic, "3"]
+  symptoms:
+    - Yellow or pale green mosaic on leaves; leaves distorted, twisted and smaller
+    - Stunted plants with low root yield
+  spread: Infected stem cuttings (main source) and whiteflies.
+  cultural:
+    - Plant cuttings only from healthy, symptom-free plants
+    - Use CMD-resistant varieties
+    - Uproot and destroy infected plants early (roguing)
+  biological:
+    - Conserve whitefly natural enemies
+  chemical:
+    - No chemical cure; whitefly sprays are rarely effective
+  prevention: Clean planting material and resistant varieties.
+
+- id: cassava.brown_streak
+  crop: cassava
+  type: viral
+  severity: critical
+  name: {en: Cassava brown streak disease (CBSD)}
+  scientific: Cassava brown streak ipomoviruses (whitefly Bemisia tabaci)
+  synonyms: [cassava brown streak disease, cbsd, brown streak, "1"]
+  symptoms:
+    - Yellow patches along secondary veins of older leaves; brown streaks on green stems
+    - Dry, brown, corky rot inside the roots; roots unsellable
+  spread: Infected cuttings and whiteflies. Spreading across East and Central Africa.
+  cultural:
+    - Use certified clean cuttings of tolerant varieties
+    - Rogue infected plants; harvest early in affected areas
+  biological:
+    - None
+  chemical:
+    - No chemical cure
+  prevention: Clean seed systems and tolerant varieties.
+  notes: Report new areas of CBSD to your extension office.
+
+- id: cassava.bacterial_blight
+  crop: cassava
+  type: bacterial
+  severity: high
+  name: {en: Cassava bacterial blight (CBB)}
+  scientific: Xanthomonas axonopodis pv. manihotis (X. phaseoli pv. manihotis)
+  synonyms: [cassava bacterial blight, cbb, bacterial blight, "0"]
+  symptoms:
+    - Angular water-soaked spots, leaf wilting and blight, gum on stems, shoot die-back
+  spread: Infected cuttings, rain splash, tools; rainy season.
+  cultural:
+    - Clean cuttings from healthy plants; resistant varieties; rotation; disinfect tools; remove infected plants
+  biological:
+    - None reliable
+  chemical:
+    - No effective chemical control in the field
+  prevention: Clean planting material.
+
+- id: cassava.green_mottle
+  crop: cassava
+  type: viral
+  severity: low
+  name: {en: Cassava green mottle (CGM)}
+  scientific: Cassava green mottle virus (also used for green mite-like mottling in datasets)
+  synonyms: [cassava green mottle, cgm, green mottle, "2"]
+  symptoms:
+    - Small yellow-green mottled spots, leaf distortion; often confused with green mite damage
+  spread: Infected cuttings.
+  cultural:
+    - Healthy cuttings; remove affected plants
+  biological:
+    - 'For green mite: predatory mites (Typhlodromalus aripo) released in many African countries'
+  chemical:
+    - No chemical cure for the virus
+  prevention: Clean cuttings.
+
+# ============================== POTATO ==============================
+- id: potato.healthy
+  crop: potato
+  type: healthy
+  name: {en: Healthy potato, am: ጤናማ ድንች}
+  synonyms: ["Potato___healthy", potato healthy, healthy]
+
+- id: potato.late_blight
+  crop: potato
+  type: oomycete
+  severity: critical
+  name: {en: Late blight}
+  scientific: Phytophthora infestans
+  synonyms: ["Potato___Late_blight", late blight, potato late blight, phytophthora, phytopthora]
+  symptoms:
+    - Dark, water-soaked patches on leaves that spread fast; white mould at the edge underneath in humid weather
+    - Brown, rotting stems; reddish-brown dry rot in tubers
+  spread: Infected tubers and volunteers; airborne spores; cool (10–24 °C), wet weather. Can destroy a field in a week.
+  cultural:
+    - Plant certified healthy seed tubers of resistant varieties
+    - Destroy volunteer potatoes and cull piles; hill up soil over tubers
+    - Remove and bury infected plants; cut haulms 2 weeks before harvest
+  biological:
+    - Bacillus subtilis products give weak protection; not enough alone
+  chemical:
+    - Protectant sprays (mancozeb, chlorothalonil, copper) before infection in wet weather
+    - Systemics (metalaxyl-M + mancozeb, cymoxanil, dimethomorph) once disease is present; rotate groups
+  prevention: Resistant varieties, healthy seed and a spray plan in rainy seasons.
+
+- id: potato.early_blight
+  crop: potato
+  type: fungal
+  severity: medium
+  name: {en: Early blight}
+  scientific: Alternaria solani
+  synonyms: ["Potato___Early_blight", early blight, potato early blight, alternaria]
+  symptoms:
+    - Brown spots with concentric rings ("target board") on older leaves, often with a yellow halo
+  spread: Residue and soil; warm weather with alternating wet and dry periods; stressed plants.
+  cultural:
+    - Rotation; balanced fertilisation; avoid drought stress; remove residue
+  biological:
+    - Bacillus or Trichoderma products give partial control
+  chemical:
+    - Mancozeb, chlorothalonil, or strobilurins / difenoconazole when spots appear on lower leaves
+  prevention: Good plant nutrition and rotation.
+
+- id: potato.bacterial_disease
+  crop: potato
+  type: bacterial
+  severity: high
+  name: {en: Bacterial disease (wilt / soft rot)}
+  scientific: Ralstonia solanacearum, Pectobacterium spp. and others
+  synonyms: [bacteria, bacterial wilt, potato bacteria, soft rot, blackleg]
+
+- id: potato.fungal_disease
+  crop: potato
+  type: fungal
+  severity: medium
+  name: {en: Other fungal disease}
+  scientific: Various fungi (e.g. Alternaria, Fusarium, Rhizoctonia)
+  synonyms: [fungi, fungal, potato fungi]
+  symptoms:
+    - Leaf spots, lesions or rots that are not typical late blight
+  spread: Soil, residue, seed tubers and splash; humid weather.
+  cultural:
+    - Rotation; certified seed; remove residue; avoid waterlogging and plant stress
+  biological:
+    - Trichoderma or Bacillus products give partial control
+  chemical:
+    - Ask your extension officer to confirm the disease before spraying; broad protectants (mancozeb, chlorothalonil) if advised
+  prevention: Rotation and clean seed.
+  symptoms:
+    - Sudden wilting of green plants; brown ring in the cut tuber with white ooze (bacterial wilt)
+    - Black, slimy stem base and soft, smelly tubers (blackleg / soft rot)
+  spread: Infected seed tubers, soil, water, tools. Bacterial wilt is a major problem in African highlands.
+  cultural:
+    - Certified clean seed; rotate 3+ years with cereals; uproot infected plants with the soil around them
+    - Clean tools; avoid irrigation water from infected fields
+  biological:
+    - None reliable
+  chemical:
+    - No effective chemical control
+  prevention: Clean seed and long rotation.
+
+- id: potato.virus
+  crop: potato
+  type: viral
+  severity: medium
+  name: {en: Potato virus diseases}
+  scientific: PVY, PLRV and other viruses (aphids)
+  synonyms: [virus, potato virus, potato viruses]
+  symptoms:
+    - Mosaic, mottling, rolled or crinkled leaves, stunted plants
+  spread: Aphids and infected seed tubers.
+  cultural:
+    - Certified seed; rogue infected plants early; control volunteers and weeds
+  biological:
+    - Conserve aphid predators
+  chemical:
+    - No cure; mineral oil or aphicides only in seed production
+  prevention: Certified seed.
+
+- id: potato.pest_damage
+  crop: potato
+  type: pest
+  severity: medium
+  name: {en: Insect pest damage}
+  scientific: e.g. potato tuber moth, aphids, leaf miners
+  synonyms: [pest, potato pest, insect damage]
+  symptoms:
+    - Holes, mines or chewed leaves; insects or larvae visible
+  spread: Varies by pest.
+  cultural:
+    - Hill up soil to protect tubers; remove infested plants; store tubers covered and cool
+  biological:
+    - Granulovirus or Bt products for tuber moth; conserve natural enemies
+  chemical:
+    - Only if thresholds are exceeded; use recommended insecticides
+  prevention: Field hygiene and clean storage.
+
+- id: potato.nematode
+  crop: potato
+  type: nematode
+  severity: medium
+  name: {en: Nematode damage}
+  scientific: e.g. Globodera (cyst nematodes), Meloidogyne (root-knot)
+  synonyms: [nematode, potato nematode]
+  symptoms:
+    - Patches of stunted, yellowing plants; galls on roots or tiny cysts on roots
+  spread: Soil, infected tubers, tools and water.
+  cultural:
+    - Long rotation with non-host crops; clean seed; resistant varieties where available
+  biological:
+    - Organic amendments and biofumigation (brassicas) reduce populations
+  chemical:
+    - Nematicides only under expert guidance
+  prevention: Rotation and clean seed.

@@ -1,0 +1,478 @@
+diseases:
+# ============================== MAIZE ==============================
+- id: maize.healthy
+  crop: maize
+  type: healthy
+  name: {en: Healthy maize, am: ጤናማ በቆሎ}
+  synonyms: [corn healthy, maize healthy, "Corn_(maize)___healthy", healthy maize, corn___healthy]
+
+- id: maize.northern_leaf_blight
+  crop: maize
+  type: fungal
+  severity: medium
+  name: {en: Northern leaf blight (turcicum blight)}
+  scientific: Exserohilum turcicum
+  synonyms: [northern leaf blight, northern corn leaf blight, "Corn_(maize)___Northern_Leaf_Blight", maize leaf blight, MLB, turcicum leaf blight, leaf blight, blight, nlb]
+  symptoms:
+    - Long (3–15 cm), cigar-shaped grey-green to tan lesions on leaves
+    - Lesions start on lower leaves and move up; dark spores can appear in the centre in humid weather
+    - Severe infection before tasselling dries leaves early and reduces yield
+  spread: Survives on maize residue; spores spread by wind and rain splash. Favoured by moderate temperatures (18–27 °C), heavy dew and long wet periods.
+  cultural:
+    - Plant resistant or tolerant varieties recommended for your area
+    - Rotate with a non-grass crop (beans, soybean, groundnut) for at least one season
+    - Bury or remove infected residue after harvest
+    - Avoid very dense planting so leaves dry faster
+  biological:
+    - Trichoderma-based products can reduce inoculum on residue (moderate effect)
+  chemical:
+    - Only if lesions reach the ear leaf before or at tasselling on a susceptible variety
+    - Triazoles (e.g. propiconazole, tebuconazole) or strobilurin + triazole mixtures
+  prevention: Resistant varieties and rotation give the best long-term control.
+
+- id: maize.gray_leaf_spot
+  crop: maize
+  type: fungal
+  severity: medium
+  name: {en: Gray leaf spot}
+  scientific: Cercospora zeae-maydis / C. zeina
+  synonyms: [gray leaf spot, grey leaf spot, "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot", cercospora leaf spot, gls]
+  symptoms:
+    - Narrow, rectangular grey to tan lesions limited by leaf veins
+    - Lesions join and kill large leaf areas during grain fill
+  spread: Survives on residue; favoured by warm, very humid weather, mist and reduced tillage. Common in East and Southern African highlands.
+  cultural:
+    - Use tolerant hybrids
+    - Rotate away from maize and manage residue
+    - Avoid continuous maize under minimum tillage in high-risk zones
+  biological:
+    - No reliable biocontrol yet; focus on resistance and rotation
+  chemical:
+    - Strobilurin or strobilurin + triazole fungicides at early lesion development on susceptible varieties
+  prevention: Choose tolerant varieties for humid, high-altitude areas.
+
+- id: maize.common_rust
+  crop: maize
+  type: fungal
+  severity: low
+  name: {en: Common rust}
+  scientific: Puccinia sorghi
+  synonyms: [common rust, "Corn_(maize)___Common_rust_", maize rust, corn rust, rust]
+  symptoms:
+    - Small, oval, cinnamon-brown powdery pustules on both leaf surfaces
+    - Pustules turn dark brown-black late in the season
+  spread: Wind-blown spores; favoured by cool (16–23 °C), humid conditions.
+  cultural:
+    - Plant resistant hybrids; most commercial hybrids have good tolerance
+    - Plant early to avoid peak spore periods
+  biological:
+    - None proven at field scale
+  chemical:
+    - Usually not needed. On susceptible seed crops, triazole or strobilurin fungicides at early infection
+  prevention: Resistant varieties.
+
+- id: maize.streak_virus
+  crop: maize
+  type: viral
+  severity: high
+  name: {en: Maize streak virus (MSV)}
+  scientific: Maize streak virus (Mastrevirus), spread by Cicadulina leafhoppers
+  synonyms: [maize streak virus, msv, streak virus, maize streak]
+  symptoms:
+    - Narrow, broken yellow-white streaks running along the leaf veins
+    - Plants infected young are stunted and may produce no cobs
+  spread: Transmitted only by Cicadulina leafhoppers from grasses and earlier maize. Worst in late-planted fields and dry spells. Native to Africa.
+  cultural:
+    - Plant MSV-resistant varieties (widely available in Africa)
+    - Plant early and at the same time as neighbours
+    - Remove infected seedlings early and control grass weeds around the field
+  biological:
+    - Natural enemies of leafhoppers; avoid broad-spectrum insecticides that kill them
+  chemical:
+    - No chemical cure for the virus
+    - Systemic insecticide seed treatment (e.g. imidacloprid, thiamethoxam) can reduce early leafhopper feeding in high-risk areas
+  prevention: Resistant varieties plus synchronized early planting.
+
+- id: maize.lethal_necrosis
+  crop: maize
+  type: viral
+  severity: critical
+  name: {en: Maize lethal necrosis (MLN)}
+  scientific: Maize chlorotic mottle virus + a potyvirus (usually SCMV)
+  synonyms: [maize lethal necrosis, mln, lethal necrosis]
+  symptoms:
+    - Yellow mottling starting at leaf bases, then drying from the leaf margins inward ("firing")
+    - Dead heart, premature drying, small or empty cobs; whole fields can die
+  spread: Thrips, rootworms and aphids spread the viruses; MCMV is also seed-borne. Spread rapidly in East Africa since 2011.
+  cultural:
+    - Use certified MLN-free seed and MLN-tolerant varieties
+    - Do not plant maize continuously; observe maize-free periods where advised
+    - Uproot and destroy infected plants early; control weeds
+    - Rotate with legumes, potato or other non-cereals
+  biological:
+    - No biocontrol for the virus; conserve vector enemies
+  chemical:
+    - No chemical cure
+    - Vector control (seed treatment, insecticides against thrips/aphids) only as advised by extension
+  prevention: Certified seed, rotation and community-wide maize-free periods.
+  notes: Notifiable in several countries. Report suspected MLN to your extension or plant-protection office.
+
+- id: maize.fall_armyworm
+  crop: maize
+  type: pest
+  severity: high
+  name: {en: Fall armyworm damage}
+  scientific: Spodoptera frugiperda
+  synonyms: [fall armyworm, faw, armyworm, fall_armyworm]
+  symptoms:
+    - Window-pane feeding (scraped, see-through patches) on young leaves
+    - Ragged holes, sawdust-like droppings (frass) in the leaf funnel (whorl)
+    - Caterpillars with an inverted "Y" on the head and four dots in a square near the tail
+  spread: Moths fly long distances; spread across Africa since 2016. Several generations per season.
+  cultural:
+    - Scout twice a week in the first 6 weeks; act early
+    - Hand-pick egg masses and young larvae; put sand, ash or soil mixed with lime in the whorl
+    - Plant early and at the same time; intercrop with legumes; "push-pull" with desmodium and Brachiaria
+  biological:
+    - Products based on Bt (Bacillus thuringiensis), Metarhizium or SfMNPV virus
+    - Protect natural enemies (parasitic wasps, earwigs, ants)
+  chemical:
+    - Only if damage exceeds local thresholds (about 20% of young plants damaged)
+    - Use recommended actives such as emamectin benzoate, spinetoram or chlorantraniliprole; spray into the whorl; rotate modes of action
+  prevention: Regular scouting, push-pull, early synchronized planting.
+
+# ============================== WHEAT ==============================
+- id: wheat.healthy
+  crop: wheat
+  type: healthy
+  name: {en: Healthy wheat, am: ጤናማ ስንዴ}
+  synonyms: [healthy wheat, wheat healthy, healthy]
+
+- id: wheat.stem_rust
+  crop: wheat
+  type: fungal
+  severity: critical
+  name: {en: Stem rust (black rust)}
+  scientific: Puccinia graminis f. sp. tritici
+  synonyms: [stem rust, black rust, wheat stem rust, stem_rust]
+  symptoms:
+    - Elongated, dark reddish-brown pustules on stems, leaf sheaths and leaves that tear the plant skin
+    - Pustules turn black late in the season; stems weaken and lodge
+  spread: Wind-blown spores over long distances; warm days (20–30 °C) with wet nights. Ug99 races arose in East Africa.
+  cultural:
+    - Grow resistant varieties released for your country (check for Ug99 resistance)
+    - Remove volunteer wheat and avoid very late planting
+  biological:
+    - None proven at field scale
+  chemical:
+    - Triazoles (e.g. tebuconazole, propiconazole) or triazole + strobilurin at first sign on susceptible varieties
+  prevention: Resistant varieties; surveillance with extension services.
+  notes: Report new outbreaks to extension; Ug99-lineage races threaten many varieties.
+
+- id: wheat.leaf_rust
+  crop: wheat
+  type: fungal
+  severity: medium
+  name: {en: Leaf rust (brown rust)}
+  scientific: Puccinia triticina
+  synonyms: [leaf rust, brown rust, wheat leaf rust, leaf_rust]
+  symptoms:
+    - Small, round, orange-brown pustules scattered on the upper leaf surface
+  spread: Wind-blown spores; mild temperatures (15–22 °C) and dew.
+  cultural:
+    - Resistant varieties; remove volunteer wheat; avoid excess nitrogen
+  biological:
+    - None proven at field scale
+  chemical:
+    - Triazole fungicides when pustules appear on upper leaves before flowering
+  prevention: Resistant varieties.
+
+- id: wheat.yellow_rust
+  crop: wheat
+  type: fungal
+  severity: high
+  name: {en: Yellow rust (stripe rust)}
+  scientific: Puccinia striiformis f. sp. tritici
+  synonyms: [yellow rust, stripe rust, wheat yellow rust, yellow_rust]
+  symptoms:
+    - Yellow-orange pustules in long stripes between the leaf veins
+    - Leaves turn yellow and dry; heads can be infected
+  spread: Cool (10–15 °C), moist weather; a major problem in the Ethiopian and Kenyan highlands.
+  cultural:
+    - Resistant varieties; avoid early sowing in hot-spot areas; remove volunteers
+  biological:
+    - None proven at field scale
+  chemical:
+    - Triazoles (e.g. tebuconazole, propiconazole) at first stripes on susceptible varieties
+  prevention: Resistant varieties and early scouting in cool, wet seasons.
+
+- id: wheat.septoria
+  crop: wheat
+  type: fungal
+  severity: medium
+  name: {en: Septoria leaf blotch}
+  scientific: Zymoseptoria tritici
+  synonyms: [septoria, septoria tritici blotch, septoria leaf blotch, wheat septoria]
+  symptoms:
+    - Brown, irregular blotches with tiny black dots (fruiting bodies) inside
+    - Starts on lower leaves and moves up in rain
+  spread: Rain splash from residue; cool, wet seasons.
+  cultural:
+    - Rotation, residue management, tolerant varieties, avoid very early sowing
+  biological:
+    - None proven at field scale
+  chemical:
+    - Triazole or SDHI-containing mixtures at flag-leaf stage on susceptible varieties
+  prevention: Rotation and tolerant varieties.
+
+- id: wheat.powdery_mildew
+  crop: wheat
+  type: fungal
+  severity: low
+  name: {en: Powdery mildew}
+  scientific: Blumeria graminis f. sp. tritici
+  synonyms: [wheat powdery mildew, mildew]
+  symptoms:
+    - White to grey fluffy patches on leaves and stems that rub off
+  spread: Wind; dense crops, high humidity and high nitrogen.
+  cultural:
+    - Resistant varieties; balanced nitrogen; avoid very dense sowing
+  biological:
+    - Sulphur products are accepted in organic systems
+  chemical:
+    - Sulphur or triazole fungicides if more than a few upper leaves are covered before flowering
+  prevention: Resistant varieties.
+
+# ============================== RICE ==============================
+- id: rice.healthy
+  crop: rice
+  type: healthy
+  name: {en: Healthy rice, am: ጤናማ ሩዝ}
+  synonyms: [normal, healthy rice, rice healthy, healthy]
+
+- id: rice.blast
+  crop: rice
+  type: fungal
+  severity: high
+  name: {en: Rice blast}
+  scientific: Magnaporthe oryzae
+  synonyms: [blast, rice blast, leaf blast, neck blast, leafblast]
+  symptoms:
+    - Diamond-shaped lesions with grey centres and brown edges on leaves
+    - 'Neck blast: the stem below the panicle turns black and the panicle breaks or stays empty'
+  spread: Airborne spores; long leaf wetness, cool nights, high nitrogen. Major threat in upland rice in Africa.
+  cultural:
+    - Resistant varieties; split nitrogen applications; avoid excess nitrogen
+    - Keep fields flooded where possible; destroy infected straw
+  biological:
+    - Silicon fertilisers and Pseudomonas / Bacillus seed treatments reduce severity
+  chemical:
+    - Tricyclazole, azoxystrobin or isoprothiolane at booting if blast is present
+  prevention: Resistant varieties and balanced fertiliser.
+
+- id: rice.brown_spot
+  crop: rice
+  type: fungal
+  severity: medium
+  name: {en: Brown spot}
+  scientific: Bipolaris oryzae
+  synonyms: [brown spot, brownspot, rice brown spot]
+  symptoms:
+    - Oval brown spots with a grey centre and yellow halo on leaves and grains
+  spread: Seed-borne; worst on poor, nutrient-deficient soils and in drought stress.
+  cultural:
+    - Use clean seed; correct potassium, silicon and nitrogen deficiencies
+  biological:
+    - Hot-water or Trichoderma seed treatment
+  chemical:
+    - Seed treatment with a recommended fungicide; foliar triazole in severe cases
+  prevention: Healthy soil fertility and clean seed.
+
+- id: rice.bacterial_leaf_blight
+  crop: rice
+  type: bacterial
+  severity: high
+  name: {en: Bacterial leaf blight}
+  scientific: Xanthomonas oryzae pv. oryzae
+  synonyms: [bacterial leaf blight, bacterial_leaf_blight, blb, bacterial blight]
+  symptoms:
+    - Wavy yellow to white stripes starting at leaf tips or edges, drying to grey
+    - Milky bacterial ooze drops in the morning
+  spread: Water, wind-driven rain, wounds, infected stubble; warm and flooded conditions.
+  cultural:
+    - Resistant varieties; balanced nitrogen; drain fields periodically; clean tools; remove stubble
+  biological:
+    - Bacillus-based products have limited effect
+  chemical:
+    - Copper products have limited value; resistance and hygiene are the real control
+  prevention: Resistant varieties.
+
+- id: rice.bacterial_leaf_streak
+  crop: rice
+  type: bacterial
+  severity: medium
+  name: {en: Bacterial leaf streak}
+  scientific: Xanthomonas oryzae pv. oryzicola
+  synonyms: [bacterial leaf streak, bacterial_leaf_streak, bls]
+  symptoms:
+    - Narrow, water-soaked streaks between veins that turn yellow-brown, with amber droplets
+  spread: Rain splash, wind, irrigation water and seed.
+  cultural:
+    - Clean seed, resistant varieties, avoid excess nitrogen, remove infected stubble
+  biological:
+    - None reliable
+  chemical:
+    - Copper products have limited value
+  prevention: Clean seed and resistance.
+
+- id: rice.bacterial_panicle_blight
+  crop: rice
+  type: bacterial
+  severity: medium
+  name: {en: Bacterial panicle blight}
+  scientific: Burkholderia glumae
+  synonyms: [bacterial panicle blight, bacterial_panicle_blight]
+  symptoms:
+    - Grains discoloured straw to grey with a brown base; panicles stay upright because grains are empty
+  spread: Seed-borne; very hot nights during flowering.
+  cultural:
+    - Clean seed; avoid planting so that flowering falls in the hottest period; moderate nitrogen
+  biological:
+    - None reliable
+  chemical:
+    - No effective chemical control in most countries
+  prevention: Clean seed and planting date.
+
+- id: rice.tungro
+  crop: rice
+  type: viral
+  severity: high
+  name: {en: Rice tungro}
+  scientific: Rice tungro bacilliform + spherical viruses (green leafhoppers)
+  synonyms: [tungro, rice tungro]
+  symptoms:
+    - Yellow-orange leaves from the tip down, stunting, fewer tillers
+  spread: Green leafhoppers.
+  cultural:
+    - Resistant varieties; synchronised planting; remove infected stubble and volunteers
+  biological:
+    - Protect leafhopper predators (spiders, mirid bugs)
+  chemical:
+    - No chemical cure; insecticides against leafhoppers only on extension advice
+  prevention: Synchronised planting and resistance.
+
+- id: rice.hispa
+  crop: rice
+  type: pest
+  severity: medium
+  name: {en: Rice hispa damage}
+  scientific: Dicladispa armigera
+  synonyms: [hispa, rice hispa]
+  symptoms:
+    - White parallel feeding streaks and blotch mines on leaves; small spiny dark beetles
+  spread: Adult beetles fly between fields; favoured by excess nitrogen and heavy rain.
+  cultural:
+    - Clip and destroy leaf tips with eggs before transplanting; avoid excess nitrogen
+  biological:
+    - Conserve natural enemies (parasitoid wasps)
+  chemical:
+    - Only at high infestations, using recommended insecticides
+  prevention: Balanced fertilisation and early detection.
+
+- id: rice.dead_heart
+  crop: rice
+  type: pest
+  severity: medium
+  name: {en: Dead heart (stem borer)}
+  scientific: Rice stem borers (e.g. Scirpophaga, Chilo, Maliarpha spp.)
+  synonyms: [dead heart, dead_heart, deadheart, stem borer]
+  symptoms:
+    - Central shoot dries and pulls out easily at the vegetative stage; white empty heads later
+  spread: Moths lay eggs on leaves; larvae bore into stems.
+  cultural:
+    - Harvest close to the ground and destroy stubble; synchronised planting; remove egg masses
+  biological:
+    - Trichogramma egg parasitoids; conserve natural enemies
+  chemical:
+    - Only if above local thresholds; use recommended insecticides
+  prevention: Stubble destruction and synchronised planting.
+
+- id: rice.downy_mildew
+  crop: rice
+  type: oomycete
+  severity: low
+  name: {en: Downy mildew}
+  scientific: Sclerophthora macrospora
+  synonyms: [downy mildew, downy_mildew]
+  symptoms:
+    - Twisted, thickened yellowish leaves; stunted plants; distorted panicles
+  spread: Waterlogged or flooded seedlings in cool weather.
+  cultural:
+    - Good drainage at seedling stage; remove infected plants; control grassy weeds
+  biological:
+    - None reliable
+  chemical:
+    - Rarely justified
+  prevention: Good water management at seedling stage.
+
+# ============================== SORGHUM ==============================
+- id: sorghum.healthy
+  crop: sorghum
+  type: healthy
+  name: {en: Healthy sorghum, am: ጤናማ ማሽላ}
+  synonyms: [healthy sorghum, sorghum healthy, healthy]
+
+- id: sorghum.anthracnose
+  crop: sorghum
+  type: fungal
+  severity: high
+  name: {en: Sorghum anthracnose}
+  scientific: Colletotrichum sublineola
+  synonyms: [anthracnose, sorghum anthracnose]
+  symptoms:
+    - Small round to elliptical spots with tan or red centres and dark margins; black spore dots in the centre
+    - Stalk rot and red discoloration inside stems in severe cases
+  spread: Residue, seed, rain splash; warm, humid weather.
+  cultural:
+    - Resistant varieties, rotation, residue removal, clean seed
+  biological:
+    - None proven at field scale
+  chemical:
+    - Seed treatment; foliar triazole or strobilurin only on susceptible varieties in high pressure
+  prevention: Resistant varieties and rotation.
+
+- id: sorghum.leaf_blight
+  crop: sorghum
+  type: fungal
+  severity: medium
+  name: {en: Sorghum leaf blight}
+  scientific: Exserohilum turcicum
+  synonyms: [leaf blight, sorghum leaf blight, northern leaf blight]
+  symptoms:
+    - Long, elliptical reddish or tan lesions on leaves
+  spread: Residue and wind-blown spores; humid, moderate temperatures.
+  cultural:
+    - Resistant varieties, rotation, residue management
+  biological:
+    - None proven at field scale
+  chemical:
+    - Rarely economic; triazoles on seed crops
+  prevention: Resistant varieties.
+
+- id: sorghum.rust
+  crop: sorghum
+  type: fungal
+  severity: low
+  name: {en: Sorghum rust}
+  scientific: Puccinia purpurea
+  synonyms: [sorghum rust, rust]
+  symptoms:
+    - Small reddish-brown to purple pustules on both leaf surfaces
+  spread: Wind-blown spores.
+  cultural:
+    - Resistant varieties; early planting
+  biological:
+    - None proven
+  chemical:
+    - Rarely needed
+  prevention: Resistant varieties.
