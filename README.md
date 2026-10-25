@@ -16,7 +16,15 @@ app/           the phone app (static web app / PWA)
 tests/         label-mapping tests and a placeholder model for testing the app
 ```
 
-## 1. Train the model (on your HPC)
+## 1. Train the model
+
+### Easiest: Kaggle's free GPU (no HPC needed)
+
+Upload `kaggle/agrodoc_kaggle.ipynb` to Kaggle (Create → New Notebook → File → Import Notebook) and follow the
+steps in its first cell. It contains all the code below, runs in about 7–9 hours, and produces `agrodoc_model.zip`.
+After changing anything in `pipeline/` or `kb/`, rebuild it with `python kaggle/build_notebook.py`.
+
+### On your own HPC
 
 ```bash
 # on a login node with internet

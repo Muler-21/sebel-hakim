@@ -15,7 +15,7 @@ import numpy as np
 import timm
 import torch
 
-from common import ROOT, load_diseases
+from common import DATA_ROOT, ROOT, load_diseases
 
 
 def main():
@@ -65,7 +65,7 @@ def main():
         import csv
         from PIL import Image
         from train import eval_tf
-        rows = [r for r in csv.DictReader(open(ROOT / "data" / "manifest.csv", encoding="utf-8")) if r["split"] == "train"]
+        rows = [r for r in csv.DictReader(open(DATA_ROOT / "manifest.csv", encoding="utf-8")) if r["split"] == "train"]
         rng = np.random.default_rng(0)
         pick = [rows[i] for i in rng.choice(len(rows), min(a.calib, len(rows)), replace=False)]
         tf = eval_tf(ck["img"])

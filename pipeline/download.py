@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -22,9 +23,10 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-from common import ROOT, load_datasets
+from common import DATA_ROOT, load_datasets
 
-RAW = ROOT / "data" / "raw"
+RAW = DATA_ROOT / "raw"
+KAGGLE_INPUT = Path(os.environ.get("KAGGLE_INPUT", "/kaggle/input"))
 UA = {"User-Agent": "agrodoc-dataset-downloader/1.0"}
 
 
@@ -117,7 +119,26 @@ def get_dataverse(d, out: Path):
                   out / "dataset.zip")
 
 
+def find_kaggle_input(slug: str) -> Path | None:
+    """A dataset/competition attached with "Add Input" in a Kaggle notebook."""
+    if not KAGGLE_INPUT.is_dir():
+        return None
+    for depth1 in KAGGLE_INPUT.iterdir():
+        if depth1.name == slug:
+            return depth1
+        if depth1.is_dir():                      # newer layout: /kaggle/input/<kind>/<owner>/<slug>
+            for p in depth1.rglob(slug):
+                if p.is_dir():
+                    return p
+    return None
+
+
 def get_kaggle(d, out: Path, comp: bool):
+    src = find_kaggle_input(d["ref"].split("/")[-1])
+    if src is not None:
+        (out / "input").symlink_to(src, target_is_directory=True)
+        print(f"    using attached Kaggle input {src}")
+        return
     if not shutil.which("kaggle"):
         raise RuntimeError("install the Kaggle CLI (pip install kaggle) and put your token in ~/.kaggle/kaggle.json")
     cmd = (["kaggle", "competitions", "download", "-c", d["ref"]] if comp
@@ -164,20 +185,22 @@ def main():
         if (out / ".done").exists():
             print(f"[skip] {d['id']} already downloaded")
             continue
+        if out.exists() and not (out / ".done").exists():
+            shutil.rmtree(out, ignore_errors=True)   # half-finished earlier attempt
         if d["host"] == "manual":
             manual.append(d)
             continue
         print(f"[get ] {d['id']} ({d['host']}: {d.get('ref')})")
-        if out.exists() and d["host"] == "github":
-            shutil.rmtree(out)
         out.mkdir(parents=True, exist_ok=True)
         try:
             HOSTS[d["host"]](d, out)
-            extract_all(out)
+            if not (out / "input").is_symlink():  # never touch read-only Kaggle inputs
+                extract_all(out)
             (out / ".done").write_text("ok\n")
         except Exception as e:
             print(f"  ! {d['id']} failed: {e}")
             failed.append(d["id"])
+            shutil.rmtree(out, ignore_errors=True)
 
     if manual:
         print("\nManual downloads (put the files in data/raw/<id>/ and create an empty .done file):")

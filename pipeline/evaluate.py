@@ -17,7 +17,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from common import ROOT
+from common import DATA_ROOT, ROOT
 from train import ImgDS, eval_tf, macro_f1, read_manifest
 
 
@@ -46,17 +46,21 @@ def load_runner(path: Path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("model")
-    ap.add_argument("--manifest", default=str(ROOT / "data" / "manifest.csv"))
+    ap.add_argument("--manifest", default=str(DATA_ROOT / "manifest.csv"))
     ap.add_argument("--split", default="test")
     ap.add_argument("--threshold", type=float, default=0.5, help="'not sure' below this confidence")
     ap.add_argument("--bs", type=int, default=64)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--out", default="")
+    ap.add_argument("--max-images", type=int, default=0, help="evaluate a random subset (quick checks)")
     a = ap.parse_args()
 
     path = Path(a.model)
     classes, img, temp, run = load_runner(path)
     rows = [r for r in read_manifest(Path(a.manifest)) if r["split"] == a.split and r["label"] in classes]
+    if a.max_images and len(rows) > a.max_images:
+        import random
+        rows = random.Random(0).sample(rows, a.max_images)
     dl = DataLoader(ImgDS(rows, classes, eval_tf(img)), batch_size=a.bs, num_workers=a.workers)
     probs, ys = [], []
     for x, y in dl:

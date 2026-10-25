@@ -29,7 +29,7 @@ from PIL import Image
 from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
 from torchvision.transforms import v2 as T
 
-from common import ROOT
+from common import DATA_ROOT, ROOT
 
 MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
 
@@ -128,7 +128,7 @@ def fit_temperature(logits, y):
 # ---------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--manifest", default=str(ROOT / "data" / "manifest.csv"))
+    ap.add_argument("--manifest", default=str(DATA_ROOT / "manifest.csv"))
     ap.add_argument("--model", default="efficientnet_b0.ra_in1k")
     ap.add_argument("--img", type=int, default=224)
     ap.add_argument("--epochs", type=int, default=30)
@@ -144,11 +144,12 @@ def main():
     ap.add_argument("--teacher", default="", help="checkpoint of a teacher model for distillation")
     ap.add_argument("--kd-alpha", type=float, default=0.7)
     ap.add_argument("--kd-temp", type=float, default=2.0)
-    ap.add_argument("--ema", type=float, default=0.9998)
+    ap.add_argument("--ema", type=float, default=0.9995)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--max-steps", type=int, default=0, help="stop early (smoke tests)")
     ap.add_argument("--out", default=str(ROOT / "runs" / "model"))
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--time-limit", type=float, default=0, help="stop after this many minutes (keeps the best model)")
     ap.add_argument("--pretrained-file", default="", help="local ImageNet weights (.pth/.safetensors) for nodes without internet")
     a = ap.parse_args()
 
@@ -174,7 +175,12 @@ def main():
     kw = {"pretrained_cfg_overlay": {"file": a.pretrained_file}} if a.pretrained_file else {}
     model = timm.create_model(a.model, pretrained=True, num_classes=len(classes), drop_rate=0.2,
                               drop_path_rate=0.1, **kw).to(dev)
-    ema = timm.utils.ModelEmaV3(model, decay=a.ema) if a.ema > 0 else None
+    ema = None
+    if a.ema > 0:
+        try:
+            ema = timm.utils.ModelEmaV3(model, decay=a.ema, use_warmup=True)
+        except (AttributeError, TypeError):           # older timm
+            ema = timm.utils.ModelEmaV2(model, decay=a.ema)
 
     teacher = None
     if a.teacher:
@@ -191,13 +197,16 @@ def main():
                           num_classes=len(classes)) if a.mixup > 0 else None
     opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=a.wd)
     steps_per_epoch = len(dl_tr)
-    total = a.epochs * steps_per_epoch
-    warm = int(a.warmup * steps_per_epoch)
+    plan = {"total": a.epochs * steps_per_epoch}       # shortened below if a time limit applies
+    warm = min(int(a.warmup * steps_per_epoch), 1000)
     sched = torch.optim.lr_scheduler.LambdaLR(
-        opt, lambda s: (s + 1) / max(warm, 1) if s < warm else 0.5 * (1 + math.cos(math.pi * (s - warm) / max(total - warm, 1))))
+        opt, lambda s: (s + 1) / max(warm, 1) if s < warm
+        else max(0.0, 0.5 * (1 + math.cos(math.pi * min(1.0, (s - warm) / max(plan["total"] - warm, 1))))))
     scaler = torch.amp.GradScaler(enabled=amp)
 
     best, step, log = -1.0, 0, []
+    t_start = time.time()
+    out_of_time = lambda: a.time_limit and (time.time() - t_start) / 60 > a.time_limit
     va_field = np.array([r["field"] in ("field", "mixed") for r in va])
     for ep in range(a.epochs):
         model.train()
@@ -229,9 +238,17 @@ def main():
                 ema.update(model, step=step)
             run += loss.item()
             step += 1
+            if a.time_limit and step == 100:
+                # fit the cosine schedule into the time we have (keep ~12% for validation passes)
+                per_step = (time.time() - t_start) / step
+                fits = int(a.time_limit * 60 * 0.88 / per_step)
+                if fits < plan["total"]:
+                    plan["total"] = max(fits, warm + 1)
+                    print(f"  {per_step:.3f}s/step → schedule set to {plan['total']:,} steps "
+                          f"(≈{plan['total'] / steps_per_epoch:.1f} epochs) to fit {a.time_limit:.0f} min", flush=True)
             if i % 50 == 0:
                 print(f"  ep {ep+1} step {i}/{steps_per_epoch} loss {run / (i + 1):.4f}", flush=True)
-            if a.max_steps and step >= a.max_steps:
+            if (a.max_steps and step >= a.max_steps) or out_of_time() or step >= plan["total"]:
                 break
 
         net = ema.module if ema else model
@@ -254,7 +271,9 @@ def main():
                         "val": log[-1]}, out / "best.pt")
             print(f"  saved best (field macroF1 {best:.4f}, temperature {temp:.2f})")
         (out / "log.json").write_text(json.dumps(log, indent=1))
-        if a.max_steps and step >= a.max_steps:
+        if (a.max_steps and step >= a.max_steps) or out_of_time() or step >= plan["total"]:
+            if out_of_time():
+                print(f"time limit of {a.time_limit:.0f} min reached; stopping with the best model so far")
             break
     print(f"done. best field macro-F1 {best:.4f} → {out / 'best.pt'}")
 

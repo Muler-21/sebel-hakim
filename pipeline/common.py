@@ -1,6 +1,7 @@
 """Shared helpers: paths, knowledge-base loading, label matching."""
 from __future__ import annotations
 
+import os
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -11,6 +12,16 @@ ROOT = Path(__file__).resolve().parent.parent          # repo root
 KB_DIR = ROOT / "kb"
 PIPE_DIR = ROOT / "pipeline"
 IMG_EXT = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
+# where downloaded/prepared data lives (big); override with AGRODOC_DATA, e.g. on Kaggle
+DATA_ROOT = Path(os.environ.get("AGRODOC_DATA", ROOT / "data"))
+
+
+def walk_files(base: Path):
+    """All files under base, following symlinks (Kaggle inputs are linked in)."""
+    for d, dirs, files in os.walk(base, followlinks=True):
+        dirs[:] = [x for x in dirs if not x.startswith(".")]
+        for f in files:
+            yield Path(d) / f
 
 
 def norm(s: str) -> str:
