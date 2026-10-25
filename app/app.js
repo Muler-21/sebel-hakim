@@ -61,7 +61,11 @@ function loadSession() {
     ort.env.wasm.wasmPaths = ORT_CDN;
     ort.env.wasm.numThreads = self.crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 1) : 1;
     const file = (S.meta.files && (S.meta.files.int8 || S.meta.files.fp32)) || "model.onnx";
-    S.session = await ort.InferenceSession.create("model/" + file, { executionProviders: ["wasm"] });
+    S.session = await ort.InferenceSession.create("model/" + file,
+      { executionProviders: ["wasm"], graphOptimizationLevel: "all" });
+    // warm-up run so the first real diagnosis is already fast
+    const sz = S.meta.img;
+    await S.session.run({ [S.session.inputNames[0]]: new ort.Tensor("float32", new Float32Array(VIEWS * 3 * sz * sz), [VIEWS, 3, sz, sz]) });
     setModelState("ready");
     return S.session;
   })().catch((e) => { S.loading = null; setModelState("error"); throw e; });
@@ -91,27 +95,55 @@ function checkOffline() {
 }
 
 // ------------------------------------------------------------- image → tensor
+// Turn the photo into 4 views the model looks at together (test-time augmentation):
+// the standard centre crop (as in training), its mirror image, a closer look at the centre,
+// and the whole frame. Averaging them is more accurate than one look, at almost no extra time.
+const VIEWS = 4;
 async function toTensor(file) {
   const size = S.meta.img;
-  const bmp = await createImageBitmap(file, { imageOrientation: "from-image" });
-  const short = Math.round(size * 1.14);                 // same as training: resize then centre-crop
-  const scale = short / Math.min(bmp.width, bmp.height);
-  const w = Math.round(bmp.width * scale), h = Math.round(bmp.height * scale);
+  let bmp = await createImageBitmap(file, { imageOrientation: "from-image" });
+  if (Math.min(bmp.width, bmp.height) > size * 4) {        // shrink big camera photos once (faster)
+    const f = (size * 4) / Math.min(bmp.width, bmp.height);
+    const small = await createImageBitmap(bmp, { resizeWidth: Math.round(bmp.width * f),
+      resizeHeight: Math.round(bmp.height * f), resizeQuality: "high" });
+    bmp.close && bmp.close(); bmp = small;
+  }
   const c = document.createElement("canvas");
   c.width = size; c.height = size;
   const g = c.getContext("2d", { willReadFrequently: true });
   g.imageSmoothingQuality = "high";
-  g.drawImage(bmp, (size - w) / 2, (size - h) / 2, w, h);
-  bmp.close && bmp.close();
-  const px = g.getImageData(0, 0, size, size).data;
-  const n = size * size, out = new Float32Array(3 * n);
+  const n = size * size, out = new Float32Array(VIEWS * 3 * n);
   const [m0, m1, m2] = S.meta.mean, [s0, s1, s2] = S.meta.std;
-  for (let i = 0; i < n; i++) {
-    out[i] = (px[i * 4] / 255 - m0) / s0;
-    out[n + i] = (px[i * 4 + 1] / 255 - m1) / s1;
-    out[2 * n + i] = (px[i * 4 + 2] / 255 - m2) / s2;
-  }
-  return new ort.Tensor("float32", out, [1, 3, size, size]);
+  const draw = (k, shortSide, mirror, squash) => {
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.clearRect(0, 0, size, size);
+    if (mirror) g.setTransform(-1, 0, 0, 1, size, 0);
+    if (squash) g.drawImage(bmp, 0, 0, size, size);
+    else {
+      const sc = shortSide / Math.min(bmp.width, bmp.height);
+      const w = bmp.width * sc, h = bmp.height * sc;
+      g.drawImage(bmp, (size - w) / 2, (size - h) / 2, w, h);
+    }
+    const px = g.getImageData(0, 0, size, size).data, o = k * 3 * n;
+    for (let i = 0; i < n; i++) {
+      out[o + i] = (px[i * 4] / 255 - m0) / s0;
+      out[o + n + i] = (px[i * 4 + 1] / 255 - m1) / s1;
+      out[o + 2 * n + i] = (px[i * 4 + 2] / 255 - m2) / s2;
+    }
+  };
+  draw(0, size * 1.14, false, false);   // standard view (matches training)
+  draw(1, size * 1.14, true, false);    // mirrored
+  draw(2, size * 1.45, false, false);   // closer look at the centre
+  draw(3, 0, false, true);              // the whole photo
+  bmp.close && bmp.close();
+  return new ort.Tensor("float32", out, [VIEWS, 3, size, size]);
+}
+
+// average the views' logits into one answer
+function mergeViews(data, views) {
+  const C = data.length / views, m = new Float32Array(C);
+  for (let v = 0; v < views; v++) for (let c = 0; c < C; c++) m[c] += data[v * C + c] / views;
+  return m;
 }
 
 function softmax(logits, temp, allowed) {
@@ -145,10 +177,12 @@ async function diagnose(file) {
   $("#capture").hidden = true; $("#result").hidden = true; $("#busy").hidden = false;
   try {
     await loadSession();
+    const t0 = performance.now();
     const x = await toTensor(file);
     const out = await S.session.run({ [S.session.inputNames[0]]: x });
-    const logits = Float32Array.from(out[S.session.outputNames[0]].data);
-    S.last = { logits, url: URL.createObjectURL(file), crop: $("#crop").value };
+    const logits = mergeViews(out[S.session.outputNames[0]].data, VIEWS);
+    const ms = performance.now() - t0;
+    S.last = { logits, ms, url: URL.createObjectURL(file), crop: $("#crop").value };
     renderResult(S.last);
   } catch (e) {
     console.error(e);
@@ -213,6 +247,7 @@ function plantBlock(r, R) {
 function renderResult(r) {
   const R = rank(r.logits, r.crop);
   $("#photo").src = r.url;
+  $("#r-time").textContent = "";
   $("#r-plant").replaceChildren(plantBlock(r, R));
   const unknown = R.plant.id === "other";
   $("#r-diag").hidden = unknown;
@@ -224,6 +259,7 @@ function renderResult(r) {
   $("#r-bar").style.width = pct + "%";
   $("#r-bar").style.background = R.unsure ? "var(--gold)" : "var(--leaf)";
   $("#r-conf").textContent = `${pct}% ${t("confidence")}` + (S.meta?.placeholder ? " — " + t("placeholder") : "");
+  $("#r-time").textContent = r.ms ? t("done_in").replace("{s}", (r.ms / 1000).toLocaleString(S.lang, { maximumFractionDigits: 1 })) : "";
   $("#r-unsure").hidden = !R.unsure;
   $("#r-unsure").textContent = t("not_sure");
   const sev = $("#r-sev");

@@ -2,42 +2,42 @@
 # Missing translations fall back to English.
 crops:
   # ---- cereals ----
-  - {id: maize,      group: cereal,    name: {en: Maize (corn), am: በቆሎ, fr: Maïs, sw: Mahindi}}
-  - {id: wheat,      group: cereal,    name: {en: Wheat, am: ስንዴ, fr: Blé, sw: Ngano}}
-  - {id: rice,       group: cereal,    name: {en: Rice, am: ሩዝ, fr: Riz, sw: Mpunga}}
-  - {id: sorghum,    group: cereal,    name: {en: Sorghum, am: ማሽላ, fr: Sorgho, sw: Mtama}}
+  - {id: maize,      group: cereal,    name: {en: Maize (corn), am: በቆሎ, fr: Maïs, sw: Mahindi, it: Mais}}
+  - {id: wheat,      group: cereal,    name: {en: Wheat, am: ስንዴ, fr: Blé, sw: Ngano, it: Frumento}}
+  - {id: rice,       group: cereal,    name: {en: Rice, am: ሩዝ, fr: Riz, sw: Mpunga, it: Riso}}
+  - {id: sorghum,    group: cereal,    name: {en: Sorghum, am: ማሽላ, fr: Sorgho, sw: Mtama, it: Sorgo}}
   # ---- legumes ----
-  - {id: bean,       group: legume,    name: {en: Common bean, am: ቦሎቄ, fr: Haricot, sw: Maharage}}
-  - {id: soybean,    group: legume,    name: {en: Soybean, am: አኩሪ አተር, fr: Soja, sw: Soya}}
-  - {id: groundnut,  group: legume,    name: {en: Groundnut (peanut), am: ለውዝ, fr: Arachide, sw: Karanga}}
+  - {id: bean,       group: legume,    name: {en: Common bean, am: ቦሎቄ, fr: Haricot, sw: Maharage, it: Fagiolo}}
+  - {id: soybean,    group: legume,    name: {en: Soybean, am: አኩሪ አተር, fr: Soja, sw: Soya, it: Soia}}
+  - {id: groundnut,  group: legume,    name: {en: Groundnut (peanut), am: ለውዝ, fr: Arachide, sw: Karanga, it: Arachide}}
   # ---- roots & tubers ----
-  - {id: cassava,    group: root,      name: {en: Cassava, am: ካሳቫ, fr: Manioc, sw: Muhogo}}
-  - {id: potato,     group: root,      name: {en: Potato, am: ድንች, fr: Pomme de terre, sw: Viazi}}
+  - {id: cassava,    group: root,      name: {en: Cassava, am: ካሳቫ, fr: Manioc, sw: Muhogo, it: Manioca}}
+  - {id: potato,     group: root,      name: {en: Potato, am: ድንች, fr: Pomme de terre, sw: Viazi, it: Patata}}
   # ---- vegetables ----
-  - {id: tomato,     group: vegetable, name: {en: Tomato, am: ቲማቲም, fr: Tomate, sw: Nyanya}}
-  - {id: pepper,     group: vegetable, name: {en: Pepper (capsicum), am: ቃሪያ, fr: Poivron, sw: Pilipili hoho}}
-  - {id: squash,     group: vegetable, name: {en: Squash / pumpkin, am: ዱባ, fr: Courge, sw: Maboga}}
+  - {id: tomato,     group: vegetable, name: {en: Tomato, am: ቲማቲም, fr: Tomate, sw: Nyanya, it: Pomodoro}}
+  - {id: pepper,     group: vegetable, name: {en: Pepper (capsicum), am: ቃሪያ, fr: Poivron, sw: Pilipili hoho, it: Peperone}}
+  - {id: squash,     group: vegetable, name: {en: Squash / pumpkin, am: ዱባ, fr: Courge, sw: Maboga, it: Zucca}}
   # ---- fruits ----
-  - {id: banana,     group: fruit,     name: {en: Banana, am: ሙዝ, fr: Banane, sw: Ndizi}}
-  - {id: mango,      group: fruit,     name: {en: Mango, am: ማንጎ, fr: Mangue, sw: Embe}}
-  - {id: citrus,     group: fruit,     name: {en: Citrus (orange), am: ብርቱካን, fr: Agrumes, sw: Chungwa}}
-  - {id: apple,      group: fruit,     name: {en: Apple, am: ፖም, fr: Pomme, sw: Tufaha}}
-  - {id: grape,      group: fruit,     name: {en: Grape, am: ወይን, fr: Raisin, sw: Zabibu}}
-  - {id: peach,      group: fruit,     name: {en: Peach, am: ኮክ, fr: Pêche, sw: Pichi}}
-  - {id: cherry,     group: fruit,     name: {en: Cherry, am: ቼሪ, fr: Cerise}}
-  - {id: strawberry, group: fruit,     name: {en: Strawberry, am: እንጆሪ, fr: Fraise, sw: Stroberi}}
-  - {id: blueberry,  group: fruit,     name: {en: Blueberry, fr: Myrtille}}
-  - {id: raspberry,  group: fruit,     name: {en: Raspberry, fr: Framboise}}
+  - {id: banana,     group: fruit,     name: {en: Banana, am: ሙዝ, fr: Banane, sw: Ndizi, it: Banano}}
+  - {id: mango,      group: fruit,     name: {en: Mango, am: ማንጎ, fr: Mangue, sw: Embe, it: Mango}}
+  - {id: citrus,     group: fruit,     name: {en: Citrus (orange), am: ብርቱካን, fr: Agrumes, sw: Chungwa, it: Agrumi (arancio)}}
+  - {id: apple,      group: fruit,     name: {en: Apple, am: ፖም, fr: Pomme, sw: Tufaha, it: Melo}}
+  - {id: grape,      group: fruit,     name: {en: Grape, am: ወይን, fr: Raisin, sw: Zabibu, it: Vite}}
+  - {id: peach,      group: fruit,     name: {en: Peach, am: ኮክ, fr: Pêche, sw: Pichi, it: Pesco}}
+  - {id: cherry,     group: fruit,     name: {en: Cherry, am: ቼሪ, fr: Cerise, it: Ciliegio}}
+  - {id: strawberry, group: fruit,     name: {en: Strawberry, am: እንጆሪ, fr: Fraise, sw: Stroberi, it: Fragola}}
+  - {id: blueberry,  group: fruit,     name: {en: Blueberry, fr: Myrtille, it: Mirtillo}}
+  - {id: raspberry,  group: fruit,     name: {en: Raspberry, fr: Framboise, it: Lampone}}
   # ---- cash / beverage ----
-  - {id: coffee,     group: cash,      name: {en: Coffee, am: ቡና, fr: Café, sw: Kahawa}}
+  - {id: coffee,     group: cash,      name: {en: Coffee, am: ቡና, fr: Café, sw: Kahawa, it: Caffè}}
   # ---- anything else ----
-  - {id: other,      group: other,     name: {en: Other plant, am: ሌላ ተክል, fr: Autre plante, sw: Mmea mwingine}}
+  - {id: other,      group: other,     name: {en: Other plant, am: ሌላ ተክል, fr: Autre plante, sw: Mmea mwingine, it: Altra pianta}}
 
 groups:
-  cereal:    {en: Cereals, am: የእህል ሰብሎች, fr: Céréales, sw: Nafaka}
-  legume:    {en: Legumes, am: ጥራጥሬዎች, fr: Légumineuses, sw: Mikunde}
-  root:      {en: Roots & tubers, am: የሥራ ሥር ሰብሎች, fr: Racines et tubercules, sw: Mazao ya mizizi}
-  vegetable: {en: Vegetables, am: አትክልቶች, fr: Légumes, sw: Mboga}
-  fruit:     {en: Fruits, am: ፍራፍሬዎች, fr: Fruits, sw: Matunda}
-  cash:      {en: Cash crops, am: የገበያ ሰብሎች, fr: Cultures de rente, sw: Mazao ya biashara}
-  other:     {en: Other, am: ሌላ, fr: Autre, sw: Nyingine}
+  cereal:    {en: Cereals, am: የእህል ሰብሎች, fr: Céréales, sw: Nafaka, it: Cereali}
+  legume:    {en: Legumes, am: ጥራጥሬዎች, fr: Légumineuses, sw: Mikunde, it: Legumi}
+  root:      {en: Roots & tubers, am: የሥራ ሥር ሰብሎች, fr: Racines et tubercules, sw: Mazao ya mizizi, it: Radici e tuberi}
+  vegetable: {en: Vegetables, am: አትክልቶች, fr: Légumes, sw: Mboga, it: Ortaggi}
+  fruit:     {en: Fruits, am: ፍራፍሬዎች, fr: Fruits, sw: Matunda, it: Frutta}
+  cash:      {en: Cash crops, am: የገበያ ሰብሎች, fr: Cultures de rente, sw: Mazao ya biashara, it: Colture da reddito}
+  other:     {en: Other, am: ሌላ, fr: Autre, sw: Nyingine, it: Altro}

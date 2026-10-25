@@ -6,5 +6,5 @@ diseases:
   crop: other
   type: healthy
   severity: none
-  name: {en: Plant not recognised, am: ተክሉ አልታወቀም, fr: Plante non reconnue, sw: Mmea haujatambuliwa}
+  name: {en: Plant not recognised, am: ተክሉ አልታወቀም, fr: Plante non reconnue, sw: Mmea haujatambuliwa, it: Pianta non riconosciuta}
   synonyms: []
