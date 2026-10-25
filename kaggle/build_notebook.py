@@ -33,11 +33,12 @@ distils it into a small **phone** model, tests it on held-out photos and exports
 **Before you press "Save Version → Save & Run All":**
 1. Right panel → **Session options**: Accelerator **GPU T4 ×2** (or P100), **Internet on**.
    (Both need a phone-verified Kaggle account: Settings → Phone verification.)
-2. Right panel → **Add Input** → add these (open each competition page once and click **Join / I understand and accept** first):
-   - Competition `cassava-leaf-disease-classification`
-   - Competition `paddy-disease-classification`
-   - Competition `plant-pathology-2021-fgvc8`
-   - Dataset `smaranjitghose/corn-or-maize-leaf-disease-dataset`
+2. **Join three competitions once** (open each page, click **Join Competition** or **Late Submission** → **I Understand and Accept**):
+   - https://www.kaggle.com/competitions/cassava-leaf-disease-classification
+   - https://www.kaggle.com/competitions/paddy-disease-classification
+   - https://www.kaggle.com/competitions/plant-pathology-2021-fgvc8
+
+   The notebook downloads them (and every other dataset) itself; you don't need "Add Input".
 3. Save Version → **Save & Run All (Commit)**. It runs in the background (about 7–9 hours); you can close the browser.
 4. When it finishes: **Output** tab → download **`sebel_hakim_model.zip`** and send it to Claude.
 
@@ -78,7 +79,7 @@ try:
 except Exception:
     print("Internet: OFF — turn it on in Session options (needs phone verification)")
 print("Attached inputs:", sorted(p.name for p in pathlib.Path("/kaggle/input").glob("*")) if pathlib.Path("/kaggle/input").exists() else "none")
-subprocess.run("pip install -q onnx onnxscript onnxruntime huggingface_hub", shell=True)
+subprocess.run("pip install -q onnx onnxscript onnxruntime huggingface_hub kagglehub", shell=True)
 import timm; print("timm", timm.__version__, "| torch", torch.__version__)
 """)
 

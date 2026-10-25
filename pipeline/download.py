@@ -139,6 +139,20 @@ def get_kaggle(d, out: Path, comp: bool):
         (out / "input").symlink_to(src, target_is_directory=True)
         print(f"    using attached Kaggle input {src}")
         return
+    # inside a Kaggle notebook: kagglehub fetches it with the notebook owner's access
+    # (the owner must have joined the competition / accepted its rules once on kaggle.com)
+    try:
+        import kagglehub
+        path = (kagglehub.competition_download(d["ref"]) if comp else kagglehub.dataset_download(d["ref"]))
+        (out / "input").symlink_to(Path(path), target_is_directory=True)
+        print(f"    fetched with kagglehub → {path}")
+        return
+    except ImportError:
+        pass
+    except Exception as e:
+        hint = (f" — open https://www.kaggle.com/competitions/{d['ref']} and click Join / Late Submission → "
+                "I Understand and Accept, then run again") if comp else ""
+        raise RuntimeError(f"kagglehub could not get {d['ref']}: {e}{hint}") from e
     if not shutil.which("kaggle"):
         raise RuntimeError("install the Kaggle CLI (pip install kaggle) and put your token in ~/.kaggle/kaggle.json")
     cmd = (["kaggle", "competitions", "download", "-c", d["ref"]] if comp
