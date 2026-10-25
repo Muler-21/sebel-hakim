@@ -1,6 +1,7 @@
 // Interface text. Disease advice comes from kb.json (English for now; names translated where available).
 window.I18N = {
   en: {
+    plant_label: "Plant", plant_sure: "sure", you_chose: "you chose this", is_it: "Is it one of these?", change_plant: "Wrong plant? Choose another:", unknown_plant_title: "Plant not recognised", unknown_plant_text: "This does not look like one of the {n} crops Sebel Hakim knows yet. If it is one of these, choose it:", plants_n: "plants the AI can recognise",
     tagline: "Your crop doctor", created_by: "Created by", offline_label: "Offline use", offline_pending: "Downloading for offline use…",
     lang: "English",
     tab_diagnose: "Diagnose", tab_library: "Library", tab_about: "About",
@@ -35,6 +36,7 @@ window.I18N = {
     classes_n: "diseases the AI can recognise", kb_n: "diseases in the library",
   },
   am: {
+    plant_label: "ተክል", plant_sure: "እርግጠኛ", you_chose: "እርስዎ የመረጡት", is_it: "ከነዚህ አንዱ ነው?", change_plant: "ተክሉ ተሳስቷል? ሌላ ይምረጡ፦", unknown_plant_title: "ተክሉ አልታወቀም", unknown_plant_text: "ይህ ሰብል ሐኪም ከሚያውቃቸው {n} ሰብሎች አንዱ አይመስልም። ከነዚህ አንዱ ከሆነ ይምረጡት፦", plants_n: "AI-ው ሊለያቸው የሚችላቸው ተክሎች",
     tagline: "የሰብልዎ ሐኪም", created_by: "ያዘጋጀው", offline_label: "ያለ ኢንተርኔት መጠቀም", offline_pending: "ያለ ኢንተርኔት ለመጠቀም በማውረድ ላይ…",
     lang: "አማርኛ",
     tab_diagnose: "መርምር", tab_library: "የበሽታዎች ማውጫ", tab_about: "ስለ መተግበሪያው",
@@ -69,6 +71,7 @@ window.I18N = {
     classes_n: "AI-ው ሊለያቸው የሚችላቸው በሽታዎች", kb_n: "በማውጫው ውስጥ ያሉ በሽታዎች",
   },
   fr: {
+    plant_label: "Plante", plant_sure: "sûr", you_chose: "votre choix", is_it: "Est-ce l'une de celles-ci ?", change_plant: "Mauvaise plante ? Choisissez-en une autre :", unknown_plant_title: "Plante non reconnue", unknown_plant_text: "Cela ne ressemble à aucune des {n} cultures que Sebel Hakim connaît. Si c'est l'une de celles-ci, choisissez-la :", plants_n: "plantes reconnues par l'IA",
     tagline: "Votre médecin des cultures", created_by: "Créé par", offline_label: "Utilisation hors ligne", offline_pending: "Téléchargement pour une utilisation hors ligne…",
     lang: "Français",
     tab_diagnose: "Diagnostic", tab_library: "Maladies", tab_about: "À propos",
@@ -103,6 +106,7 @@ window.I18N = {
     classes_n: "maladies reconnues par l'IA", kb_n: "maladies dans la bibliothèque",
   },
   sw: {
+    plant_label: "Mmea", plant_sure: "uhakika", you_chose: "umechagua", is_it: "Je, ni mojawapo ya hizi?", change_plant: "Mmea si sahihi? Chagua mwingine:", unknown_plant_title: "Mmea haujatambuliwa", unknown_plant_text: "Huu hauonekani kama mojawapo ya mazao {n} ambayo Sebel Hakim inayajua. Ikiwa ni mojawapo ya haya, uchague:", plants_n: "mimea ambayo AI inatambua",
     tagline: "Daktari wa mazao yako", created_by: "Imetengenezwa na", offline_label: "Matumizi bila intaneti", offline_pending: "Inapakua kwa matumizi bila intaneti…",
     lang: "Kiswahili",
     tab_diagnose: "Chunguza", tab_library: "Magonjwa", tab_about: "Kuhusu",

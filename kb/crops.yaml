@@ -30,6 +30,8 @@ crops:
   - {id: raspberry,  group: fruit,     name: {en: Raspberry, fr: Framboise}}
   # ---- cash / beverage ----
   - {id: coffee,     group: cash,      name: {en: Coffee, am: ቡና, fr: Café, sw: Kahawa}}
+  # ---- anything else ----
+  - {id: other,      group: other,     name: {en: Other plant, am: ሌላ ተክል, fr: Autre plante, sw: Mmea mwingine}}
 
 groups:
   cereal:    {en: Cereals, am: የእህል ሰብሎች, fr: Céréales, sw: Nafaka}
@@ -38,3 +40,4 @@ groups:
   vegetable: {en: Vegetables, am: አትክልቶች, fr: Légumes, sw: Mboga}
   fruit:     {en: Fruits, am: ፍራፍሬዎች, fr: Fruits, sw: Matunda}
   cash:      {en: Cash crops, am: የገበያ ሰብሎች, fr: Cultures de rente, sw: Mazao ya biashara}
+  other:     {en: Other, am: ሌላ, fr: Autre, sw: Nyingine}

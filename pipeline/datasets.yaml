@@ -36,6 +36,7 @@ datasets:
     weight: 0.5            # down-weighted: lab images dominate otherwise
 
   - id: plantdoc
+    other_plants: true       # images of crops we do not cover → class other.unknown_plant
     name: PlantDoc (classification)
     host: github
     ref: pratikkayal/PlantDoc-Dataset
@@ -48,6 +49,7 @@ datasets:
     label: folder
 
   - id: plantwild
+    other_plants: true       # images of crops we do not cover → class other.unknown_plant
     name: PlantWild (in-the-wild, 89+ classes)
     host: hf
     ref: uqtwei2/PlantWild
@@ -59,6 +61,7 @@ datasets:
     label: folder
 
   - id: plantseg
+    other_plants: true       # images of crops we do not cover → class other.unknown_plant
     name: PlantSeg (in-the-wild, 115 classes)
     host: zenodo
     ref: "17719108"
@@ -72,6 +75,7 @@ datasets:
     note: Segmentation dataset; prepare.py uses the class folders of the images.
 
   - id: bd_crop_vegetable
+    other_plants: true       # images of crops we do not cover → class other.unknown_plant
     name: Bangladesh crop & vegetable plant disease
     host: hf
     ref: Saon110/bd-crop-vegetable-plant-disease-dataset

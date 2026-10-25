@@ -24,7 +24,7 @@ from collections import Counter, defaultdict
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
-from common import DATA_ROOT, IMG_EXT, ROOT, Matcher, load_datasets, load_diseases, norm, walk_files
+from common import DATA_ROOT, IMG_EXT, ROOT, Matcher, detect_crop, load_datasets, load_diseases, norm, walk_files
 
 RAW = DATA_ROOT / "raw"
 DATA = DATA_ROOT
@@ -161,6 +161,11 @@ def main():
         for path, raw in items:
             if raw not in cache:
                 cache[raw] = m.match(raw, crop=d.get("crop"), overrides=d.get("map"))
+                # a plant we don't cover at all (no known crop word in the label) → "other plant"
+                if (cache[raw] is None and d.get("other_plants") and not d.get("crop")
+                        and raw and not raw.isdigit() and detect_crop(raw) is None
+                        and norm(raw) not in m.by_syn):      # bare "healthy", "rust" … stay unmapped
+                    cache[raw] = "other.unknown_plant"
             lab = cache[raw]
             if lab is None:
                 unmapped[d["id"]][raw] += 1

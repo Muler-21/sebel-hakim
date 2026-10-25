@@ -124,6 +124,22 @@ function softmax(logits, temp, allowed) {
   return p;
 }
 
+// Rank diseases and plants from the raw model output. `crop` restricts the diagnosis to one plant.
+function rank(logits, crop) {
+  const T = S.meta.temperature || 1;
+  const all = softmax(logits, T, S.modelClasses.map(() => true));
+  const plantP = {};
+  S.modelClasses.forEach((id, i) => { const c = id.split(".")[0]; plantP[c] = (plantP[c] || 0) + all[i]; });
+  const plants = Object.entries(plantP).sort((a, b) => b[1] - a[1]).map(([id, p]) => ({ id, p }));
+  // step 1: the plant (chosen by the user, or the most likely one); step 2: the disease within that plant
+  const use = crop || plants[0].id;
+  const p = softmax(logits, T, S.modelClasses.map((id) => id.startsWith(use + ".")));
+  const top = [...p.keys()].sort((a, b) => p[b] - p[a]).slice(0, 3).map((i) => ({ id: S.modelClasses[i], p: p[i] }));
+  const plant = crop ? { id: crop, p: plantP[crop] || 0, chosen: true } : plants[0];
+  const plantUnsure = !crop && plants[0].p < 0.6;
+  return { top, plants, plant, plantUnsure, unsure: top[0].p < NOT_SURE || plantUnsure };
+}
+
 async function diagnose(file) {
   if (!S.meta) return;
   $("#capture").hidden = true; $("#result").hidden = true; $("#busy").hidden = false;
@@ -131,17 +147,8 @@ async function diagnose(file) {
     await loadSession();
     const x = await toTensor(file);
     const out = await S.session.run({ [S.session.inputNames[0]]: x });
-    const logits = out[S.session.outputNames[0]].data;
-    const crop = $("#crop").value;
-    const allowed = S.modelClasses.map((id) => !crop || id.startsWith(crop + "."));
-    const p = softmax(logits, S.meta.temperature || 1, allowed);
-    const order = [...p.keys()].sort((a, b) => p[b] - p[a]).slice(0, 3);
-    const top = order.map((i) => ({ id: S.modelClasses[i], p: p[i] }));
-    // how sure are we about the crop itself?
-    const cropP = {};
-    S.modelClasses.forEach((id, i) => { const c = id.split(".")[0]; cropP[c] = (cropP[c] || 0) + p[i]; });
-    const cropSure = Math.max(...Object.values(cropP));
-    S.last = { top, url: URL.createObjectURL(file), unsure: top[0].p < NOT_SURE || (!crop && cropSure < 0.6) };
+    const logits = Float32Array.from(out[S.session.outputNames[0]].data);
+    S.last = { logits, url: URL.createObjectURL(file), crop: $("#crop").value };
     renderResult(S.last);
   } catch (e) {
     console.error(e);
@@ -179,34 +186,64 @@ function advice(d) {
   return box;
 }
 
+function plantBlock(r, R) {
+  const box = el("div", { class: "plant" });
+  const known = R.plants.filter((x) => x.id !== "other");
+  const unknown = R.plant.id === "other";
+  const chips = (list) => el("div", { class: "chips" }, list.map((x) => el("button", {
+    type: "button", class: "chip" + (x.id === R.plant.id ? " on" : ""),
+    onclick: () => { r.crop = x.id; renderResult(r); window.scrollTo({ top: 0, behavior: "smooth" }); },
+  }, el("span", { text: nm(S.crops[x.id]?.name) }), el("small", { text: Math.round(x.p * 100) + "%" }))));
+  box.append(el("p", { class: "kicker", text: t("plant_label") }));
+  if (unknown) {
+    box.append(el("h2", { text: t("unknown_plant_title") }),
+      el("p", { class: "muted", text: t("unknown_plant_text").replace("{n}", known.length) }));
+    box.append(el("p", { class: "ask", text: t("is_it") }), chips(known.slice(0, 3)));
+    return box;
+  }
+  const how = R.plant.chosen ? t("you_chose") : `${Math.round(R.plant.p * 100)}% ${t("plant_sure")}`;
+  box.append(el("h2", { class: "plant-name" }, el("span", { text: nm(S.crops[R.plant.id]?.name) }), el("small", { text: how })));
+  if (R.plantUnsure || R.plant.chosen) {
+    box.append(el("p", { class: "ask", text: R.plant.chosen ? t("change_plant") : t("is_it") }),
+      chips(known.slice(0, 3).concat(R.plant.chosen && !known.slice(0, 3).some((x) => x.id === R.plant.id) ? [R.plant] : [])));
+  }
+  return box;
+}
+
 function renderResult(r) {
-  const top = r.top[0], d = S.dis[top.id];
+  const R = rank(r.logits, r.crop);
   $("#photo").src = r.url;
+  $("#r-plant").replaceChildren(plantBlock(r, R));
+  const unknown = R.plant.id === "other";
+  $("#r-diag").hidden = unknown;
+  if (unknown) { $("#capture").hidden = true; $("#result").hidden = false; return; }
+  const top = R.top[0], d = S.dis[top.id];
   $("#r-name").textContent = nm(d.name);
-  $("#r-crop").textContent = [nm(S.crops[d.crop]?.name), d.type !== "healthy" ? t("type." + d.type) : ""].filter(Boolean).join(" — ");
+  $("#r-crop").textContent = d.type !== "healthy" ? t("type." + d.type) : "";
   const pct = Math.round(top.p * 100);
   $("#r-bar").style.width = pct + "%";
-  $("#r-bar").style.background = r.unsure ? "var(--gold)" : "var(--leaf)";
+  $("#r-bar").style.background = R.unsure ? "var(--gold)" : "var(--leaf)";
   $("#r-conf").textContent = `${pct}% ${t("confidence")}` + (S.meta?.placeholder ? " — " + t("placeholder") : "");
-  $("#r-unsure").hidden = !r.unsure;
+  $("#r-unsure").hidden = !R.unsure;
   $("#r-unsure").textContent = t("not_sure");
   const sev = $("#r-sev");
   sev.className = "sev " + (d.severity || "");
   sev.textContent = d.type === "healthy" ? "" : t("severity." + (d.severity || "medium"));
   $("#r-advice").replaceChildren(advice(d));
-  const others = r.top.slice(1).filter((o) => o.p >= 0.03);
+  const others = R.top.slice(1).filter((o) => o.p >= 0.03 && o.id.split(".")[0] !== "other");
   $("#r-others").replaceChildren(...(others.length ? [el("p", { class: "alt-title", text: t("others") }),
     ...others.map((o) => el("button", { class: "alt", type: "button", onclick: () => {
-      const swapped = { ...r, top: [o, ...r.top.filter((x) => x !== o)] };
-      renderResult(swapped); window.scrollTo({ top: 0, behavior: "smooth" });
-    } }, el("b", { text: `${nm(S.dis[o.id].name)} (${nm(S.crops[S.dis[o.id].crop]?.name)})` }), el("span", { text: Math.round(o.p * 100) + "%" })))] : []));
+      $("#r-advice").replaceChildren(advice(S.dis[o.id]));
+      $("#r-name").textContent = nm(S.dis[o.id].name);
+      $("#r-advice").scrollIntoView({ behavior: "smooth" });
+    } }, el("b", { text: nm(S.dis[o.id].name) }), el("span", { text: Math.round(o.p * 100) + "%" })))] : []));
   $("#capture").hidden = true; $("#result").hidden = false;
 }
 
 function fillCropSelects() {
   const known = new Set((S.meta ? S.modelClasses : S.kb.diseases.map((d) => d.id)).map((id) => id.split(".")[0]));
   const groups = {};
-  for (const c of S.kb.crops) if (known.has(c.id)) (groups[c.group] ||= []).push(c);
+  for (const c of S.kb.crops) if (known.has(c.id) && c.id !== "other") (groups[c.group] ||= []).push(c);
   const build = (sel, firstLabel, allCrops) => {
     const keep = sel.value;
     sel.replaceChildren(el("option", { value: "", text: firstLabel }));
@@ -223,7 +260,7 @@ function fillCropSelects() {
   const lib = $("#lib-crop"), keep = lib.value;
   lib.replaceChildren(el("option", { value: "", text: t("all_crops") }));
   const all = {};
-  for (const c of S.kb.crops) (all[c.group] ||= []).push(c);
+  for (const c of S.kb.crops) if (c.id !== "other") (all[c.group] ||= []).push(c);
   for (const [g, cs] of Object.entries(all)) {
     const og = el("optgroup", { label: nm(S.kb.groups[g]) });
     cs.forEach((c) => og.append(el("option", { value: c.id, text: nm(c.name) })));
@@ -237,7 +274,7 @@ function renderLibrary() {
   const ul = $("#lib-list");
   ul.replaceChildren();
   let lastCrop = null;
-  const items = S.kb.diseases.filter((d) => d.type !== "healthy" && (!crop || d.crop === crop) && (!q ||
+  const items = S.kb.diseases.filter((d) => d.type !== "healthy" && d.crop !== "other" && (!crop || d.crop === crop) && (!q ||
     [nm(d.name), d.name.en, d.scientific, nm(S.crops[d.crop].name), S.crops[d.crop].name.en].join(" ").toLowerCase().includes(q)));
   for (const d of items) {
     if (d.crop !== lastCrop) { ul.append(el("li", { class: "crop-h", text: nm(S.crops[d.crop].name) })); lastCrop = d.crop; }
@@ -263,8 +300,9 @@ function openDisease(id) {
 
 function renderAbout() {
   $("#a-model").textContent = S.meta ? S.meta.model : t("model_none");
-  $("#a-classes").textContent = S.meta ? S.modelClasses.filter((c) => !c.endsWith(".healthy")).length : "0";
-  $("#a-kb").textContent = S.kb.diseases.filter((d) => d.type !== "healthy").length;
+  $("#a-classes").textContent = S.meta ? S.modelClasses.filter((c) => !c.endsWith(".healthy") && !c.startsWith("other.")).length : "0";
+  $("#a-plants").textContent = S.meta ? new Set(S.modelClasses.map((c) => c.split(".")[0]).filter((c) => c !== "other")).size : "0";
+  $("#a-kb").textContent = S.kb.diseases.filter((d) => d.type !== "healthy" && d.crop !== "other").length;
 }
 
 function show(view) {

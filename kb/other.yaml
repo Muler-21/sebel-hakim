@@ -1,0 +1,10 @@
+diseases:
+# Photos of plants that are not one of the crops above. Lets the model say
+# "I don't know this plant" instead of forcing a wrong crop. Filled by prepare.py
+# from multi-crop datasets marked `other_plants: true` in pipeline/datasets.yaml.
+- id: other.unknown_plant
+  crop: other
+  type: healthy
+  severity: none
+  name: {en: Plant not recognised, am: ተክሉ አልታወቀም, fr: Plante non reconnue, sw: Mmea haujatambuliwa}
+  synonyms: []

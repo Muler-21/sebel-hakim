@@ -146,3 +146,15 @@ details.more ul, details.more p { margin-top: 8px; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+/* plant identification */
+.plant h2 { margin-bottom: 4px; }
+.plant-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.plant-name small { font-size: 0.9rem; font-weight: 600; color: var(--leaf); }
+.ask { margin: 10px 0 6px; font-weight: 700; font-size: 0.95rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 14px; border-radius: 999px;
+  border: 1.5px solid var(--line); background: #fff; cursor: pointer; font-weight: 600; }
+.chip small { color: var(--ink-2); font-weight: 500; }
+.chip.on { border-color: var(--leaf); background: var(--leaf-wash); color: var(--leaf); }
+.diag-head { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
