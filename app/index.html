@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#16261C">
-<meta name="description" content="Free, offline plant disease diagnosis: photograph a leaf, get the most likely disease and what to do.">
-<title>AgroDoc — plant disease doctor</title>
+<meta name="description" content="Sebel Hakim (ሰብል ሐኪም): free, offline crop doctor. Photograph a leaf, get the most likely disease and what to do.">
+<title>Sebel Hakim · ሰብል ሐኪም</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
@@ -13,7 +13,7 @@
 </head>
 <body>
 <header class="bar">
-  <div class="brand"><img src="icon.svg" alt="" width="28" height="28"><span>AgroDoc</span></div>
+  <div class="brand"><img src="icon.svg" alt="" width="30" height="30"><span>Sebel Hakim <small lang="am">ሰብል ሐኪም</small></span></div>
   <label class="lang"><span class="sr" data-i="lang">Language</span>
     <select id="lang" aria-label="Language"></select>
   </label>
@@ -76,15 +76,18 @@
 
   <!-- ======================= ABOUT ======================= -->
   <section id="v-about" class="view" hidden aria-labelledby="t-about">
-    <h1 id="t-about" data-i="tab_about">About</h1>
+    <h1 id="t-about">Sebel Hakim · ሰብል ሐኪም</h1>
+    <p class="tagline" data-i="tagline"></p>
     <p data-i="about_body"></p>
     <dl class="facts">
       <div><dt data-i="about_model">AI model</dt><dd id="a-model"></dd></div>
       <div><dt data-i="classes_n">diseases the AI can recognise</dt><dd id="a-classes"></dd></div>
       <div><dt data-i="kb_n">diseases in the library</dt><dd id="a-kb"></dd></div>
+      <div><dt data-i="offline_label">Offline use</dt><dd id="a-offline"></dd></div>
     </dl>
     <p class="muted" data-i="about_data"></p>
     <p class="fine" data-i="disclaimer"></p>
+    <p class="credit"><span data-i="created_by">Created by</span> <b>Mulusew Kassa Bitew (Muler)</b></p>
   </section>
 </main>
 

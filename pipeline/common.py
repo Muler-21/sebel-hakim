@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parent.parent          # repo root
 KB_DIR = ROOT / "kb"
 PIPE_DIR = ROOT / "pipeline"
 IMG_EXT = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
-# where downloaded/prepared data lives (big); override with AGRODOC_DATA, e.g. on Kaggle
-DATA_ROOT = Path(os.environ.get("AGRODOC_DATA", ROOT / "data"))
+# where downloaded/prepared data lives (big); override with SEBEL_DATA, e.g. on Kaggle
+DATA_ROOT = Path(os.environ.get("SEBEL_DATA", ROOT / "data"))
 
 
 def walk_files(base: Path):

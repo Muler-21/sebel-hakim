@@ -1,4 +1,8 @@
-# AgroDoc — free, offline plant disease doctor
+# Sebel Hakim · ሰብል ሐኪም
+
+**Your crop doctor — free, offline plant disease diagnosis.** Created by **Mulusew Kassa Bitew (Muler)**.
+
+**Open the app:** https://muler-21.github.io/sebel-hakim/
 
 Photograph a leaf → the app names the most likely disease, how sure it is, and what to do:
 **farm practices first, then natural/biological options, chemicals only as a last resort**.
@@ -20,15 +24,15 @@ tests/         label-mapping tests and a placeholder model for testing the app
 
 ### Easiest: Kaggle's free GPU (no HPC needed)
 
-Upload `kaggle/agrodoc_kaggle.ipynb` to Kaggle (Create → New Notebook → File → Import Notebook) and follow the
-steps in its first cell. It contains all the code below, runs in about 7–9 hours, and produces `agrodoc_model.zip`.
+Upload `kaggle/sebel_hakim_kaggle.ipynb` to Kaggle (Create → New Notebook → File → Import Notebook) and follow the
+steps in its first cell. It contains all the code below, runs in about 7–9 hours, and produces `sebel_hakim_model.zip`.
 After changing anything in `pipeline/` or `kb/`, rebuild it with `python kaggle/build_notebook.py`.
 
 ### On your own HPC
 
 ```bash
 # on a login node with internet
-conda env create -f hpc/environment.yml && conda activate agrodoc
+conda env create -f hpc/environment.yml && conda activate sebel-hakim
 python pipeline/download.py --list          # what will be downloaded
 python pipeline/download.py                 # all automatic sources
 #   Kaggle sources need ~/.kaggle/kaggle.json and accepting each competition's rules on kaggle.com

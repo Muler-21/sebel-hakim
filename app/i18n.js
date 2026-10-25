@@ -1,6 +1,7 @@
 // Interface text. Disease advice comes from kb.json (English for now; names translated where available).
 window.I18N = {
   en: {
+    tagline: "Your crop doctor", created_by: "Created by", offline_label: "Offline use", offline_pending: "Downloading for offline use…",
     lang: "English",
     tab_diagnose: "Diagnose", tab_library: "Library", tab_about: "About",
     take_photo: "Take a photo of the leaf", choose_photo: "Choose from gallery",
@@ -34,6 +35,7 @@ window.I18N = {
     classes_n: "diseases the AI can recognise", kb_n: "diseases in the library",
   },
   am: {
+    tagline: "የሰብልዎ ሐኪም", created_by: "ያዘጋጀው", offline_label: "ያለ ኢንተርኔት መጠቀም", offline_pending: "ያለ ኢንተርኔት ለመጠቀም በማውረድ ላይ…",
     lang: "አማርኛ",
     tab_diagnose: "መርምር", tab_library: "የበሽታዎች ማውጫ", tab_about: "ስለ መተግበሪያው",
     take_photo: "የቅጠሉን ፎቶ አንሳ", choose_photo: "ከፎቶዎች ምረጥ",
@@ -67,6 +69,7 @@ window.I18N = {
     classes_n: "AI-ው ሊለያቸው የሚችላቸው በሽታዎች", kb_n: "በማውጫው ውስጥ ያሉ በሽታዎች",
   },
   fr: {
+    tagline: "Votre médecin des cultures", created_by: "Créé par", offline_label: "Utilisation hors ligne", offline_pending: "Téléchargement pour une utilisation hors ligne…",
     lang: "Français",
     tab_diagnose: "Diagnostic", tab_library: "Maladies", tab_about: "À propos",
     take_photo: "Photographier la feuille", choose_photo: "Choisir dans la galerie",
@@ -100,6 +103,7 @@ window.I18N = {
     classes_n: "maladies reconnues par l'IA", kb_n: "maladies dans la bibliothèque",
   },
   sw: {
+    tagline: "Daktari wa mazao yako", created_by: "Imetengenezwa na", offline_label: "Matumizi bila intaneti", offline_pending: "Inapakua kwa matumizi bila intaneti…",
     lang: "Kiswahili",
     tab_diagnose: "Chunguza", tab_library: "Magonjwa", tab_about: "Kuhusu",
     take_photo: "Piga picha ya jani", choose_photo: "Chagua kutoka kwenye picha",

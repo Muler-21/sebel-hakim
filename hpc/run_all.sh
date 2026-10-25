@@ -5,7 +5,7 @@
 # Download and prepare data first, on a node WITH internet (see README):
 #   python pipeline/download.py && python pipeline/prepare.py --workers 16
 #
-#SBATCH --job-name=agrodoc
+#SBATCH --job-name=sebel-hakim
 #SBATCH --partition=gpu            # ← your GPU partition
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=16
@@ -19,7 +19,7 @@ mkdir -p logs runs reports
 
 # module load cuda/12.1            # ← if your cluster uses modules
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate agrodoc
+conda activate sebel-hakim
 
 W=${SLURM_CPUS_PER_TASK:-8}
 TEACHER=${TEACHER:-convnextv2_tiny.fcmae_ft_in22k_in1k}

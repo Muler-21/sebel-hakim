@@ -1,4 +1,4 @@
-"""Build kaggle/agrodoc_kaggle.ipynb: one self-contained notebook that trains AgroDoc on Kaggle's free GPU.
+"""Build kaggle/sebel_hakim_kaggle.ipynb: one self-contained notebook that trains Sebel Hakim on Kaggle's free GPU.
 
   python kaggle/build_notebook.py
 """
@@ -25,10 +25,10 @@ def code(text, hidden=False):
 
 
 md("""
-# AgroDoc — train the plant-disease model on Kaggle's free GPU
+# Sebel Hakim — train the plant-disease model on Kaggle's free GPU
 
 This notebook downloads the public plant-disease datasets, cleans them, trains a large **teacher** model,
-distils it into a small **phone** model, tests it on held-out photos and exports it for the AgroDoc app.
+distils it into a small **phone** model, tests it on held-out photos and exports it for the Sebel Hakim app.
 
 **Before you press "Save Version → Save & Run All":**
 1. Right panel → **Session options**: Accelerator **GPU T4 ×2** (or P100), **Internet on**.
@@ -39,7 +39,7 @@ distils it into a small **phone** model, tests it on held-out photos and exports
    - Competition `plant-pathology-2021-fgvc8`
    - Dataset `smaranjitghose/corn-or-maize-leaf-disease-dataset`
 3. Save Version → **Save & Run All (Commit)**. It runs in the background (about 7–9 hours); you can close the browser.
-4. When it finishes: **Output** tab → download **`agrodoc_model.zip`** and send it to Claude.
+4. When it finishes: **Output** tab → download **`sebel_hakim_model.zip`** and send it to Claude.
 
 Inputs you could not add are skipped automatically; the other datasets still train.
 """)
@@ -59,12 +59,12 @@ SKIP          = []                                     # dataset ids to skip, e.
 WORKERS       = 4
 
 import os, pathlib
-CODE = pathlib.Path("/kaggle/working/agrodoc")
-DATA = pathlib.Path("/kaggle/temp/agrodoc_data") if pathlib.Path("/kaggle/temp").exists() else pathlib.Path("/tmp/agrodoc_data")
+CODE = pathlib.Path("/kaggle/working/sebel_hakim")
+DATA = pathlib.Path("/kaggle/temp/sebel_hakim_data") if pathlib.Path("/kaggle/temp").exists() else pathlib.Path("/tmp/sebel_hakim_data")
 RUNS = DATA / "runs"
 for p in [CODE / "pipeline", CODE / "kb", CODE / "tests", CODE / "app", CODE / "reports", DATA, RUNS]:
     p.mkdir(parents=True, exist_ok=True)
-os.environ["AGRODOC_DATA"] = str(DATA)
+os.environ["SEBEL_DATA"] = str(DATA)
 os.chdir(CODE)
 print("code:", CODE, "| data:", DATA)
 """)
@@ -82,7 +82,7 @@ subprocess.run("pip install -q onnx onnxscript onnxruntime huggingface_hub", she
 import timm; print("timm", timm.__version__, "| torch", torch.__version__)
 """)
 
-md("## Code and knowledge base\nThe cells below write the AgroDoc pipeline and disease knowledge base to disk. You don't need to read them.")
+md("## Code and knowledge base\nThe cells below write the Sebel Hakim pipeline and disease knowledge base to disk. You don't need to read them.")
 for f in FILES:
     body = (ROOT / f).read_text(encoding="utf-8")
     code(f"%%writefile {f}\n{body}", hidden=True)
@@ -143,7 +143,7 @@ code("""
 !python pipeline/evaluate.py app/model/model.int8.onnx --workers {WORKERS} --out reports/eval_onnx_int8.json
 """)
 
-md("## 8. Package the result → Output tab → `agrodoc_model.zip`")
+md("## 8. Package the result → Output tab → `sebel_hakim_model.zip`")
 code("""
 import json, shutil, zipfile
 fp32 = json.load(open("reports/eval_onnx_fp32.json")); int8 = json.load(open("reports/eval_onnx_int8.json"))
@@ -154,14 +154,14 @@ if drop:                                    # int8 lost too much accuracy → sh
     json.dump(labels, open("app/model/labels.json", "w"), indent=1)
 print(f"fp32 acc {fp32['overall']['acc']:.3f} | int8 acc {int8['overall']['acc']:.3f} → shipping {'fp32' if drop else 'int8'}")
 shutil.copy(RUNS / "student/best.pt", CODE / "student_best.pt")
-with zipfile.ZipFile("/kaggle/working/agrodoc_model.zip", "w", zipfile.ZIP_DEFLATED) as z:
+with zipfile.ZipFile("/kaggle/working/sebel_hakim_model.zip", "w", zipfile.ZIP_DEFLATED) as z:
     for p in list((CODE / "app/model").glob("*")) + list((CODE / "reports").glob("*")):
         z.write(p, p.relative_to(CODE))
     for name in ["log.json"]:
         for run in ["teacher", "student"]:
             if (RUNS / run / name).exists():
                 z.write(RUNS / run / name, f"runs/{run}/{name}")
-print("✓ /kaggle/working/agrodoc_model.zip", round(pathlib.Path("/kaggle/working/agrodoc_model.zip").stat().st_size / 1e6, 1), "MB")
+print("✓ /kaggle/working/sebel_hakim_model.zip", round(pathlib.Path("/kaggle/working/sebel_hakim_model.zip").stat().st_size / 1e6, 1), "MB")
 print(json.dumps({k: fp32[k] for k in ["overall", "field_only", "lab_only", "crop_correct", "not_sure_rate"]}, indent=1))
 """)
 
@@ -177,6 +177,6 @@ nb = {
 }
 for c in nb["cells"]:                       # nbformat stores source as a list of lines
     c["source"] = c["source"].splitlines(keepends=True)
-out = ROOT / "kaggle" / "agrodoc_kaggle.ipynb"
+out = ROOT / "kaggle" / "sebel_hakim_kaggle.ipynb"
 out.write_text(json.dumps(nb, indent=1, ensure_ascii=False), encoding="utf-8")
 print(f"{len(cells)} cells → {out} ({out.stat().st_size / 1024:.0f} KB)")

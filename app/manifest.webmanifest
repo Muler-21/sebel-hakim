@@ -1,7 +1,7 @@
 {
-  "name": "AgroDoc — plant disease doctor",
-  "short_name": "AgroDoc",
-  "description": "Photograph a leaf, get the most likely disease and what to do. Free and offline.",
+  "name": "Sebel Hakim · ሰብል ሐኪም",
+  "short_name": "Sebel Hakim",
+  "description": "Your crop doctor: photograph a leaf, get the most likely disease and what to do. Free and offline.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

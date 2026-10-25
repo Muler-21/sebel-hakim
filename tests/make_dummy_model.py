@@ -78,7 +78,7 @@ def main():
       + f_bytes(1, node("Gemm", ["flat", "W", "B"], ["logits"], attr_int("transB", 1))) \
       + f_bytes(2, "dummy") + f_bytes(5, tensor("W", [C, 3], W)) + f_bytes(5, tensor("B", [C], B)) \
       + f_bytes(11, value_info("image", ["batch", 3, img, img])) + f_bytes(12, value_info("logits", ["batch", C]))
-    model = f_varint(1, 8) + f_bytes(2, "agrodoc-dummy") + f_bytes(7, graph) + f_bytes(8, f_bytes(1, "") + f_varint(2, 17))
+    model = f_varint(1, 8) + f_bytes(2, "sebel-hakim-dummy") + f_bytes(7, graph) + f_bytes(8, f_bytes(1, "") + f_varint(2, 17))
     out = ROOT / "app" / "model"
     out.mkdir(parents=True, exist_ok=True)
     (out / "model.onnx").write_bytes(model)

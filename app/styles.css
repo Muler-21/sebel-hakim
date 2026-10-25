@@ -38,7 +38,10 @@ button, select, input { font: inherit; color: inherit; }
   padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
   background: var(--ink); color: #fff;
 }
-.brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.1rem; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.12rem; }
+.brand small { font-weight: 500; opacity: 0.8; margin-left: 4px; font-size: 0.95rem; }
+.tagline { font-size: 1.15rem; font-weight: 600; color: var(--leaf); }
+.credit { margin: 8px 0 28px; color: var(--ink-2); }
 .lang select {
   background: transparent; color: #fff; border: 1px solid #ffffff55; border-radius: 8px;
   padding: 6px 8px; min-height: 40px;

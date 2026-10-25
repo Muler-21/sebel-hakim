@@ -1,4 +1,4 @@
-name: agrodoc
+name: sebel-hakim
 channels: [pytorch, nvidia, conda-forge]
 dependencies:
   - python=3.11

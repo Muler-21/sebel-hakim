@@ -27,7 +27,7 @@ from common import DATA_ROOT, load_datasets
 
 RAW = DATA_ROOT / "raw"
 KAGGLE_INPUT = Path(os.environ.get("KAGGLE_INPUT", "/kaggle/input"))
-UA = {"User-Agent": "agrodoc-dataset-downloader/1.0"}
+UA = {"User-Agent": "sebel-hakim-dataset-downloader/1.0"}
 
 
 def http_json(url: str):

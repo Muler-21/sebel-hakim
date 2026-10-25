@@ -1,4 +1,4 @@
-/* AgroDoc — offline plant disease diagnosis in the browser. */
+/* Sebel Hakim (ሰብል ሐኪም) — offline crop disease diagnosis in the browser. Created by Mulusew Kassa Bitew (Muler). */
 "use strict";
 
 const ORT_CDN = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/";
@@ -16,7 +16,7 @@ const el = (tag, attrs = {}, ...kids) => {
 
 const S = {
   lang: "en", kb: null, dis: {}, crops: {}, meta: null, session: null, loading: null,
-  modelClasses: [], last: null,
+  modelClasses: [], last: null, offline: false,
 };
 
 // ------------------------------------------------------------- language
@@ -72,12 +72,22 @@ function setModelState(s) {
   const n = $("#model-state");
   const shoot = $(".shoot");
   n.classList.remove("bad");
+  const off = $("#a-offline");
+  if (off) off.textContent = S.offline ? "✓ " + t("offline_ready") : t("offline_pending");
   if (!S.meta) { n.textContent = t("no_model"); shoot.classList.add("disabled"); return; }
   shoot.classList.remove("disabled");
-  if (s === "loading") n.textContent = t("loading_model");
-  else if (s === "error") { n.textContent = t("model_error"); n.classList.add("bad"); }
-  else n.textContent = S.session ? t("offline_ready") : "";
-  if (S.meta.placeholder && s !== "error" && s !== "loading") { n.textContent = t("placeholder"); n.classList.add("bad"); }
+  if (s === "loading") { n.textContent = t("loading_model"); return; }
+  if (s === "error") { n.textContent = t("model_error"); n.classList.add("bad"); return; }
+  const parts = [];
+  if (S.meta.placeholder) { parts.push(t("placeholder")); n.classList.add("bad"); }
+  if (S.offline) parts.push("✓ " + t("offline_ready"));
+  n.textContent = parts.join(" ");
+}
+
+// ask the service worker whether the app, AI engine and model are all stored for offline use
+function checkOffline() {
+  if (!navigator.serviceWorker || !navigator.serviceWorker.controller) return;
+  navigator.serviceWorker.controller.postMessage("offline-status");
 }
 
 // ------------------------------------------------------------- image → tensor
@@ -289,6 +299,15 @@ async function main() {
 
   // warm up the model in the background so the first diagnosis is fast
   if (S.meta) (window.requestIdleCallback || setTimeout)(() => loadSession().catch(() => {}));
-  if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.addEventListener("message", (e) => {
+      if (e.data && e.data.type === "offline-status") { S.offline = e.data.ready; setModelState(S.session ? "ready" : undefined); }
+    });
+    navigator.serviceWorker.register("sw.js").then(() => navigator.serviceWorker.ready).then(() => {
+      checkOffline();
+      navigator.serviceWorker.addEventListener("controllerchange", checkOffline);
+      setTimeout(checkOffline, 4000);
+    }).catch(() => {});
+  }
 }
 main();
