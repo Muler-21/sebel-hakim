@@ -1,0 +1,626 @@
+{
+ "model": "/tmp/sebel_hakim_data/runs/student/best.pt",
+ "split": "test",
+ "overall": {
+  "images": 11404,
+  "acc": 0.9338828481234654,
+  "top3": 0.9866713433882848,
+  "macro_f1": 0.8883011892229565
+ },
+ "field_only": {
+  "images": 5976,
+  "acc": 0.8786813922356091,
+  "top3": 0.9747322623828648,
+  "macro_f1": 0.7051604630926831
+ },
+ "lab_only": {
+  "images": 5428,
+  "acc": 0.9946573323507738,
+  "top3": 0.9998157700810612,
+  "macro_f1": 0.9942205526660802
+ },
+ "crop_correct": 0.967818309365135,
+ "not_sure_rate": 0.01990529638723255,
+ "acc_when_sure": 0.9452446989353136,
+ "per_dataset": {
+  "cassava_kaggle": {
+   "images": 2141,
+   "acc": 0.8851004203643157,
+   "top3": 0.9892573563755255,
+   "macro_f1": 0.7946848390931249
+  },
+  "ibean": {
+   "images": 146,
+   "acc": 0.9863013698630136,
+   "top3": 1.0,
+   "macro_f1": 0.9863244266778878
+  },
+  "makerere_beans": {
+   "images": 1030,
+   "acc": 0.9922330097087378,
+   "top3": 1.0,
+   "macro_f1": 0.9922287904451847
+  },
+  "plantdoc": {
+   "images": 233,
+   "acc": 0.6909871244635193,
+   "top3": 0.9184549356223176,
+   "macro_f1": 0.710512615466176
+  },
+  "plantseg": {
+   "images": 1161,
+   "acc": 0.9233419465977606,
+   "top3": 0.9931093884582257,
+   "macro_f1": 0.9601433049708912
+  },
+  "plantvillage": {
+   "images": 5428,
+   "acc": 0.9946573323507738,
+   "top3": 0.9998157700810612,
+   "macro_f1": 0.9942205526660802
+  },
+  "plantwild": {
+   "images": 1265,
+   "acc": 0.7565217391304347,
+   "top3": 0.9201581027667984,
+   "macro_f1": 0.683798608588128
+  }
+ },
+ "per_crop": {
+  "apple": {
+   "images": 430,
+   "acc": 0.9116279069767442,
+   "top3": 0.9697674418604652,
+   "macro_f1": 0.9323979556065796
+  },
+  "banana": {
+   "images": 45,
+   "acc": 0.8666666666666667,
+   "top3": 0.9333333333333333,
+   "macro_f1": 0.7712215320910975
+  },
+  "bean": {
+   "images": 1210,
+   "acc": 0.9760330578512396,
+   "top3": 0.9892561983471074,
+   "macro_f1": 0.9850406687338161
+  },
+  "blueberry": {
+   "images": 189,
+   "acc": 0.9417989417989417,
+   "top3": 0.9735449735449735,
+   "macro_f1": 0.9700272479564032
+  },
+  "cassava": {
+   "images": 2141,
+   "acc": 0.8851004203643157,
+   "top3": 0.9892573563755255,
+   "macro_f1": 0.7946848390931249
+  },
+  "cherry": {
+   "images": 232,
+   "acc": 0.9310344827586207,
+   "top3": 0.9655172413793104,
+   "macro_f1": 0.9643676098183486
+  },
+  "citrus": {
+   "images": 585,
+   "acc": 0.9794871794871794,
+   "top3": 0.9846153846153847,
+   "macro_f1": 0.8801307189542484
+  },
+  "coffee": {
+   "images": 22,
+   "acc": 0.9545454545454546,
+   "top3": 1.0,
+   "macro_f1": 0.9814814814814815
+  },
+  "grape": {
+   "images": 452,
+   "acc": 0.9823008849557522,
+   "top3": 0.995575221238938,
+   "macro_f1": 0.9897976042957456
+  },
+  "maize": {
+   "images": 466,
+   "acc": 0.9356223175965666,
+   "top3": 0.9914163090128756,
+   "macro_f1": 0.9258648801672057
+  },
+  "other": {
+   "images": 1692,
+   "acc": 0.8912529550827423,
+   "top3": 0.9899527186761229,
+   "macro_f1": 0.9424999999999999
+  },
+  "peach": {
+   "images": 293,
+   "acc": 0.9897610921501706,
+   "top3": 0.9897610921501706,
+   "macro_f1": 0.9878048780487805
+  },
+  "pepper": {
+   "images": 296,
+   "acc": 0.9594594594594594,
+   "top3": 0.9797297297297297,
+   "macro_f1": 0.9719967532467533
+  },
+  "potato": {
+   "images": 285,
+   "acc": 0.9368421052631579,
+   "top3": 0.9754385964912281,
+   "macro_f1": 0.9560472228744216
+  },
+  "raspberry": {
+   "images": 66,
+   "acc": 0.9242424242424242,
+   "top3": 0.9848484848484849,
+   "macro_f1": 0.9606299212598425
+  },
+  "rice": {
+   "images": 35,
+   "acc": 0.8571428571428571,
+   "top3": 0.9428571428571428,
+   "macro_f1": 0.8627450980392157
+  },
+  "soybean": {
+   "images": 538,
+   "acc": 0.9814126394052045,
+   "top3": 0.9925650557620818,
+   "macro_f1": 0.9906191369606004
+  },
+  "squash": {
+   "images": 207,
+   "acc": 0.9420289855072463,
+   "top3": 0.9903381642512077,
+   "macro_f1": 0.9701492537313433
+  },
+  "strawberry": {
+   "images": 192,
+   "acc": 0.9739583333333334,
+   "top3": 0.9791666666666666,
+   "macro_f1": 0.9841554471162326
+  },
+  "tomato": {
+   "images": 1990,
+   "acc": 0.9507537688442211,
+   "top3": 0.9879396984924623,
+   "macro_f1": 0.9436907243980013
+  },
+  "wheat": {
+   "images": 38,
+   "acc": 0.868421052631579,
+   "top3": 0.9473684210526315,
+   "macro_f1": 0.8929817553858473
+  }
+ },
+ "per_class": {
+  "apple.black_rot": {
+   "images": 72,
+   "recall": 0.9166666666666666,
+   "precision": 0.9428571428571428
+  },
+  "apple.cedar_rust": {
+   "images": 57,
+   "recall": 0.8947368421052632,
+   "precision": 0.864406779661017
+  },
+  "apple.healthy": {
+   "images": 217,
+   "recall": 0.9170506912442397,
+   "precision": 0.9170506912442397
+  },
+  "apple.scab": {
+   "images": 84,
+   "recall": 0.9047619047619048,
+   "precision": 0.8444444444444444
+  },
+  "banana.black_sigatoka": {
+   "images": 5,
+   "recall": 0.4,
+   "precision": 0.6666666666666666
+  },
+  "banana.fusarium_wilt": {
+   "images": 16,
+   "recall": 0.9375,
+   "precision": 0.6521739130434783
+  },
+  "banana.healthy": {
+   "images": 24,
+   "recall": 0.9166666666666666,
+   "precision": 0.88
+  },
+  "bean.angular_leaf_spot": {
+   "images": 48,
+   "recall": 1.0,
+   "precision": 0.9795918367346939
+  },
+  "bean.healthy": {
+   "images": 602,
+   "recall": 0.9667774086378738,
+   "precision": 0.9897959183673469
+  },
+  "bean.rust": {
+   "images": 560,
+   "recall": 0.9839285714285714,
+   "precision": 0.9786856127886323
+  },
+  "blueberry.healthy": {
+   "images": 189,
+   "recall": 0.9417989417989417,
+   "precision": 0.9270833333333334
+  },
+  "cassava.bacterial_blight": {
+   "images": 109,
+   "recall": 0.7522935779816514,
+   "precision": 0.6356589147286822
+  },
+  "cassava.brown_streak": {
+   "images": 219,
+   "recall": 0.776255707762557,
+   "precision": 0.8252427184466019
+  },
+  "cassava.green_mottle": {
+   "images": 239,
+   "recall": 0.803347280334728,
+   "precision": 0.8067226890756303
+  },
+  "cassava.healthy": {
+   "images": 258,
+   "recall": 0.689922480620155,
+   "precision": 0.7355371900826446
+  },
+  "cassava.mosaic": {
+   "images": 1316,
+   "recall": 0.9673252279635258,
+   "precision": 0.9578630549285176
+  },
+  "cherry.healthy": {
+   "images": 119,
+   "recall": 0.9243697478991597,
+   "precision": 0.88
+  },
+  "cherry.powdery_mildew": {
+   "images": 113,
+   "recall": 0.9380530973451328,
+   "precision": 0.9636363636363636
+  },
+  "citrus.canker": {
+   "images": 20,
+   "recall": 0.65,
+   "precision": 0.7222222222222222
+  },
+  "citrus.greening": {
+   "images": 565,
+   "recall": 0.9911504424778761,
+   "precision": 0.99644128113879
+  },
+  "coffee.healthy": {
+   "images": 14,
+   "recall": 0.9285714285714286,
+   "precision": 0.65
+  },
+  "coffee.leaf_rust": {
+   "images": 8,
+   "recall": 1.0,
+   "precision": 1.0
+  },
+  "grape.black_rot": {
+   "images": 137,
+   "recall": 0.9635036496350365,
+   "precision": 0.9230769230769231
+  },
+  "grape.esca": {
+   "images": 138,
+   "recall": 1.0,
+   "precision": 1.0
+  },
+  "grape.healthy": {
+   "images": 69,
+   "recall": 0.9565217391304348,
+   "precision": 0.8461538461538461
+  },
+  "grape.leaf_blight": {
+   "images": 108,
+   "recall": 1.0,
+   "precision": 1.0
+  },
+  "maize.common_rust": {
+   "images": 140,
+   "recall": 0.9571428571428572,
+   "precision": 0.9852941176470589
+  },
+  "maize.gray_leaf_spot": {
+   "images": 69,
+   "recall": 0.8115942028985508,
+   "precision": 0.835820895522388
+  },
+  "maize.healthy": {
+   "images": 131,
+   "recall": 0.9847328244274809,
+   "precision": 0.9699248120300752
+  },
+  "maize.northern_leaf_blight": {
+   "images": 126,
+   "recall": 0.9285714285714286,
+   "precision": 0.8731343283582089
+  },
+  "other.unknown_plant": {
+   "images": 1692,
+   "recall": 0.8912529550827423,
+   "precision": 0.9436795994993742
+  },
+  "peach.bacterial_spot": {
+   "images": 230,
+   "recall": 1.0,
+   "precision": 1.0
+  },
+  "peach.healthy": {
+   "images": 63,
+   "recall": 0.9523809523809523,
+   "precision": 0.7058823529411765
+  },
+  "pepper.bacterial_spot": {
+   "images": 119,
+   "recall": 0.9327731092436975,
+   "precision": 0.9098360655737705
+  },
+  "pepper.healthy": {
+   "images": 177,
+   "recall": 0.9774011299435028,
+   "precision": 0.9505494505494505
+  },
+  "potato.early_blight": {
+   "images": 122,
+   "recall": 0.9262295081967213,
+   "precision": 0.9112903225806451
+  },
+  "potato.healthy": {
+   "images": 40,
+   "recall": 0.9,
+   "precision": 0.782608695652174
+  },
+  "potato.late_blight": {
+   "images": 123,
+   "recall": 0.959349593495935,
+   "precision": 0.9672131147540983
+  },
+  "raspberry.healthy": {
+   "images": 66,
+   "recall": 0.9242424242424242,
+   "precision": 0.8472222222222222
+  },
+  "rice.blast": {
+   "images": 10,
+   "recall": 0.7,
+   "precision": 0.7
+  },
+  "rice.healthy": {
+   "images": 25,
+   "recall": 0.92,
+   "precision": 0.7931034482758621
+  },
+  "soybean.healthy": {
+   "images": 538,
+   "recall": 0.9814126394052045,
+   "precision": 0.9795918367346939
+  },
+  "squash.powdery_mildew": {
+   "images": 207,
+   "recall": 0.9420289855072463,
+   "precision": 0.9112149532710281
+  },
+  "strawberry.healthy": {
+   "images": 75,
+   "recall": 0.9466666666666667,
+   "precision": 0.9594594594594594
+  },
+  "strawberry.leaf_scorch": {
+   "images": 117,
+   "recall": 0.9914529914529915,
+   "precision": 1.0
+  },
+  "tomato.bacterial_spot": {
+   "images": 238,
+   "recall": 0.8991596638655462,
+   "precision": 0.9184549356223176
+  },
+  "tomato.early_blight": {
+   "images": 122,
+   "recall": 0.8852459016393442,
+   "precision": 0.8780487804878049
+  },
+  "tomato.healthy": {
+   "images": 185,
+   "recall": 0.9675675675675676,
+   "precision": 0.9675675675675676
+  },
+  "tomato.late_blight": {
+   "images": 214,
+   "recall": 0.9813084112149533,
+   "precision": 0.9502262443438914
+  },
+  "tomato.leaf_mold": {
+   "images": 115,
+   "recall": 0.9217391304347826,
+   "precision": 0.9217391304347826
+  },
+  "tomato.mosaic_virus": {
+   "images": 56,
+   "recall": 0.875,
+   "precision": 0.7205882352941176
+  },
+  "tomato.septoria_leaf_spot": {
+   "images": 199,
+   "recall": 0.9597989949748744,
+   "precision": 0.9408866995073891
+  },
+  "tomato.spider_mites": {
+   "images": 168,
+   "recall": 1.0,
+   "precision": 0.9940828402366864
+  },
+  "tomato.target_spot": {
+   "images": 140,
+   "recall": 0.9928571428571429,
+   "precision": 0.9586206896551724
+  },
+  "tomato.yellow_leaf_curl_virus": {
+   "images": 553,
+   "recall": 0.9547920433996383,
+   "precision": 0.9943502824858758
+  },
+  "wheat.leaf_rust": {
+   "images": 5,
+   "recall": 1.0,
+   "precision": 0.5
+  },
+  "wheat.powdery_mildew": {
+   "images": 9,
+   "recall": 0.8888888888888888,
+   "precision": 0.8888888888888888
+  },
+  "wheat.septoria": {
+   "images": 8,
+   "recall": 0.625,
+   "precision": 0.8333333333333334
+  },
+  "wheat.stem_rust": {
+   "images": 5,
+   "recall": 0.8,
+   "precision": 0.8
+  },
+  "wheat.yellow_rust": {
+   "images": 11,
+   "recall": 1.0,
+   "precision": 0.7333333333333333
+  }
+ },
+ "top_confusions": [
+  {
+   "true": "cassava.healthy",
+   "predicted": "cassava.bacterial_blight",
+   "count": 26
+  },
+  {
+   "true": "cassava.green_mottle",
+   "predicted": "cassava.mosaic",
+   "count": 23
+  },
+  {
+   "true": "cassava.healthy",
+   "predicted": "cassava.mosaic",
+   "count": 21
+  },
+  {
+   "true": "cassava.mosaic",
+   "predicted": "cassava.green_mottle",
+   "count": 20
+  },
+  {
+   "true": "cassava.bacterial_blight",
+   "predicted": "cassava.healthy",
+   "count": 19
+  },
+  {
+   "true": "other.unknown_plant",
+   "predicted": "squash.powdery_mildew",
+   "count": 18
+  },
+  {
+   "true": "cassava.green_mottle",
+   "predicted": "cassava.healthy",
+   "count": 17
+  },
+  {
+   "true": "cassava.brown_streak",
+   "predicted": "cassava.bacterial_blight",
+   "count": 17
+  },
+  {
+   "true": "cassava.healthy",
+   "predicted": "cassava.brown_streak",
+   "count": 17
+  },
+  {
+   "true": "cassava.healthy",
+   "predicted": "cassava.green_mottle",
+   "count": 16
+  },
+  {
+   "true": "tomato.yellow_leaf_curl_virus",
+   "predicted": "tomato.bacterial_spot",
+   "count": 13
+  },
+  {
+   "true": "cassava.mosaic",
+   "predicted": "cassava.healthy",
+   "count": 13
+  },
+  {
+   "true": "cassava.brown_streak",
+   "predicted": "cassava.healthy",
+   "count": 13
+  },
+  {
+   "true": "maize.gray_leaf_spot",
+   "predicted": "maize.northern_leaf_blight",
+   "count": 12
+  },
+  {
+   "true": "squash.powdery_mildew",
+   "predicted": "other.unknown_plant",
+   "count": 12
+  },
+  {
+   "true": "other.unknown_plant",
+   "predicted": "peach.healthy",
+   "count": 11
+  },
+  {
+   "true": "other.unknown_plant",
+   "predicted": "cherry.healthy",
+   "count": 11
+  },
+  {
+   "true": "other.unknown_plant",
+   "predicted": "apple.healthy",
+   "count": 11
+  },
+  {
+   "true": "cassava.brown_streak",
+   "predicted": "cassava.mosaic",
+   "count": 11
+  },
+  {
+   "true": "other.unknown_plant",
+   "predicted": "pepper.bacterial_spot",
+   "count": 9
+  },
+  {
+   "true": "other.unknown_plant",
+   "predicted": "blueberry.healthy",
+   "count": 9
+  },
+  {
+   "true": "maize.northern_leaf_blight",
+   "predicted": "maize.gray_leaf_spot",
+   "count": 8
+  },
+  {
+   "true": "tomato.yellow_leaf_curl_virus",
+   "predicted": "tomato.mosaic_virus",
+   "count": 8
+  },
+  {
+   "true": "bean.healthy",
+   "predicted": "bean.rust",
+   "count": 8
+  },
+  {
+   "true": "other.unknown_plant",
+   "predicted": "soybean.healthy",
+   "count": 8
+  }
+ ]
+}

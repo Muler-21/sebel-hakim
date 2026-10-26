@@ -20,6 +20,19 @@ app/           the phone app (static web app / PWA)
 tests/         label-mapping tests and a placeholder model for testing the app
 ```
 
+## Current model (v1, trained 26 Oct 2026 on Kaggle)
+
+EfficientNet-B0 phone model distilled from a ConvNeXt-V2 teacher, 114,014 photos, 60 classes (20 crops + "unknown plant").
+Tested on 11,404 held-out photos it never saw:
+
+| | accuracy | top-3 |
+|---|---|---|
+| all test photos | 93.4% | 98.7% |
+| real field photos | 87.9% | 97.5% |
+| plant (crop) identified correctly | 96.8% | |
+
+Weakest: cassava diseases among each other, banana black sigatoka, wheat and rice (few photos). Full reports: `docs/model_v1/`.
+
 ## 1. Train the model
 
 ### Easiest: Kaggle's free GPU (no HPC needed)
