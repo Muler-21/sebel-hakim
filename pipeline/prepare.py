@@ -146,6 +146,7 @@ def main():
     a = ap.parse_args()
 
     diseases = load_diseases()
+    kb_ids = {d["id"] for d in diseases}
     m = Matcher(diseases)
     rows, unmapped = [], defaultdict(Counter)
 
@@ -164,7 +165,8 @@ def main():
                 # a plant we don't cover at all (no known crop word in the label) → "other plant"
                 if (cache[raw] is None and d.get("other_plants") and not d.get("crop")
                         and raw and not raw.isdigit() and detect_crop(raw) is None
-                        and norm(raw) not in m.by_syn):      # bare "healthy", "rust" … stay unmapped
+                        and norm(raw) not in m.by_syn       # bare "healthy", "rust" … stay unmapped
+                        and "other.unknown_plant" in kb_ids):
                     cache[raw] = "other.unknown_plant"
             lab = cache[raw]
             if lab is None:

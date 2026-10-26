@@ -6,10 +6,11 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FILES = ["pipeline/common.py", "pipeline/download.py", "pipeline/prepare.py", "pipeline/train.py",
-         "pipeline/evaluate.py", "pipeline/export.py", "pipeline/build_kb.py", "pipeline/datasets.yaml",
-         "kb/crops.yaml", "kb/cereals.yaml", "kb/legumes_roots.yaml", "kb/vegetables.yaml",
-         "kb/fruits_cash.yaml", "tests/test_matcher.py"]
+# every pipeline file and EVERY knowledge-base file (picked up automatically, so none can be forgotten)
+FILES = (sorted(str(p.relative_to(ROOT)) for p in (ROOT / "pipeline").glob("*.py"))
+         + ["pipeline/datasets.yaml"]
+         + sorted(str(p.relative_to(ROOT)) for p in (ROOT / "kb").glob("*.yaml"))
+         + ["tests/test_matcher.py"])
 
 cells = []
 
@@ -50,7 +51,7 @@ code("""
 USE_TEACHER   = True                                   # big teacher → better small model
 TEACHER       = "convnextv2_tiny.fcmae_ft_in22k_in1k"
 TEACHER_IMG   = 256
-TEACHER_MIN   = 150                                    # minutes of training
+TEACHER_MIN   = 150                                    # minutes of training (upper limit; shortened automatically if data prep was slow)
 STUDENT       = "efficientnet_b0.ra_in1k"              # the model that goes into the phone app
 STUDENT_IMG   = 224
 STUDENT_MIN   = 170
@@ -59,7 +60,11 @@ RESIZE        = 320                                    # shrink photos once → 
 SKIP          = []                                     # dataset ids to skip, e.g. ["plantwild", "plantseg"]
 WORKERS       = 4
 
-import os, pathlib
+import os, pathlib, time
+START = time.time()                                    # Kaggle stops a run after 12 h; we budget from here
+SESSION_MIN = 12 * 60 - 25                             # safety margin
+def minutes_left():
+    return SESSION_MIN - (time.time() - START) / 60
 CODE = pathlib.Path("/kaggle/working/sebel_hakim")
 DATA = pathlib.Path("/kaggle/temp/sebel_hakim_data") if pathlib.Path("/kaggle/temp").exists() else pathlib.Path("/tmp/sebel_hakim_data")
 RUNS = DATA / "runs"
@@ -101,6 +106,7 @@ skip = ("--skip " + " ".join(SKIP)) if SKIP else ""
 md("## 3. Clean, de-duplicate, shrink and split")
 code("""
 !python pipeline/prepare.py --workers {WORKERS} --resize {RESIZE}
+assert (DATA / "manifest.csv").exists(), "Data preparation failed — scroll up for the error and send it to Claude"
 from IPython.display import Markdown, display
 display(Markdown(open("reports/prepare_report.md", encoding="utf-8").read()))
 """)
@@ -119,14 +125,20 @@ print("✓ smoke test passed: training, distillation, evaluation and export all 
 
 md("## 4. Train the teacher (large, accurate)")
 code("""
-if USE_TEACHER:
-    !python pipeline/train.py --model {TEACHER} --img {TEACHER_IMG} --epochs 40 --epoch-size {EPOCH_SIZE} --bs 64 --lr 4e-4 --workers {WORKERS} --time-limit {TEACHER_MIN} --out {RUNS}/teacher
+# fit both trainings into the time that is left (keep 50 min for evaluation + export at the end)
+left = minutes_left() - 50
+teacher_min = int(min(TEACHER_MIN, left * 0.45))
+print(f"{minutes_left():.0f} min left in the session → teacher gets {teacher_min} min")
+if USE_TEACHER and teacher_min >= 40:
+    !python pipeline/train.py --model {TEACHER} --img {TEACHER_IMG} --epochs 40 --epoch-size {EPOCH_SIZE} --bs 64 --lr 4e-4 --workers {WORKERS} --time-limit {teacher_min} --out {RUNS}/teacher
 """)
 
 md("## 5. Train the phone model (distilled from the teacher)")
 code("""
 teacher_arg = f"--teacher {RUNS}/teacher/best.pt" if USE_TEACHER and (RUNS / "teacher/best.pt").exists() else ""
-!python pipeline/train.py --model {STUDENT} --img {STUDENT_IMG} --epochs 60 --epoch-size {EPOCH_SIZE} --bs 96 --lr 1e-3 --workers {WORKERS} --time-limit {STUDENT_MIN} {teacher_arg} --out {RUNS}/student
+student_min = int(min(STUDENT_MIN, minutes_left() - 50))
+print(f"{minutes_left():.0f} min left in the session → phone model gets {student_min} min")
+!python pipeline/train.py --model {STUDENT} --img {STUDENT_IMG} --epochs 60 --epoch-size {EPOCH_SIZE} --bs 96 --lr 1e-3 --workers {WORKERS} --time-limit {student_min} {teacher_arg} --out {RUNS}/student
 """)
 
 md("## 6. Test on photos the models never saw")
