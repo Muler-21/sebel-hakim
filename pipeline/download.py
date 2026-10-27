@@ -23,7 +23,7 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-from common import DATA_ROOT, load_datasets
+from common import DATA_ROOT, IMG_EXT, ROOT, load_datasets, walk_files
 
 RAW = DATA_ROOT / "raw"
 KAGGLE_INPUT = Path(os.environ.get("KAGGLE_INPUT", "/kaggle/input"))
@@ -54,7 +54,7 @@ def http_download(url: str, dest: Path):
 
 def extract_all(folder: Path):
     """Extract every archive under folder (repeat once for archives inside archives)."""
-    for _ in range(2):
+    for _ in range(3):
         for a in list(folder.rglob("*")):
             name = a.name.lower()
             try:
@@ -95,22 +95,44 @@ def get_zenodo(d, out: Path):
 
 
 def get_mendeley(d, out: Path):
-    ver = d.get("version", 1)
-    base = f"https://data.mendeley.com/public-api/datasets/{d['ref']}"
-    files = http_json(f"{base}/files?folder_id=root&version={ver}")
-    stack = list(files)
-    while stack:
-        f = stack.pop()
-        if f.get("content_details") is None and f.get("id") and f.get("type") == "folder":
-            stack.extend(http_json(f"{base}/files?folder_id={f['id']}&version={ver}"))
-            continue
-        cd = f.get("content_details") or {}
-        link = cd.get("download_url") or f.get("download_url")
-        if link:
-            http_download(link, out / f["filename"])
-    if not any(out.iterdir()):
-        raise RuntimeError("Mendeley API returned no files; download manually from "
-                           f"https://data.mendeley.com/datasets/{d['ref']}/{ver}")
+    """Mendeley Data has changed its public endpoints over time, so try several in turn."""
+    ver, ref = d.get("version", 1), d["ref"]
+    errors = []
+    # 1) whole-dataset zip
+    for url in (f"https://data.mendeley.com/public-api/zip/{ref}/download/{ver}",
+                f"https://data.mendeley.com/public-api/zip/{ref}/download/{ver}?format=zip"):
+        try:
+            http_download(url, out / f"{ref}_v{ver}.zip")
+            if (out / f"{ref}_v{ver}.zip").stat().st_size > 10_000:
+                return
+        except Exception as e:
+            errors.append(f"zip: {e}")
+    # 2) file-by-file listing (several API shapes)
+    for base in (f"https://data.mendeley.com/public-api/datasets/{ref}",
+                 f"https://data.mendeley.com/api/datasets/{ref}"):
+        try:
+            meta = http_json(f"{base}?version={ver}")
+            files = meta.get("files") or http_json(f"{base}/files?folder_id=root&version={ver}")
+            n = 0
+            for f in files:
+                cd = f.get("content_details") or {}
+                link = cd.get("download_url") or f.get("download_url")
+                if link:
+                    http_download(link, out / f["filename"]); n += 1
+            if n:
+                return
+            errors.append(f"{base}: no file links")
+        except Exception as e:
+            errors.append(f"{base}: {e}")
+    # 3) a Kaggle mirror, if one is listed
+    if d.get("kaggle_mirror"):
+        try:
+            get_kaggle({**d, "ref": d["kaggle_mirror"]}, out, comp=False)
+            return
+        except Exception as e:
+            errors.append(f"kaggle mirror: {e}")
+    raise RuntimeError("Mendeley download failed (" + " | ".join(errors)[:400] +
+                       f") — download manually from https://data.mendeley.com/datasets/{ref}/{ver}")
 
 
 def get_dataverse(d, out: Path):
@@ -191,18 +213,20 @@ def main():
             print(f"{d['id']:24} {d['host']:12} {d.get('field',''):6} {str(d.get('commercial')):8} {status}")
         return
 
-    failed, manual = [], []
+    failed, manual, report = [], [], []
     for d in ds:
         if (a.only and d["id"] not in a.only) or d["id"] in a.skip:
             continue
         out = RAW / d["id"]
         if (out / ".done").exists():
             print(f"[skip] {d['id']} already downloaded")
+            report.append((d["id"], "ok (earlier)", ""))
             continue
         if out.exists() and not (out / ".done").exists():
             shutil.rmtree(out, ignore_errors=True)   # half-finished earlier attempt
         if d["host"] == "manual":
             manual.append(d)
+            report.append((d["id"], "manual", d.get("url", "")))
             continue
         print(f"[get ] {d['id']} ({d['host']}: {d.get('ref')})")
         out.mkdir(parents=True, exist_ok=True)
@@ -210,12 +234,22 @@ def main():
             HOSTS[d["host"]](d, out)
             if not (out / "input").is_symlink():  # never touch read-only Kaggle inputs
                 extract_all(out)
+            n = sum(1 for p in walk_files(out) if p.suffix.lower() in IMG_EXT or p.suffix == ".parquet")
+            if n == 0:
+                raise RuntimeError("downloaded, but no image files were found inside")
             (out / ".done").write_text("ok\n")
+            report.append((d["id"], "ok", f"{n:,} files"))
         except Exception as e:
             print(f"  ! {d['id']} failed: {e}")
             failed.append(d["id"])
+            report.append((d["id"], "FAILED", str(e).replace("|", "/").replace("\n", " ")[:300]))
             shutil.rmtree(out, ignore_errors=True)
 
+    rep = ROOT / "reports" / "download_report.md"
+    rep.parent.mkdir(exist_ok=True)
+    rep.write_text("# Download report\n\n| dataset | status | details |\n|---|---|---|\n" +
+                   "".join(f"| {i} | {s} | {x} |\n" for i, s, x in report), encoding="utf-8")
+    print(f"\n→ {rep}")
     if manual:
         print("\nManual downloads (put the files in data/raw/<id>/ and create an empty .done file):")
         for d in manual:

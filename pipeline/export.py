@@ -65,7 +65,8 @@ def main():
         import csv
         from PIL import Image
         from train import eval_tf
-        rows = [r for r in csv.DictReader(open(DATA_ROOT / "manifest.csv", encoding="utf-8")) if r["split"] == "train"]
+        from train import read_manifest
+        rows = [r for r in read_manifest(DATA_ROOT / "manifest.csv") if r["split"] == "train"]
         rng = np.random.default_rng(0)
         pick = [rows[i] for i in rng.choice(len(rows), min(a.calib, len(rows)), replace=False)]
         tf = eval_tf(ck["img"])

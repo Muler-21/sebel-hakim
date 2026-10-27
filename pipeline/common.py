@@ -103,6 +103,15 @@ class Matcher:
                     self.by_syn.setdefault(norm(s), set()).add(d["id"])
 
     def match(self, label: str, crop: str | None = None, overrides: dict | None = None) -> str | None:
+        r = self._match(label, crop, overrides)
+        if r is None and crop:
+            # numbered folders from split archives: "mln4", "als_2", "healthy10", "msv 3"
+            base = re.sub(r"[\s_\-]*\d+$", "", str(label)).strip()
+            if base and base != str(label).strip():
+                r = self._match(base, crop, overrides)
+        return r
+
+    def _match(self, label: str, crop: str | None = None, overrides: dict | None = None) -> str | None:
         """Return a disease id or None.
 
         Order: explicit override → exact synonym (filtered by crop) → synonym after

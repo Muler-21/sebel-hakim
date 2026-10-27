@@ -540,7 +540,7 @@ diseases:
   severity: medium
   name: {en: Brown eye spot (Cercospora)}
   scientific: Cercospora coffeicola
-  synonyms: [cercospora, brown eye spot, coffee cercospora]
+  synonyms: [cercospora, brown eye spot, coffee cercospora, berry blotch, coffee berry blotch]
   symptoms:
     - Round brown spots with a light grey centre and yellow halo ("eye"); spots on berries
   spread: Wind and splash; stressed, under-fertilised, unshaded trees.

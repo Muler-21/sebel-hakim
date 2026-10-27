@@ -33,6 +33,9 @@ CASES = [
  ("healthy_wheat", "wheat", "wheat.healthy"), ("miner", "coffee", "coffee.leaf_miner"), ("rust_level_2", "coffee", "coffee.leaf_rust"),
  ("red_spider_mite", "coffee", "coffee.red_spider_mite"), ("cassava mosaic disease cmd", "cassava", "cassava.mosaic"),
  ("MSV", "maize", "maize.streak_virus"), ("MLN", "maize", "maize.lethal_necrosis"),
+ # numbered folders (split archives)
+ ("mln4", "maize", "maize.lethal_necrosis"), ("msv2", "maize", "maize.streak_virus"), ("healthy10", "maize", "maize.healthy"),
+ ("als_2", "bean", "bean.angular_leaf_spot"), ("rust_level_3", "coffee", "coffee.leaf_rust"),
  # must NOT map without a crop
  ("healthy", None, None), ("rust", None, None), ("3", None, None),
 ]

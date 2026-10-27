@@ -16,6 +16,7 @@ import argparse
 import csv
 import json
 import math
+import os
 import time
 from collections import Counter
 from pathlib import Path
@@ -36,8 +37,14 @@ MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
 
 # ---------------------------------------------------------------- data
 def read_manifest(path: Path):
+    """Rows of manifest.csv; relative image paths are resolved against the manifest's folder."""
+    base = Path(path).resolve().parent
     with open(path, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        rows = list(csv.DictReader(f))
+    for r in rows:
+        if not os.path.isabs(r["path"]):
+            r["path"] = str(base / r["path"])
+    return rows
 
 
 class ImgDS(Dataset):

@@ -141,6 +141,8 @@ def main():
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--no-dedup", action="store_true")
+    ap.add_argument("--max-per-class", type=int, default=6000,
+                    help="cap images per class per dataset (random sample) so huge sets don't swamp the rest; 0 = no cap")
     ap.add_argument("--resize", type=int, default=0,
                     help="write copies with this short side (e.g. 320) for much faster training")
     a = ap.parse_args()
@@ -175,6 +177,20 @@ def main():
             rows.append({"path": str(path), "label": lab, "dataset": d["id"],
                          "field": d.get("field", "lab"), "weight": d.get("weight", 1.0), "raw": raw})
             mapped += 1
+        cap = d.get("max_per_class", a.max_per_class)
+        if cap:
+            mine = [r for r in rows if r["dataset"] == d["id"]]
+            by = defaultdict(list)
+            for r in mine:
+                by[r["label"]].append(r)
+            keep = []
+            rnd = random.Random(a.seed)
+            for lab, g in by.items():
+                rnd.shuffle(g)
+                keep += g[:cap]
+            if len(keep) < len(mine):
+                print(f"       capped {d['id']} to {cap:,} per class: {len(mine):,} → {len(keep):,}")
+            rows = [r for r in rows if r["dataset"] != d["id"]] + keep
         print(f"[read] {d['id']:24} {len(items):7} images, {mapped:7} mapped, "
               f"{len(cache)} raw classes → {len({v for v in cache.values() if v})} kb classes")
 
@@ -198,6 +214,10 @@ def main():
     bad = sum(1 for r in rows if res[r["path"]][0] is None)
     rows = [r | {"hash": res[r["path"]][0], "path": res[r["path"]][1], "source": r["path"]}
             for r in rows if res[r["path"]][0]]
+    if cache:                                   # store "img320/xxx.jpg" relative to the manifest folder
+        for r in rows:
+            if r["path"].startswith(cache + "/"):
+                r["path"] = r["path"][len(str(DATA)) + 1:]
     dup_removed, conflict_removed = 0, 0
     if not a.no_dedup:
         by_hash = defaultdict(list)

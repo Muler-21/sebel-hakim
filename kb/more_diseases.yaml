@@ -1,0 +1,481 @@
+diseases:
+# Added Oct 2026 for diseases present in the PlantWild / PlantSeg photo sets.
+# ============================== CEREALS ==============================
+- id: maize.common_smut
+  crop: maize
+  type: fungal
+  severity: low
+  name: {en: Common smut}
+  scientific: Ustilago maydis
+  synonyms: [corn smut, common smut, smut, maize smut]
+  symptoms:
+    - Large silvery-white swellings (galls) on ears, tassels, stalks or leaves that burst into black powdery spores
+  spread: Spores in soil and residue; enter through wounds (hail, insects, detasseling); hot, dry weather.
+  cultural:
+    - Remove and destroy galls before they burst; avoid plant injuries; balanced nitrogen; rotation
+  biological:
+    - None reliable
+  chemical:
+    - Fungicides are not effective; use tolerant hybrids
+  prevention: Tolerant hybrids and avoiding wounds.
+
+- id: rice.sheath_blight
+  crop: rice
+  type: fungal
+  severity: high
+  name: {en: Sheath blight}
+  scientific: Rhizoctonia solani
+  synonyms: [sheath blight, rice sheath blight]
+  symptoms:
+    - Oval grey-green lesions with brown borders on leaf sheaths near the water line, spreading upwards; lodging
+  spread: Soil-borne sclerotia float on irrigation water; dense planting, high nitrogen, warm humid weather.
+  cultural:
+    - Wider spacing; split nitrogen; remove weeds and stubble; drain fields periodically
+  biological:
+    - Trichoderma or Bacillus subtilis products
+  chemical:
+    - Validamycin, hexaconazole or azoxystrobin at early sheath symptoms
+  prevention: Balanced nitrogen and spacing.
+
+- id: wheat.head_scab
+  crop: wheat
+  type: fungal
+  severity: high
+  name: {en: Fusarium head blight (head scab)}
+  scientific: Fusarium graminearum and related species
+  synonyms: [head scab, wheat head scab, fusarium head blight, scab, fhb]
+  symptoms:
+    - Bleached spikelets on green heads, pink-orange mould at the base; shrivelled, chalky grains
+  spread: Residue of maize and wheat; rain and high humidity at flowering. Grains can contain mycotoxins (DON).
+  cultural:
+    - Do not plant wheat after maize; bury residue; tolerant varieties; stagger planting dates
+  biological:
+    - Some Bacillus products give partial control
+  chemical:
+    - Triazoles (e.g. metconazole, prothioconazole, tebuconazole) at early flowering
+  prevention: Rotation and residue management.
+  notes: Infected grain may be unsafe to eat or feed; ask for a mycotoxin test.
+
+- id: wheat.loose_smut
+  crop: wheat
+  type: fungal
+  severity: medium
+  name: {en: Loose smut}
+  scientific: Ustilago tritici
+  synonyms: [loose smut, wheat loose smut, smut]
+  symptoms:
+    - Heads emerge as a mass of black powdery spores instead of grain; later only the bare stalk remains
+  spread: Seed-borne inside the grain; spores infect flowers of neighbouring plants.
+  cultural:
+    - Use certified seed; rogue smutted heads before spores spread
+  biological:
+    - Hot-water seed treatment
+  chemical:
+    - Systemic seed treatment (e.g. carboxin, tebuconazole, difenoconazole)
+  prevention: Certified, treated seed.
+
+- id: wheat.black_chaff
+  crop: wheat
+  type: bacterial
+  severity: medium
+  name: {en: Bacterial leaf streak (black chaff)}
+  scientific: Xanthomonas translucens
+  synonyms: [black chaff, bacterial leaf streak black chaff, bacterial leaf streak, wheat bacterial leaf streak]
+  symptoms:
+    - Water-soaked streaks on leaves that turn brown; dark brown-black stripes on glumes
+  spread: Seed, residue, rain splash; warm, wet weather.
+  cultural:
+    - Clean seed; rotation; residue management; tolerant varieties
+  biological:
+    - None reliable
+  chemical:
+    - No effective chemical control
+  prevention: Clean seed.
+
+# ============================== LEGUMES ==============================
+- id: bean.mosaic_virus
+  crop: bean
+  type: viral
+  severity: high
+  name: {en: Bean common mosaic}
+  scientific: Bean common mosaic virus / bean common mosaic necrosis virus (aphids, seed)
+  synonyms: [bean mosaic virus, mosaic virus, bean common mosaic, bcmv, mosaic]
+  symptoms:
+    - Light and dark green mosaic, leaf puckering and downward curling; black root (necrosis) in some varieties
+  spread: Infected seed and aphids. Very common in East Africa.
+  cultural:
+    - Certified seed of resistant varieties; remove infected plants early; control weeds
+  biological:
+    - Conserve aphid predators
+  chemical:
+    - No cure
+  prevention: Clean seed of resistant varieties.
+
+- id: bean.halo_blight
+  crop: bean
+  type: bacterial
+  severity: medium
+  name: {en: Halo blight}
+  scientific: Pseudomonas savastanoi pv. phaseolicola
+  synonyms: [halo blight, bean halo blight]
+  symptoms:
+    - Small water-soaked spots surrounded by a wide yellow-green halo; greasy spots on pods
+  spread: Seed-borne; rain splash in cool, wet weather.
+  cultural:
+    - Clean seed; rotation; avoid working in wet fields; bury residue
+  biological:
+    - None reliable
+  chemical:
+    - Copper sprays may slow spread
+  prevention: Clean seed.
+
+- id: soybean.rust
+  crop: soybean
+  type: fungal
+  severity: high
+  name: {en: Soybean rust}
+  scientific: Phakopsora pachyrhizi
+  synonyms: [soybean rust, rust, asian soybean rust]
+  symptoms:
+    - Small tan to reddish-brown lesions on the underside of lower leaves with tiny raised pustules; early leaf drop
+  spread: Wind-blown spores; long leaf wetness. A major soybean disease in Africa.
+  cultural:
+    - Tolerant varieties; early planting; remove volunteer soybeans and kudzu
+  biological:
+    - None proven at field scale
+  chemical:
+    - Triazoles, strobilurins or mixtures at first symptoms, especially at flowering
+  prevention: Early planting and monitoring.
+
+- id: soybean.frogeye_leaf_spot
+  crop: soybean
+  type: fungal
+  severity: medium
+  name: {en: Frogeye leaf spot}
+  scientific: Cercospora sojina
+  synonyms: [frog eye leaf spot, frogeye leaf spot, soybean frog eye leaf spot]
+  symptoms:
+    - Round grey spots with dark reddish-brown margins on leaves
+  spread: Residue and seed; warm, humid weather.
+  cultural:
+    - Resistant varieties; rotation; residue burial
+  biological:
+    - None reliable
+  chemical:
+    - Strobilurin or triazole fungicides if severe at early pod stage
+  prevention: Resistant varieties.
+
+- id: soybean.downy_mildew
+  crop: soybean
+  type: oomycete
+  severity: low
+  name: {en: Downy mildew}
+  scientific: Peronospora manshurica
+  synonyms: [downy mildew, soybean downy mildew]
+  symptoms:
+    - Pale yellow spots on the upper leaf surface with grey fuzzy growth underneath
+  spread: Seed and residue; cool, humid weather.
+  cultural:
+    - Clean seed; rotation; resistant varieties
+  biological:
+    - None reliable
+  chemical:
+    - Rarely needed; seed treatment (metalaxyl) where common
+  prevention: Clean seed.
+
+- id: soybean.mosaic_virus
+  crop: soybean
+  type: viral
+  severity: medium
+  name: {en: Soybean mosaic}
+  scientific: Soybean mosaic virus (aphids, seed)
+  synonyms: [soybean mosaic, mosaic virus, mosaic]
+  symptoms:
+    - Mottled, puckered, distorted leaves; mottled seed coats
+  spread: Infected seed and aphids.
+  cultural:
+    - Clean seed; resistant varieties; early planting
+  biological:
+    - Conserve aphid predators
+  chemical:
+    - No cure
+  prevention: Virus-free seed.
+
+- id: soybean.bacterial_blight
+  crop: soybean
+  type: bacterial
+  severity: low
+  name: {en: Bacterial blight}
+  scientific: Pseudomonas savastanoi pv. glycinea
+  synonyms: [bacterial blight, soybean bacterial blight]
+  symptoms:
+    - Small angular water-soaked spots with yellow halos that turn dark brown; ragged leaves
+  spread: Seed and residue; cool, rainy weather.
+  cultural:
+    - Clean seed; rotation; avoid working in wet plants
+  biological:
+    - None reliable
+  chemical:
+    - Usually not economic; copper if severe
+  prevention: Clean seed.
+
+- id: soybean.brown_spot
+  crop: soybean
+  type: fungal
+  severity: low
+  name: {en: Septoria brown spot}
+  scientific: Septoria glycines
+  synonyms: [brown spot, soybean brown spot, septoria brown spot]
+  symptoms:
+    - Small irregular dark brown spots on lower leaves, which turn yellow and drop
+  spread: Residue; warm, wet weather.
+  cultural:
+    - Rotation; residue burial
+  biological:
+    - None reliable
+  chemical:
+    - Rarely needed
+  prevention: Rotation.
+
+# ============================== VEGETABLES ==============================
+- id: squash.healthy
+  crop: squash
+  type: healthy
+  name: {en: Healthy squash / pumpkin, am: ጤናማ ዱባ}
+  synonyms: [squash healthy, squash leaf, healthy]
+
+- id: pepper.blossom_end_rot
+  crop: pepper
+  type: abiotic
+  severity: low
+  name: {en: Blossom end rot}
+  scientific: Calcium deficiency in the fruit (uneven watering)
+  synonyms: [blossom end rot, bell pepper blossom end rot]
+  symptoms:
+    - Sunken, dark, leathery patch at the bottom (blossom end) of fruits
+  spread: Not infectious. Caused by uneven watering, drought, salty soil or too much nitrogen.
+  cultural:
+    - Water regularly and deeply; mulch; avoid excess nitrogen; lime acid soils
+  biological:
+    - Not applicable
+  chemical:
+    - Calcium foliar sprays help little; fix watering first
+  prevention: Even soil moisture.
+
+# ============================== FRUITS ==============================
+- id: banana.bunchy_top
+  crop: banana
+  type: viral
+  severity: critical
+  name: {en: Banana bunchy top}
+  scientific: Banana bunchy top virus (aphid Pentalonia nigronervosa)
+  synonyms: [bunchy top, banana bunchy top, bbtv]
+  symptoms:
+    - Narrow, upright, bunched leaves at the top; dark green dots and dashes ("Morse code") on leaf veins and stalks
+  spread: Banana aphids and infected suckers. Spreading in sub-Saharan Africa.
+  cultural:
+    - Plant virus-free (tissue-culture) plants; destroy infected mats completely, including suckers
+  biological:
+    - Conserve aphid enemies
+  chemical:
+    - No cure; kill aphids on a plant before uprooting it
+  prevention: Clean planting material and quick removal.
+  notes: Report new outbreaks to the plant-protection service.
+
+- id: banana.anthracnose
+  crop: banana
+  type: fungal
+  severity: low
+  name: {en: Anthracnose}
+  scientific: Colletotrichum musae
+  synonyms: [anthracnose, banana anthracnose]
+  symptoms:
+    - Dark sunken spots on ripening fruit with orange spore masses
+  spread: Wounds and rain; mainly a post-harvest problem.
+  cultural:
+    - Handle fruit carefully; remove dead flowers and leaves; clean packing areas
+  biological:
+    - Hot-water dip of hands after harvest
+  chemical:
+    - Post-harvest treatments only where registered
+  prevention: Careful harvest and hygiene.
+
+- id: banana.cigar_end_rot
+  crop: banana
+  type: fungal
+  severity: low
+  name: {en: Cigar end rot}
+  scientific: Verticillium theobromae / Trachysphaera fructigena
+  synonyms: [cigar end rot, banana cigar end rot]
+  symptoms:
+    - Dry, grey, ash-like rot at the tip of fingers, like the ash of a cigar
+  spread: Infection through the flower; rainy weather.
+  cultural:
+    - Remove flower remains from young fruit; bag bunches; remove infected fingers
+  biological:
+    - None reliable
+  chemical:
+    - Rarely needed
+  prevention: Remove dead flowers.
+
+- id: banana.cordana_leaf_spot
+  crop: banana
+  type: fungal
+  severity: low
+  name: {en: Cordana leaf spot}
+  scientific: Neocordana musae
+  synonyms: [cordana leaf spot, banana cordana leaf spot, cordana]
+  symptoms:
+    - Oval pale brown spots with yellow borders, often at the leaf edge
+  spread: Wind and rain; humid conditions.
+  cultural:
+    - Remove affected leaves; good drainage and spacing
+  biological:
+    - None reliable
+  chemical:
+    - Usually controlled together with Sigatoka programmes
+  prevention: Leaf sanitation.
+
+- id: grape.downy_mildew
+  crop: grape
+  type: oomycete
+  severity: high
+  name: {en: Downy mildew}
+  scientific: Plasmopara viticola
+  synonyms: [downy mildew, grape downy mildew]
+  symptoms:
+    - Yellow "oil spots" on the upper leaf surface with white downy growth underneath; berries shrivel
+  spread: Rain splash from the soil; warm, wet weather.
+  cultural:
+    - Open the canopy; remove fallen leaves; avoid wetting leaves
+  biological:
+    - Copper is allowed in organic systems
+  chemical:
+    - Copper or mancozeb before rain; systemics (metalaxyl-M, dimethomorph) once infection starts
+  prevention: Canopy management and timely protection.
+
+- id: peach.leaf_curl
+  crop: peach
+  type: fungal
+  severity: medium
+  name: {en: Peach leaf curl}
+  scientific: Taphrina deformans
+  synonyms: [leaf curl, peach leaf curl]
+  symptoms:
+    - Thick, puckered, red to purple curled leaves in spring; leaves drop
+  spread: Spores on bark and buds; cool, wet weather at bud break.
+  cultural:
+    - Remove and destroy curled leaves; plant tolerant varieties
+  biological:
+    - Copper or lime-sulphur in dormancy
+  chemical:
+    - Copper or ziram/chlorothalonil once at leaf fall or before bud swell
+  prevention: Dormant spray every year.
+
+- id: peach.brown_rot
+  crop: peach
+  type: fungal
+  severity: high
+  name: {en: Brown rot}
+  scientific: Monilinia fructicola / M. laxa
+  synonyms: [brown rot, peach brown rot]
+  symptoms:
+    - Soft brown rot on fruit covered with grey-tan spore tufts; blossom and twig blight; mummies on the tree
+  spread: Mummified fruit and cankers; rain at bloom and before harvest.
+  cultural:
+    - Remove mummies and infected twigs; thin fruit; control fruit-damaging insects
+  biological:
+    - Bacillus products near harvest
+  chemical:
+    - Triazoles or SDHI fungicides at bloom and before harvest
+  prevention: Sanitation.
+
+- id: peach.scab
+  crop: peach
+  type: fungal
+  severity: low
+  name: {en: Peach scab}
+  scientific: Venturia carpophila (Cladosporium carpophilum)
+  synonyms: [peach scab, scab]
+  symptoms:
+    - Small olive-green to black spots on fruit, often near the stem; fruit cracks
+  spread: Twig lesions; warm, humid spring.
+  cultural:
+    - Prune for airflow; remove infected twigs
+  biological:
+    - Sulphur sprays
+  chemical:
+    - Sulphur or captan from petal fall
+  prevention: Pruning.
+
+- id: cherry.leaf_spot
+  crop: cherry
+  type: fungal
+  severity: medium
+  name: {en: Cherry leaf spot}
+  scientific: Blumeriella jaapii
+  synonyms: [cherry leaf spot, leaf spot]
+  symptoms:
+    - Small purple spots on leaves that turn brown and may fall out; yellow leaves drop in summer
+  spread: Fallen leaves; rain.
+  cultural:
+    - Rake and destroy fallen leaves
+  biological:
+    - None reliable
+  chemical:
+    - Captan or triazoles from petal fall in wet seasons
+  prevention: Leaf litter removal.
+
+- id: apple.mosaic_virus
+  crop: apple
+  type: viral
+  severity: low
+  name: {en: Apple mosaic}
+  scientific: Apple mosaic virus (grafting)
+  synonyms: [apple mosaic virus, mosaic virus, mosaic]
+  symptoms:
+    - Bright cream-yellow patches, bands or rings on leaves
+  spread: Grafting with infected budwood; not by insects.
+  cultural:
+    - Use virus-tested budwood and rootstocks
+  biological:
+    - Not applicable
+  chemical:
+    - No cure
+  prevention: Clean planting material.
+
+- id: strawberry.anthracnose
+  crop: strawberry
+  type: fungal
+  severity: medium
+  name: {en: Anthracnose}
+  scientific: Colletotrichum spp.
+  synonyms: [anthracnose, strawberry anthracnose]
+  symptoms:
+    - Sunken dark lesions on fruit with orange spore masses; black spots on runners; crown rot
+  spread: Infected transplants and rain splash; warm, wet weather.
+  cultural:
+    - Clean transplants; drip irrigation; mulch; remove infected plants
+  biological:
+    - Bacillus products
+  chemical:
+    - Captan or strobilurins in wet periods
+  prevention: Clean transplants.
+
+- id: blueberry.rust
+  crop: blueberry
+  type: fungal
+  severity: low
+  name: {en: Leaf rust}
+  scientific: Thekopsora minima / Naohidemyces vaccinii
+  synonyms: [blueberry rust, rust, leaf rust]
+  symptoms:
+    - Yellow spots on upper leaf surface with orange powdery pustules underneath; early leaf drop
+  spread: Wind; alternate hosts (hemlock) in some regions.
+  cultural:
+    - Remove fallen leaves; prune for airflow
+  biological:
+    - None reliable
+  chemical:
+    - Triazoles after harvest if severe
+  prevention: Sanitation.
