@@ -158,3 +158,6 @@ details.more ul, details.more p { margin-top: 8px; }
 .chip small { color: var(--ink-2); font-weight: 500; }
 .chip.on { border-color: var(--leaf); background: var(--leaf-wash); color: var(--leaf); }
 .diag-head { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+.all-plants { margin-top: 10px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line, #d6ddd6); border-radius: 999px;
+  background: transparent; color: inherit; font: inherit; max-width: 100%; }
+.plant-name small.guess { color: #9a6b00; font-weight: 600; }

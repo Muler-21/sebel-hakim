@@ -1,7 +1,7 @@
 // Sebel Hakim offline support.
 // On install it stores everything the app needs: the app itself, the disease library,
 // the AI engine (onnxruntime-web) and the AI model. After that it works with no internet.
-const CACHE = "sebel-hakim-v7";
+const CACHE = "sebel-hakim-v8";
 const ORT = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/";
 const ORT_FILES = ["ort.min.js", "ort-wasm-simd-threaded.wasm", "ort-wasm-simd-threaded.mjs"].map((f) => ORT + f);
 const SHELL = ["./", "index.html", "styles.css", "app.js", "i18n.js", "kb.json", "icon.svg",

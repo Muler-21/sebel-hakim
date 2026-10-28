@@ -157,7 +157,21 @@ function softmax(logits, temp, allowed) {
 }
 
 // Rank diseases and plants from the raw model output. `crop` restricts the diagnosis to one plant.
-function rank(logits, crop) {
+// which plant each of the 4 views points to; if they disagree, the photo is probably something the AI was
+// not trained on (a fruit, a whole tree, a new crop), so the app must not sound sure
+function viewCrops(raw) {
+  if (!raw) return [];
+  const C = S.modelClasses.length, res = [];
+  for (let v = 0; v < raw.length / C; v++) {
+    const sl = raw.subarray(v * C, (v + 1) * C);
+    const pr = softmax(sl, S.meta.temperature || 1, S.modelClasses.map(() => true)), by = {};
+    S.modelClasses.forEach((id, i) => { const c = id.split(".")[0]; by[c] = (by[c] || 0) + pr[i]; });
+    res.push(Object.entries(by).sort((a, b) => b[1] - a[1])[0][0]);
+  }
+  return res;
+}
+
+function rank(logits, crop, raw) {
   const T = S.meta.temperature || 1;
   const all = softmax(logits, T, S.modelClasses.map(() => true));
   const plantP = {};
@@ -168,7 +182,13 @@ function rank(logits, crop) {
   const p = softmax(logits, T, S.modelClasses.map((id) => id.startsWith(use + ".")));
   const top = [...p.keys()].sort((a, b) => p[b] - p[a]).slice(0, 3).map((i) => ({ id: S.modelClasses[i], p: p[i] }));
   const plant = crop ? { id: crop, p: plantP[crop] || 0, chosen: true } : plants[0];
-  const plantUnsure = !crop && plants[0].p < 0.6;
+  const views = viewCrops(raw);
+  const viewsDisagree = views.some((c) => c !== plants[0].id);
+  // weak overall response = the photo looks unlike anything in training (tuned on real field photos: on
+  // PlantDoc leaves this flags ~16% as "not sure"; a mango fruit, tree photos and screenshots are all flagged)
+  let maxL = -Infinity; for (const v of logits) if (v > maxL) maxL = v;
+  const weak = maxL < (S.meta.ood_logit || 6.3);
+  const plantUnsure = !crop && (plants[0].p < 0.7 || viewsDisagree || weak);
   return { top, plants, plant, plantUnsure, unsure: top[0].p < NOT_SURE || plantUnsure };
 }
 
@@ -180,9 +200,10 @@ async function diagnose(file) {
     const t0 = performance.now();
     const x = await toTensor(file);
     const out = await S.session.run({ [S.session.inputNames[0]]: x });
-    const logits = mergeViews(out[S.session.outputNames[0]].data, VIEWS);
+    const raw = out[S.session.outputNames[0]].data;
+    const logits = mergeViews(raw, VIEWS);
     const ms = performance.now() - t0;
-    S.last = { logits, ms, url: URL.createObjectURL(file), crop: $("#crop").value };
+    S.last = { logits, raw, ms, url: URL.createObjectURL(file), crop: $("#crop").value };
     renderResult(S.last);
   } catch (e) {
     console.error(e);
@@ -220,6 +241,18 @@ function advice(d) {
   return box;
 }
 
+// a list of every plant the AI knows, for when the right one is not among the top 3
+function allPlants(r, R) {
+  const sel = el("select", { class: "all-plants", "aria-label": t("change_plant") });
+  sel.append(el("option", { value: "", text: "＋ " + t("other_plant") }));
+  const known = new Set(S.modelClasses.map((id) => id.split(".")[0]));
+  S.kb.crops.filter((c) => known.has(c.id) && c.id !== "other")
+    .sort((a, b) => nm(a.name).localeCompare(nm(b.name)))
+    .forEach((c) => sel.append(el("option", { value: c.id, text: nm(c.name) })));
+  sel.onchange = () => { if (sel.value) { r.crop = sel.value; renderResult(r); window.scrollTo({ top: 0, behavior: "smooth" }); } };
+  return sel;
+}
+
 function plantBlock(r, R) {
   const box = el("div", { class: "plant" });
   const known = R.plants.filter((x) => x.id !== "other");
@@ -235,17 +268,17 @@ function plantBlock(r, R) {
     box.append(el("p", { class: "ask", text: t("is_it") }), chips(known.slice(0, 3)));
     return box;
   }
-  const how = R.plant.chosen ? t("you_chose") : `${Math.round(R.plant.p * 100)}% ${t("plant_sure")}`;
-  box.append(el("h2", { class: "plant-name" }, el("span", { text: nm(S.crops[R.plant.id]?.name) }), el("small", { text: how })));
-  if (R.plantUnsure || R.plant.chosen) {
-    box.append(el("p", { class: "ask", text: R.plant.chosen ? t("change_plant") : t("is_it") }),
-      chips(known.slice(0, 3).concat(R.plant.chosen && !known.slice(0, 3).some((x) => x.id === R.plant.id) ? [R.plant] : [])));
-  }
+  const how = R.plant.chosen ? t("you_chose") : R.plantUnsure ? t("plant_guess") : `${Math.round(R.plant.p * 100)}% ${t("plant_sure")}`;
+  box.append(el("h2", { class: "plant-name" }, el("span", { text: nm(S.crops[R.plant.id]?.name) + (R.plantUnsure ? "?" : "") }),
+    el("small", { text: how, class: R.plantUnsure ? "guess" : "" })));
+  box.append(el("p", { class: "ask", text: R.plantUnsure ? t("is_it") : t("change_plant") }),
+    chips(known.slice(0, 3).concat(R.plant.chosen && !known.slice(0, 3).some((x) => x.id === R.plant.id) ? [R.plant] : [])),
+    allPlants(r, R));
   return box;
 }
 
 function renderResult(r) {
-  const R = rank(r.logits, r.crop);
+  const R = rank(r.logits, r.crop, r.raw);
   $("#photo").src = r.url;
   $("#r-time").textContent = "";
   $("#r-plant").replaceChildren(plantBlock(r, R));
@@ -256,9 +289,10 @@ function renderResult(r) {
   $("#r-name").textContent = nm(d.name);
   $("#r-crop").textContent = d.type !== "healthy" ? t("type." + d.type) : "";
   const pct = Math.round(top.p * 100);
-  $("#r-bar").style.width = pct + "%";
+  // when even the plant is a guess, a disease percentage would look falsely precise: hide it
+  $("#r-bar").style.width = (R.plantUnsure ? Math.min(pct, 35) : pct) + "%";
   $("#r-bar").style.background = R.unsure ? "var(--gold)" : "var(--leaf)";
-  $("#r-conf").textContent = `${pct}% ${t("confidence")}` + (S.meta?.placeholder ? " — " + t("placeholder") : "");
+  $("#r-conf").textContent = (R.plantUnsure ? "" : `${pct}% ${t("confidence")}`) + (S.meta?.placeholder ? " — " + t("placeholder") : "");
   $("#r-time").textContent = r.ms ? t("done_in").replace("{s}", (r.ms / 1000).toLocaleString(S.lang, { maximumFractionDigits: 1 })) : "";
   $("#r-unsure").hidden = !R.unsure;
   $("#r-unsure").textContent = t("not_sure");
