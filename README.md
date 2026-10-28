@@ -20,18 +20,21 @@ app/           the phone app (static web app / PWA)
 tests/         label-mapping tests and a placeholder model for testing the app
 ```
 
-## Current model (v1, trained 26 Oct 2026 on Kaggle)
+## Current model (v2, trained 28 Oct 2026 on Kaggle)
 
-EfficientNet-B0 phone model distilled from a ConvNeXt-V2 teacher, 114,014 photos, 60 classes (20 crops + "unknown plant").
-Tested on 11,404 held-out photos it never saw:
+EfficientNet-B0 phone model distilled from a ConvNeXt-V2 teacher; 136,735 photos from 12 datasets;
+108 classes across 23 crops plus "unknown plant". Tested on 13,676 held-out photos it never saw:
 
-| | accuracy | top-3 |
+| | v1 (60 classes) | **v2 (108 classes)** |
 |---|---|---|
-| all test photos | 93.4% | 98.7% |
-| real field photos | 87.9% | 97.5% |
-| plant (crop) identified correctly | 96.8% | |
+| all test photos | 93.4% | **93.9%** |
+| real field photos | 87.9% | **90.3%** |
+| top-3 contains the right answer | 98.7% | **98.6%** |
+| plant (crop) identified correctly | 96.8% | **97.5%** |
 
-Weakest: cassava diseases among each other, banana black sigatoka, wheat and rice (few photos). Full reports: `docs/model_v1/`.
+Strong: mango, sorghum, groundnut, maize, strawberry, raspberry, citrus, grape (97–100%).
+Weakest: diseases with under 20 test photos (blueberry rust, soybean brown spot, apple mosaic), cassava diseases among
+each other (84%), banana and wheat. Full reports: `docs/model_v2/` (v1: `docs/model_v1/`).
 
 ## 1. Train the model
 
