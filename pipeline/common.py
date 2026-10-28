@@ -72,7 +72,7 @@ CROP_WORDS = {
     "banana": ["banana"], "mango": ["mango"], "citrus": ["citrus", "orange", "lemon"],
     "apple": ["apple"], "grape": ["grape"], "peach": ["peach"], "cherry": ["cherry"],
     "strawberry": ["strawberry"], "blueberry": ["blueberry"], "raspberry": ["raspberry"],
-    "coffee": ["coffee"],
+    "coffee": ["coffee"], "guava": ["guava"], "papaya": ["papaya", "pawpaw"],
 }
 
 

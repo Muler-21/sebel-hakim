@@ -64,8 +64,15 @@ def extract_all(folder: Path):
                 elif name.endswith((".tar", ".tar.gz", ".tgz")):
                     with tarfile.open(a) as t:
                         t.extractall(a.parent / a.name.split(".tar")[0], filter="data")
-                elif name.endswith(".7z"):
-                    subprocess.run(["7z", "x", "-y", f"-o{a.parent / a.stem}", str(a)], check=True)
+                elif name.endswith((".7z", ".rar")):
+                    dest = a.parent / a.stem
+                    dest.mkdir(exist_ok=True)
+                    for cmd in (["7z", "x", "-y", f"-o{dest}", str(a)], ["unrar", "x", "-o+", str(a), str(dest) + "/"],
+                                ["bsdtar", "-xf", str(a), "-C", str(dest)]):
+                        if shutil.which(cmd[0]) and subprocess.run(cmd, capture_output=True).returncode == 0:
+                            break
+                    else:
+                        raise RuntimeError("no working 7z / unrar / bsdtar for this archive")
                 else:
                     continue
                 a.unlink()
@@ -95,6 +102,20 @@ def get_zenodo(d, out: Path):
 
 
 def get_mendeley(d, out: Path):
+    """Try the listed version first, then other versions (datasets get new versions over time)."""
+    errors = []
+    for v in [d.get("version", 1)] + [x for x in (5, 4, 3, 2, 1) if x != d.get("version", 1)]:
+        try:
+            return _get_mendeley({**d, "version": v}, out)
+        except Exception as e:
+            errors.append(f"v{v}: {str(e)[:150]}")
+            for f in out.iterdir():
+                if f.is_file():
+                    f.unlink()
+    raise RuntimeError(" || ".join(errors)[:600])
+
+
+def _get_mendeley(d, out: Path):
     """Mendeley Data has changed its public endpoints over time, so try several in turn."""
     ver, ref = d.get("version", 1), d["ref"]
     errors = []
@@ -236,7 +257,10 @@ def main():
                 extract_all(out)
             n = sum(1 for p in walk_files(out) if p.suffix.lower() in IMG_EXT or p.suffix == ".parquet")
             if n == 0:
-                raise RuntimeError("downloaded, but no image files were found inside")
+                from collections import Counter
+                kinds = Counter((p.suffix.lower() or "(none)") for p in walk_files(out))
+                raise RuntimeError("downloaded, but no image files were found inside; file types: " +
+                                   (", ".join(f"{k} ×{v}" for k, v in kinds.most_common(8)) or "none"))
             (out / ".done").write_text("ok\n")
             report.append((d["id"], "ok", f"{n:,} files"))
         except Exception as e:

@@ -235,7 +235,7 @@ diseases:
   severity: high
   name: {en: Citrus canker}
   scientific: Xanthomonas citri subsp. citri
-  synonyms: [canker, citrus canker]
+  synonyms: [canker, citrus canker, cancker, citrus cancker]
   symptoms:
     - Raised, corky brown spots with a yellow halo on leaves, twigs and fruit
   spread: Wind-driven rain, leaf miners, contaminated tools.

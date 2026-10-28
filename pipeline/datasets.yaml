@@ -312,6 +312,7 @@ datasets:
     licence: CC BY 4.0 (check)
     commercial: true
     label: folder
+    map: {"LEAF SPOT (EARLY AND LATE)": ""}   # early and late leaf spot mixed in one folder: cannot be split
 
   - id: sorghum_disease
     name: Sorghum Disease Image Dataset
@@ -323,3 +324,107 @@ datasets:
     licence: CC BY 4.0 (check)
     commercial: true
     label: folder
+
+  # ---------------------- data round 3 (Oct 2026): fruits ----------------------
+  # `exclude`: skip images whose path contains any of these words (case-insensitive). Used to drop the
+  # augmented copies some datasets ship: flipped/rotated copies of the same photo would land in both
+  # train and test and make the scores look better than they are.
+  # `label_join`: class = all folder names joined ("Mango/Healthy Fruit" → "Mango Healthy Fruit"),
+  # for multi-crop datasets whose class folders do not repeat the crop name.
+  - id: mango_dhds
+    name: "MangoDHDS: diseased and healthy mango fruits"
+    host: mendeley
+    ref: b4nrw5hyyc
+    version: 1
+    crop: mango
+    images: 1500
+    field: mixed
+    region: India
+    licence: CC BY 4.0
+    commercial: true
+    label: folder
+
+  - id: mango_amrapali
+    name: Amrapali mango fruit diseases
+    host: mendeley
+    ref: ypttkp5fb5
+    version: 1
+    crop: mango
+    images: 3500
+    field: field
+    region: India
+    licence: CC BY 4.0 (check)
+    commercial: true
+    label: folder
+    exclude: [augment]
+
+  - id: mango_leaf_field
+    name: Mango leaf dataset (natural conditions)
+    host: mendeley
+    ref: fn8dgf4hb5
+    version: 1
+    crop: mango
+    images: 1319
+    field: field
+    region: Bangladesh
+    licence: CC BY 4.0
+    commercial: true
+    label: folder
+    exclude: [augment]
+    map: {"Die Black": mango.die_back}
+
+  - id: abcgmp
+    name: ABCGMP fruit and leaf diseases (apple, banana, citrus, guava, mango, papaya)
+    host: mendeley
+    ref: fhbvmpcyy2
+    version: 3
+    field: field
+    region: India (Rajasthan, Jammu)
+    licence: CC BY 4.0
+    commercial: true
+    label: folder
+    label_join: true
+    exclude: [augment, disease fruit, disease_fruit, diseased fruit]   # "disease fruit" does not say which disease
+
+  - id: guava_fruit_leaf
+    name: Guava fruits and leaves disease dataset
+    host: mendeley
+    ref: fspx44mwfp
+    version: 1
+    crop: guava
+    images: 3432
+    field: mixed
+    region: Bangladesh
+    licence: CC BY 4.0
+    commercial: true
+    label: folder
+    exclude: [augment]
+    map: {"Dot": ""}        # unclear cause, not used
+
+  - id: guava_fruit_bd
+    name: Guava fruit disease dataset (orchards)
+    host: mendeley
+    ref: bkdkc4n835
+    version: 1
+    crop: guava
+    images: 473
+    field: field
+    region: Bangladesh
+    licence: CC BY 4.0
+    commercial: true
+    label: folder
+    train_only: true        # ships only augmented copies: train on them, never test on them
+
+  - id: papaya_leaf
+    name: Papaya leaf disease image dataset
+    host: mendeley
+    ref: 3kwgxg4stb
+    version: 1
+    crop: papaya
+    images: 3626
+    field: field
+    region: Bangladesh
+    licence: CC BY 4.0
+    commercial: true
+    label: folder
+    exclude: [augment]

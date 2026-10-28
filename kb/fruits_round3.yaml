@@ -1,0 +1,372 @@
+diseases:
+# Added Oct 2026 (data round 3): mango fruit diseases, guava and papaya, sorghum smuts and grain mould,
+# groundnut Alternaria. Classes are diseases, not plant parts: fruit and leaf photos of the same disease
+# share one class (e.g. mango anthracnose on leaves and on fruits).
+# ============================== MANGO (fruit) ==============================
+- id: mango.stem_end_rot
+  crop: mango
+  type: fungal
+  severity: medium
+  name: {en: Stem-end rot}
+  scientific: Lasiodiplodia theobromae (also Neofusicoccum and Phomopsis species)
+  synonyms: [stem end rot, stem-end rot, stem and rot, mango stem end rot, diplodia stem end rot]
+  symptoms:
+    - Dark brown to black rot starting at the stalk end of ripening fruit and spreading quickly over the fruit
+    - Flesh under the rot is soft and watery; dead twigs (dieback) are often present on the same tree
+  spread: Lives in dead twigs and bark; infects the stalk before harvest and develops while fruit ripens, worse in warm, humid storage and when fruit is wounded.
+  cultural:
+    - Prune out dead twigs and branches and remove them from the orchard
+    - Harvest with 5–10 cm of stalk left on, handle gently and do not drop fruit on the soil
+    - Hot-water treatment after harvest (about 52–55 °C for 5 minutes), then cool, dry storage
+    - Sell or eat ripe fruit quickly; separate rotting fruit
+  biological:
+    - Bacillus or Trichoderma-based products before harvest give partial protection
+  chemical:
+    - Copper sprays during fruit development; post-harvest fungicide dips only where registered for mango
+  prevention: Orchard hygiene (dead wood out), careful harvest and hot-water treatment.
+  notes: Often confused with anthracnose; stem-end rot starts at the stalk, anthracnose as scattered black spots.
+
+- id: mango.scab
+  crop: mango
+  type: fungal
+  severity: low
+  name: {en: Mango scab}
+  scientific: Elsinoë mangiferae
+  synonyms: [scab, mango scab]
+  symptoms:
+    - Small grey-brown spots on young fruit that become raised, corky, cracked scabs
+    - Small dark spots on young leaves, which may become distorted
+  spread: Rain splash in wet weather during flowering and early fruit growth.
+  cultural:
+    - Prune for open canopy and good airflow; remove fallen infected leaves and fruit
+  biological:
+    - None reliable
+  chemical:
+    - Copper sprays from flowering until fruit are about half grown (same programme as for anthracnose)
+  prevention: Open canopy and protection of young fruit in wet seasons.
+
+# ============================== GUAVA ==============================
+- id: guava.healthy
+  crop: guava
+  type: healthy
+  severity: low
+  name: {en: Healthy guava}
+  synonyms: [healthy, healthy fruit, healthy fruits, healthy leaf, healthy leaves, guava healthy, fresh]
+
+- id: guava.anthracnose
+  crop: guava
+  type: fungal
+  severity: medium
+  name: {en: Guava anthracnose}
+  scientific: Colletotrichum gloeosporioides (C. psidii)
+  synonyms: [anthracnose, guava anthracnose]
+  symptoms:
+    - Sunken, dark brown to black spots on fruit that join up; pink-orange spore masses in wet weather
+    - Brown spots on leaves; dieback of young shoots
+  spread: Rain splash from infected twigs, leaves and mummified fruit; warm, wet weather.
+  cultural:
+    - Remove and destroy infected and mummified fruit and dead twigs
+    - Prune for airflow; harvest before full ripeness; avoid wounding fruit
+  biological:
+    - Bacillus or Trichoderma-based products
+  chemical:
+    - Copper oxychloride or mancozeb sprays at flowering and fruit set in wet seasons
+  prevention: Orchard hygiene and pruning.
+
+- id: guava.fruit_fly
+  crop: guava
+  type: pest
+  severity: high
+  name: {en: Fruit fly damage}
+  scientific: Bactrocera dorsalis (oriental fruit fly) and other Bactrocera / Ceratitis species
+  synonyms: [fruit fly, fruit flies, fruitfly, guava fruit fly]
+  symptoms:
+    - Small puncture marks on the skin, soft brown rotting patches around them
+    - White maggots inside the fruit; fruit drops early
+  spread: Adult flies lay eggs in ripening fruit; maggots pupate in the soil under the tree. Also attacks mango, citrus and many other fruits.
+  cultural:
+    - Collect all fallen and infested fruit every few days and bury it deep (over 50 cm) or seal it in plastic bags in the sun
+    - Bag fruits on the tree; harvest at mature-green stage
+    - Work together with neighbours: area-wide control works much better than one farm alone
+  biological:
+    - Male-lure traps with methyl eugenol; protein bait sprays with spinosad (spot-sprayed, not covering the tree)
+    - Weaver ants and parasitic wasps (Fopius arisanus) where available
+  chemical:
+    - Bait sprays (protein bait plus an insecticide registered for fruit flies), applied as spots on foliage
+  prevention: Orchard sanitation and traps from before fruit ripen.
+  notes: Bactrocera dorsalis is one of the most damaging fruit pests in Africa; it may be a quarantine pest for export.
+
+- id: guava.styler_end_rot
+  crop: guava
+  type: fungal
+  severity: medium
+  name: {en: Styler-end rot}
+  scientific: Phomopsis psidii (and Pestalotiopsis species)
+  synonyms: [styler end rot, stylar end rot, styler-end rot, style end rot]
+  symptoms:
+    - Brown to black rot starting at the flower (calyx) end of the fruit, opposite the stalk, spreading over the fruit
+  spread: Spores from infected twigs and fruit; humid weather and wounds.
+  cultural:
+    - Remove infected fruit and dead twigs; avoid wounding fruit; good airflow
+  biological:
+    - Bacillus or Trichoderma-based products
+  chemical:
+    - Copper oxychloride or mancozeb sprays during fruit development in wet seasons
+  prevention: Orchard hygiene.
+
+- id: guava.scab
+  crop: guava
+  type: fungal
+  severity: medium
+  name: {en: Guava scab and canker}
+  scientific: Pestalotiopsis psidii
+  synonyms: [scab, canker, guava scab, guava canker, fruit canker]
+  symptoms:
+    - Small brown, raised, corky or cracked spots on green fruit (scab)
+    - Brown, sunken, cracked lesions on leaves and fruit (canker)
+  spread: Rain splash; wounds; warm, humid weather.
+  cultural:
+    - Remove infected fruit and leaves; prune for airflow; avoid wounding
+  biological:
+    - None reliable
+  chemical:
+    - Copper oxychloride sprays from fruit set in wet seasons
+  prevention: Sanitation and protection of young fruit.
+
+- id: guava.red_rust
+  crop: guava
+  type: algal
+  severity: low
+  name: {en: Red rust (algal leaf spot)}
+  scientific: Cephaleuros virescens
+  synonyms: [rust, red rust, algal leaf spot, algal spot, guava rust]
+  symptoms:
+    - Round, rust-red, velvety spots on leaves (and sometimes fruit and twigs)
+  spread: An alga spread by rain splash; worse in humid, shaded, poorly fed trees.
+  cultural:
+    - Prune for light and airflow; remove heavily affected leaves; balanced fertiliser
+  biological:
+    - None needed in most cases
+  chemical:
+    - Copper oxychloride sprays if severe
+  prevention: Open canopy and good tree nutrition.
+
+# ============================== PAPAYA ==============================
+- id: papaya.healthy
+  crop: papaya
+  type: healthy
+  severity: low
+  name: {en: Healthy papaya}
+  synonyms: [healthy, healthy fruit, healthy leaf, healthy papaya, papaya healthy]
+
+- id: papaya.anthracnose
+  crop: papaya
+  type: fungal
+  severity: medium
+  name: {en: Papaya anthracnose}
+  scientific: Colletotrichum gloeosporioides
+  synonyms: [anthracnose, papaya anthracnose]
+  symptoms:
+    - Round, sunken, water-soaked spots on ripening fruit that turn brown with pink-orange spores
+    - Small brown spots on leaves and leaf stalks
+  spread: Rain splash from infected leaves and fruit; warm, wet weather; shows mainly as fruit ripen.
+  cultural:
+    - Remove old leaves and infected fruit; harvest at colour break; handle fruit gently
+    - Hot-water treatment after harvest (about 48 °C for 20 minutes)
+  biological:
+    - Bacillus-based products
+  chemical:
+    - Copper or mancozeb sprays at regular intervals in wet seasons
+  prevention: Field hygiene and careful harvest.
+
+- id: papaya.bacterial_spot
+  crop: papaya
+  type: bacterial
+  severity: medium
+  name: {en: Bacterial leaf spot}
+  scientific: Bacteria (often Xanthomonas or Pseudomonas species)
+  synonyms: [bacterial spot, bacterial leaf spot, papaya bacterial spot]
+  symptoms:
+    - Small, angular, water-soaked spots on leaves that turn brown, often with a yellow halo
+  spread: Rain splash, wind-driven rain and tools; warm, wet weather.
+  cultural:
+    - Remove infected leaves; avoid overhead irrigation; do not work among wet plants
+  biological:
+    - Bacillus-based products
+  chemical:
+    - Copper sprays in wet weather
+  prevention: Clean seedlings and field hygiene.
+
+- id: papaya.leaf_curl
+  crop: papaya
+  type: viral
+  severity: high
+  name: {en: Papaya leaf curl}
+  scientific: Papaya leaf curl virus (begomovirus), spread by whitefly
+  synonyms: [curl, leaf curl, leaf curl virus, papaya leaf curl, leaf_curl_virus]
+  symptoms:
+    - Leaves curl downwards and inwards, become thick, leathery and crinkled; veins thicken
+    - Plants are stunted and produce few, small fruits
+  spread: Whiteflies (Bemisia tabaci) carry the virus from infected papaya, tomato, tobacco and weeds.
+  cultural:
+    - Remove and destroy infected plants early; control weeds; raise seedlings under insect netting
+    - Do not plant papaya next to tomato, tobacco or chilli fields with whitefly problems
+  biological:
+    - Yellow sticky traps; neem-based sprays against whitefly
+  chemical:
+    - No cure for the virus; insecticides registered against whitefly reduce spread
+  prevention: Clean seedlings and whitefly management.
+
+- id: papaya.mealybug
+  crop: papaya
+  type: pest
+  severity: high
+  name: {en: Papaya mealybug}
+  scientific: Paracoccus marginatus
+  synonyms: [mealybug, mealybugs, papaya mealybug, mealy bug]
+  symptoms:
+    - White, cottony insects on leaf undersides, stems and fruit; yellowing, curling and leaf drop
+    - Sticky honeydew and black sooty mould
+  spread: Crawlers move by wind, people, tools and infested planting material and fruit.
+  cultural:
+    - Remove and destroy heavily infested leaves and fruit; do not move infested plants
+  biological:
+    - The parasitic wasp Acerophagus papayae (released with success in several African countries); ladybird beetles
+    - Soap or neem oil sprays on small infestations
+  chemical:
+    - Systemic insecticides registered for mealybugs, only if biological control is not available
+  prevention: Inspect new plants; protect natural enemies.
+  notes: An invasive pest in East and West Africa; report new outbreaks to the extension service.
+
+- id: papaya.mites
+  crop: papaya
+  type: pest
+  severity: medium
+  name: {en: Spider mites}
+  scientific: Tetranychus species
+  synonyms: [mite, mites, mite disease, spider mite, red spider mite]
+  symptoms:
+    - Fine yellow speckles on leaves, which turn bronze or yellow and dry; fine webbing under leaves
+  spread: Hot, dry, dusty weather; wind.
+  cultural:
+    - Irrigate well and reduce dust; remove badly affected leaves
+  biological:
+    - Predatory mites; neem oil or soap sprays under the leaves
+  chemical:
+    - Acaricides registered for papaya, only if severe; rotate products to avoid resistance
+  prevention: Avoid water stress; protect natural enemies.
+
+- id: papaya.ringspot_virus
+  crop: papaya
+  type: viral
+  severity: high
+  name: {en: Papaya ringspot virus (mosaic)}
+  scientific: Papaya ringspot virus (PRSV-P), spread by aphids
+  synonyms: [ringspot, ring spot, mosaic, papaya ringspot, papaya mosaic, prsv, papaya ring spot]
+  symptoms:
+    - Yellow mosaic and mottling on young leaves, leaves narrow and distorted (shoe-string)
+    - Dark green rings on fruit and oily streaks on stems; poor fruit set
+  spread: Aphids carry the virus from infected papaya and cucurbits in seconds while probing.
+  cultural:
+    - Remove and destroy infected plants immediately; plant clean seedlings away from old papaya fields
+    - Border crops (e.g. maize) as aphid barriers; do not plant cucurbits next to papaya
+  biological:
+    - Mild-strain cross protection and tolerant varieties where available
+  chemical:
+    - No cure; insecticides do not stop spread by aphids
+  prevention: Clean seedlings, isolation and quick removal of infected plants.
+
+# ============================== SORGHUM ==============================
+- id: sorghum.loose_smut
+  crop: sorghum
+  type: fungal
+  severity: medium
+  name: {en: Loose kernel smut}
+  scientific: Sporisorium cruentum
+  synonyms: [loose smut, loose kernel smut, sorghum loose smut]
+  symptoms:
+    - Grains replaced by pointed smut sacs whose thin membrane breaks early, releasing dark spores
+    - Infected plants may be shorter, with thin stalks and early heading
+  spread: Seed-borne spores; infection when seed germinates.
+  cultural:
+    - Use clean seed from healthy fields; remove and burn smutted heads before spores are released
+  biological:
+    - None reliable
+  chemical:
+    - Seed treatment with a registered fungicide (e.g. thiram, carboxin or a triazole)
+  prevention: Clean, treated seed.
+
+- id: sorghum.covered_smut
+  crop: sorghum
+  type: fungal
+  severity: medium
+  name: {en: Covered kernel smut}
+  scientific: Sporisorium sorghi
+  synonyms: [covered smut, covered kernel smut, kernel smut, grain smut]
+  symptoms:
+    - Grains replaced by oval grey-white smut sacs that stay closed until threshing
+  spread: Spores stick to seed at threshing and infect the next crop when it germinates.
+  cultural:
+    - Use clean seed; remove smutted heads; do not keep seed from infected fields
+  biological:
+    - None reliable
+  chemical:
+    - Seed treatment with a registered fungicide (very effective)
+  prevention: Seed treatment every season.
+
+- id: sorghum.head_smut
+  crop: sorghum
+  type: fungal
+  severity: high
+  name: {en: Head smut}
+  scientific: Sporisorium reilianum
+  synonyms: [head smut, sorghum head smut]
+  symptoms:
+    - The whole head is replaced by a large smut gall covered by a white membrane that breaks to release black spores and thread-like strands
+  spread: Spores survive in soil for years and infect seedlings.
+  cultural:
+    - Remove and burn smutted heads before the gall opens; crop rotation; resistant varieties
+  biological:
+    - None reliable
+  chemical:
+    - Systemic seed treatment gives partial control
+  prevention: Rotation, resistant varieties and removing galls.
+
+- id: sorghum.grain_mold
+  crop: sorghum
+  type: fungal
+  severity: high
+  name: {en: Grain mould}
+  scientific: Complex of Fusarium, Curvularia, Alternaria and other fungi
+  synonyms: [grain mold, grain mould, grain molds, cereal grain molds, cereal grain mold, mold, mould]
+  symptoms:
+    - Grains discoloured pink, black, grey or white, soft and light; mould growth on the head
+  spread: Rain and high humidity when grains are filling and maturing; late harvest.
+  cultural:
+    - Choose varieties that mature after the rains end; harvest promptly and dry grain quickly
+    - Tan-plant and coloured-grain varieties with hard grain are more tolerant
+  biological:
+    - None reliable
+  chemical:
+    - Not economic in most cases
+  prevention: Matching sowing date and variety to the rains; quick drying.
+  notes: Mouldy grain can contain mycotoxins; do not eat or feed badly mouldy grain.
+
+# ============================== GROUNDNUT ==============================
+- id: groundnut.alternaria_leaf_spot
+  crop: groundnut
+  type: fungal
+  severity: low
+  name: {en: Alternaria leaf spot}
+  scientific: Alternaria arachidis and A. tenuissima
+  synonyms: [alternaria leaf spot, alternaria, groundnut alternaria leaf spot, alternaria leaf blight]
+  symptoms:
+    - Small brown spots with yellow margins, often at leaf tips and edges; leaf tips dry (veinal necrosis)
+  spread: Spores in crop residue; warm, humid weather late in the season.
+  cultural:
+    - Rotation; bury or remove residue; balanced fertiliser
+  biological:
+    - Trichoderma-based products
+  chemical:
+    - Mancozeb or chlorothalonil sprays if severe (same as for leaf spots)
+  prevention: Rotation and residue management.

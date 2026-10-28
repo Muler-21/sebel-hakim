@@ -28,6 +28,8 @@ crops:
   - {id: strawberry, group: fruit,     name: {en: Strawberry, am: እንጆሪ, fr: Fraise, sw: Stroberi, it: Fragola}}
   - {id: blueberry,  group: fruit,     name: {en: Blueberry, fr: Myrtille, it: Mirtillo}}
   - {id: raspberry,  group: fruit,     name: {en: Raspberry, fr: Framboise, it: Lampone}}
+  - {id: guava,      group: fruit,     name: {en: Guava, am: ዘይቱን, fr: Goyave, sw: Pera, it: Guava}}
+  - {id: papaya,     group: fruit,     name: {en: Papaya, am: ፓፓያ, fr: Papaye, sw: Papai, it: Papaya}}
   # ---- cash / beverage ----
   - {id: coffee,     group: cash,      name: {en: Coffee, am: ቡና, fr: Café, sw: Kahawa, it: Caffè}}
   # ---- anything else ----

@@ -91,8 +91,17 @@ def collect(d: dict) -> list[tuple[Path, str]]:
     if d.get("label_dir"):
         scan = next((p.parent.parent for p in walk_files(base)
                      if p.parent.parent.name == d["label_dir"] and p.suffix.lower() in IMG_EXT), base)
+    excl = [norm(x) for x in d.get("exclude", []) or []]
     for p in walk_files(scan):
-        if p.suffix.lower() in IMG_EXT:
+        if p.suffix.lower() not in IMG_EXT:
+            continue
+        rel = p.relative_to(scan)
+        if excl and any(x in norm(" ".join(rel.parts[:-1])) for x in excl):
+            continue                            # e.g. augmented copies, unlabelled "disease fruit"
+        if d.get("label_join"):                 # "Mango/Healthy Fruit" → "Mango Healthy Fruit"
+            parts = [x for x in rel.parts[:-1] if norm(x) not in {norm(g) for g in GENERIC_DIRS}]
+            items.append((p, " ".join(parts)))
+        else:
             items.append((p, folder_label(p, scan, d.get("label_depth"))))
     return items
 
@@ -245,8 +254,13 @@ def main():
     groups = defaultdict(list)
     for r in rows:
         groups[(r["dataset"], r["label"])].append(r)
-    for g in groups.values():
+    train_only = {d["id"] for d in load_datasets() if d.get("train_only")}
+    for (ds_id, _), g in groups.items():
         rng.shuffle(g)
+        if ds_id in train_only:                 # augmented-only datasets: never in val/test
+            for r in g:
+                r["split"] = "train"
+            continue
         n = len(g)
         n_test = max(1, round(n * a.test)) if n >= 10 else 0
         n_val = max(1, round(n * a.val)) if n >= 10 else 0
@@ -286,7 +300,11 @@ def main():
         "Add a synonym in kb/*.yaml, or a `map: {\"raw label\": crop.condition}` entry for the dataset in "
         "pipeline/datasets.yaml (map to an empty string to skip on purpose).", "",
         "| dataset | raw label | images |", "|---|---|---|",
-        *[f"| {ds} | {lab} | {n:,} |" for ds, c in unmapped.items() for lab, n in c.most_common()],
+        *[f"| {ds} | {lab} | {n:,} |" for ds, c in unmapped.items() for lab, n in c.most_common()], "",
+        "## How raw labels were mapped (check these when adding a dataset)", "",
+        "| dataset | raw label | → class | images |", "|---|---|---|---|",
+        *[f"| {ds} | {raw} | {lab} | {n:,} |" for (ds, raw, lab), n in
+          sorted(Counter((r["dataset"], r["raw"], r["label"]) for r in rows).items())][:1500],
     ]
     (REPORTS / "prepare_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"[done] {len(rows):,} images, {len(classes)} classes → {DATA / 'manifest.csv'}; see reports/prepare_report.md")

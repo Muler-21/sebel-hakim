@@ -14,7 +14,7 @@ One YAML file per crop group. Every entry is both:
 | `crop` | crop id (see `crops.yaml`) |
 | `name` | common name, per language (`en`, `am`, …) |
 | `scientific` | pathogen / pest scientific name |
-| `type` | fungal · bacterial · viral · oomycete · pest · nematode · abiotic · healthy |
+| `type` | fungal · bacterial · viral · oomycete · pest · nematode · algal · abiotic · healthy |
 | `severity` | low · medium · high · critical |
 | `synonyms` | folder/label spellings seen in datasets (matched case- and punctuation-insensitively) |
 | `symptoms` | what to look for |

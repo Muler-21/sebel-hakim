@@ -36,6 +36,17 @@ CASES = [
  # numbered folders (split archives)
  ("mln4", "maize", "maize.lethal_necrosis"), ("msv2", "maize", "maize.streak_virus"), ("healthy10", "maize", "maize.healthy"),
  ("als_2", "bean", "bean.angular_leaf_spot"), ("rust_level_3", "coffee", "coffee.leaf_rust"),
+ # round 3: mango fruit, guava, papaya, sorghum, groundnut, multi-crop ABCGMP (label_join)
+ ("Stem End Rot", "mango", "mango.stem_end_rot"), ("Scab", "mango", "mango.scab"), ("Anthracnose", "mango", "mango.anthracnose"),
+ ("Mango Healthy Fruit", None, "mango.healthy"), ("Mango Bacterial Canker", None, "mango.bacterial_canker"),
+ ("Banana Cordana", None, "banana.cordana_leaf_spot"), ("Citrus Cancker Leaf", None, "citrus.canker"),
+ ("Guava Red Rust", None, "guava.red_rust"), ("Papaya Ring Spot", None, "papaya.ringspot_virus"),
+ ("Fruit Flies", "guava", "guava.fruit_fly"), ("Styler End Rot", "guava", "guava.styler_end_rot"), ("Canker", "guava", "guava.scab"),
+ ("Rust", "guava", "guava.red_rust"), ("Healthy fruits", "guava", "guava.healthy"),
+ ("Curl", "papaya", "papaya.leaf_curl"), ("Mite Disease", "papaya", "papaya.mites"), ("Mosaic", "papaya", "papaya.ringspot_virus"),
+ ("Cereal Grain molds", "sorghum", "sorghum.grain_mold"), ("Covered Kernel smut", "sorghum", "sorghum.covered_smut"),
+ ("loose smut", "sorghum", "sorghum.loose_smut"), ("Head Smut", "sorghum", "sorghum.head_smut"),
+ ("ALTERNARIA LEAF SPOT", "groundnut", "groundnut.alternaria_leaf_spot"),
  # must NOT map without a crop
  ("healthy", None, None), ("rust", None, None), ("3", None, None),
 ]
