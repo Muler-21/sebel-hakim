@@ -161,3 +161,8 @@ details.more ul, details.more p { margin-top: 8px; }
 .all-plants { margin-top: 10px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line, #d6ddd6); border-radius: 999px;
   background: transparent; color: inherit; font: inherit; max-width: 100%; }
 .plant-name small.guess { color: #9a6b00; font-weight: 600; }
+.cite { margin: 6px 0 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; }
+.cite h2 { font-size: 1.05rem; margin: 0 0 6px; }
+.cite p { margin: 6px 0; }
+.cite-text { font-size: 0.9rem; line-height: 1.45; overflow-wrap: anywhere; }
+.cite .fine { margin-top: 8px; }

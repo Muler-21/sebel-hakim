@@ -1,0 +1,276 @@
+cff-version: 1.2.0
+message: >-
+  If you use Sebel Hakim, its trained model or its disease knowledge base, please cite it as below.
+  Please also cite the datasets listed under "references": the model was trained on their images.
+type: software
+title: "Sebel Hakim: free, offline AI diagnosis of crop diseases for African farmers"
+abstract: >-
+  Sebel Hakim (Amharic: "crop doctor") is a free progressive web app that identifies the plant and the most likely
+  disease or pest from a photo of a leaf and gives management advice in integrated-pest-management order (farm
+  practices, then biological options, then chemicals as a last resort). The AI model (EfficientNet-B0 distilled from
+  a ConvNeXt-V2 teacher, 108 classes across 23 crops) runs on the phone with ONNX Runtime Web, so the app works
+  offline and photos never leave the device. Model v2 was trained on 136,735 images from 12 public datasets and
+  reaches 93.9% top-1 accuracy on 13,676 held-out test images (90.3% on field photos). The interface is available
+  in English, Amharic, French, Swahili and Italian.
+authors:
+  - family-names: Bitew
+    given-names: Mulusew Kassa
+    alias: Muler
+    orcid: "https://orcid.org/0000-0001-6223-0037"
+version: 2.1.0
+date-released: "2026-11-06"
+url: "https://muler-21.github.io/sebel-hakim/"
+repository-code: "https://github.com/Muler-21/sebel-hakim"
+license:
+  - PolyForm-Noncommercial-1.0.0
+  - CC-BY-NC-4.0
+keywords:
+  - plant disease
+  - crop disease detection
+  - plant pathology
+  - deep learning
+  - computer vision
+  - knowledge distillation
+  - integrated pest management
+  - digital agriculture
+  - offline
+  - progressive web app
+  - Africa
+  - Ethiopia
+  - Amharic
+references:
+  - type: article
+    title: Using deep learning for image-based plant disease detection
+    authors:
+      - family-names: Mohanty
+        given-names: Sharada P.
+      - family-names: Hughes
+        given-names: David P.
+      - family-names: Salathé
+        given-names: Marcel
+    journal: Frontiers in Plant Science
+    volume: 7
+    year: 2016
+    doi: 10.3389/fpls.2016.01419
+    notes: "PlantVillage images (github.com/spMohanty/PlantVillage-Dataset). Licence: CC BY-SA 3.0."
+  - type: article
+    title: >-
+      An open access repository of images on plant health to enable the development of mobile disease diagnostics
+    authors:
+      - family-names: Hughes
+        given-names: David P.
+      - family-names: Salathé
+        given-names: Marcel
+    journal: arXiv
+    year: 2015
+    doi: 10.48550/arXiv.1511.08060
+  - type: conference-paper
+    title: "PlantDoc: A dataset for visual plant disease detection"
+    authors:
+      - family-names: Singh
+        given-names: Davinder
+      - family-names: Jain
+        given-names: Naman
+      - family-names: Jain
+        given-names: Pranjali
+      - family-names: Kayal
+        given-names: Pratik
+      - family-names: Kumawat
+        given-names: Sudhakar
+      - family-names: Batra
+        given-names: Nipun
+    collection-title: Proceedings of the 7th ACM IKDD CoDS and 25th COMAD
+    publisher:
+      name: Association for Computing Machinery
+    start: 249
+    end: 253
+    year: 2020
+    doi: 10.1145/3371158.3371196
+    license: CC-BY-4.0
+  - type: conference-paper
+    title: Benchmarking in-the-wild multimodal plant disease recognition and a versatile baseline
+    authors:
+      - family-names: Wei
+        given-names: Tianqi
+      - family-names: Chen
+        given-names: Zhi
+      - family-names: Huang
+        given-names: Zi
+      - family-names: Yu
+        given-names: Xin
+    collection-title: Proceedings of the 32nd ACM International Conference on Multimedia (MM '24)
+    year: 2024
+    doi: 10.48550/arXiv.2408.03120
+    url: "https://tqwei05.github.io/PlantWild"
+    license: CC-BY-NC-ND-4.0
+    notes: PlantWild dataset.
+  - type: data
+    title: A large-scale in-the-wild dataset for plant disease segmentation (PlantSeg)
+    authors:
+      - family-names: Wei
+        given-names: Tianqi
+      - family-names: Chen
+        given-names: Zhi
+      - family-names: Yu
+        given-names: Xin
+      - family-names: Chapman
+        given-names: Scott
+      - family-names: Melloy
+        given-names: Paul
+      - family-names: Huang
+        given-names: Zi
+    publisher:
+      name: Zenodo
+    version: v7
+    year: 2025
+    doi: 10.5281/zenodo.17719108
+    license: CC-BY-NC-4.0
+    notes: "Paper: arXiv:2409.04038."
+  - type: data
+    title: A labeled dataset of healthy and diseased maize from Tanzania
+    authors:
+      - family-names: Mduma
+        given-names: Neema
+      - family-names: Laizer
+        given-names: Hudson
+      - family-names: Kiriba
+        given-names: Deodatus
+    publisher:
+      name: Zenodo
+    version: v1
+    year: 2025
+    doi: 10.5281/zenodo.15685236
+    license: CC-BY-4.0
+  - type: data
+    title: Makerere University beans image dataset
+    authors:
+      - family-names: Mugalu
+        given-names: Ben-Wycliff
+      - family-names: Nakatumba-Nabende
+        given-names: Joyce
+      - family-names: Katumba
+        given-names: Andrew
+      - family-names: Babirye
+        given-names: Claire
+      - family-names: Tusubira
+        given-names: Francis-Jeremy
+      - family-names: Mutebi
+        given-names: Chodrine
+      - family-names: Nsumba
+        given-names: Solomon
+      - family-names: Namanya
+        given-names: Gloria
+    publisher:
+      name: Harvard Dataverse
+    year: 2022
+    doi: 10.7910/DVN/TCKVEW
+    license: CC0-1.0
+  - type: data
+    title: Bean disease dataset (iBean)
+    authors:
+      - name: Makerere AI Lab
+    year: 2020
+    url: "https://github.com/AI-Lab-Makerere/ibean"
+    license: MIT
+  - type: data
+    title: Cassava Leaf Disease Classification
+    authors:
+      - name: Makerere University AI Lab
+      - name: National Crops Resources Research Institute (NaCRRI), Uganda
+    publisher:
+      name: Kaggle
+    year: 2020
+    url: "https://www.kaggle.com/competitions/cassava-leaf-disease-classification"
+    notes: Kaggle competition data; use under the competition rules (non-commercial).
+  - type: article
+    title: iCassava 2019 fine-grained visual categorization challenge
+    authors:
+      - family-names: Mwebaze
+        given-names: Ernest
+      - family-names: Gebru
+        given-names: Timnit
+      - family-names: Frome
+        given-names: Andrea
+      - family-names: Nsumba
+        given-names: Solomon
+      - family-names: Tusubira
+        given-names: Jeremy
+    journal: arXiv
+    year: 2019
+    doi: 10.48550/arXiv.1908.02900
+  - type: article
+    title: "MangoLeafBD: A comprehensive image dataset to classify diseased and healthy mango leaves"
+    authors:
+      - family-names: Ahmed
+        given-names: Sarder Iftekhar
+      - family-names: Ibrahim
+        given-names: Muhammad
+      - family-names: Nadim
+        given-names: Md.
+      - family-names: Rahman
+        given-names: Md. Mizanur
+      - family-names: Shejunti
+        given-names: Maria Mehjabin
+      - family-names: Jabid
+        given-names: Taskeed
+      - family-names: Ali
+        given-names: Md. Sawkat
+    journal: Data in Brief
+    volume: 47
+    year: 2023
+    doi: 10.1016/j.dib.2023.108941
+    notes: "Dataset: https://doi.org/10.17632/hxsnvwty3r.1 (CC BY-NC 3.0)."
+  - type: data
+    title: Sorghum disease image dataset
+    authors:
+      - family-names: Thite
+        given-names: Sandip
+      - family-names: Patil
+        given-names: Kailas
+    publisher:
+      name: Mendeley Data
+    version: "1"
+    year: 2024
+    doi: 10.17632/fgb3cmfrg2.1
+    license: CC-BY-4.0
+  - type: article
+    title: A novel dataset of potato leaf disease in uncontrolled environment
+    authors:
+      - family-names: Shabrina
+        given-names: Nabila Husna
+      - family-names: Indarti
+        given-names: Siwi
+      - family-names: Maharani
+        given-names: Rina
+      - family-names: Kristiyanti
+        given-names: Dinar Ajeng
+      - name: Irmawati
+      - family-names: Prastomo
+        given-names: Niki
+      - family-names: Adilah M
+        given-names: Tika
+    journal: Data in Brief
+    volume: 52
+    year: 2024
+    doi: 10.1016/j.dib.2023.109955
+    notes: "Dataset: https://doi.org/10.17632/ptz377bwb8.1 (CC BY 4.0)."
+  - type: article
+    title: A novel groundnut leaf dataset for detection and classification of groundnut leaf diseases
+    authors:
+      - family-names: Sasmal
+        given-names: Buddhadev
+      - family-names: Das
+        given-names: Arunita
+      - family-names: Dhal
+        given-names: Krishna Gopal
+      - family-names: Saheb
+        given-names: Sk. Belal
+      - family-names: Abu Khurma
+        given-names: Ruba
+      - family-names: Castillo
+        given-names: Pedro A.
+    journal: Data in Brief
+    volume: 55
+    year: 2024
+    doi: 10.1016/j.dib.2024.110763
+    notes: "Dataset: https://doi.org/10.17632/x6x5jkk873.2 (CC BY 4.0)."

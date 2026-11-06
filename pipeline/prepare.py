@@ -144,6 +144,8 @@ def hash_one(path: str, cache: str = "", size: int = 0):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--commercial-only", action="store_true", help="drop datasets with non-commercial licences")
+    ap.add_argument("--no-sharealike", action="store_true",
+                    help="also drop share-alike datasets (PlantVillage: its authors say trained models inherit CC BY-SA)")
     ap.add_argument("--min-per-class", type=int, default=20)
     ap.add_argument("--val", type=float, default=0.10)
     ap.add_argument("--test", type=float, default=0.10)
@@ -164,7 +166,7 @@ def main():
     for d in load_datasets():
         if not (RAW / d["id"] / ".done").exists():
             continue
-        if a.commercial_only and d.get("commercial") is not True:
+        if (a.commercial_only and d.get("commercial") is not True) or (a.no_sharealike and d.get("sharealike")):
             print(f"[drop] {d['id']} (licence: {d.get('licence')})")
             continue
         items = collect(d)

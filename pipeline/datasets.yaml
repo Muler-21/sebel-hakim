@@ -11,7 +11,8 @@
 #   manual     download yourself into data/raw/<id>/ (see `url`)
 #
 # field:   lab (plain background) · field (real conditions) · mixed
-# licence: copy of what the source states; "check" means confirm on the source page.
+# licence: copy of what the source states (verified Nov 2026 unless marked "check").
+# doi:     dataset DOI (or main paper) — full citations are in README.md, section "Data sources".
 # commercial: false for NC licences. Set `--commercial-only` in prepare.py to drop those.
 #
 # label: how classes are read
@@ -30,8 +31,10 @@ datasets:
     images: 54305
     field: lab
     region: USA
-    licence: CC BY-SA 4.0 (check)
+    licence: CC BY-SA 3.0 (Hughes & Salathé 2015; the authors state that models trained on it fall under the same licence)
     commercial: true
+    sharealike: true
+    doi: 10.3389/fpls.2016.01419
     label: folder
     weight: 0.5            # down-weighted: lab images dominate otherwise
 
@@ -44,8 +47,9 @@ datasets:
     images: 2598
     field: field
     region: web images
-    licence: CC BY 4.0 (check)
+    licence: CC BY 4.0
     commercial: true
+    doi: 10.1145/3371158.3371196
     label: folder
 
   - id: plantwild
@@ -58,6 +62,7 @@ datasets:
     region: web images
     licence: CC BY-NC-ND 4.0
     commercial: false
+    doi: 10.48550/arXiv.2408.03120
     label: folder
 
   - id: plantseg
@@ -71,6 +76,7 @@ datasets:
     region: web images
     licence: CC BY-NC 4.0
     commercial: false
+    doi: 10.5281/zenodo.17719108
     label: folder
     note: Segmentation dataset; prepare.py uses the class folders of the images.
 
@@ -97,6 +103,7 @@ datasets:
     region: Uganda
     licence: competition rules (non-commercial research use)
     commercial: false
+    doi: 10.48550/arXiv.1908.02900
     label: csv
     csv: {file: train.csv, image_col: image_id, label_col: label, image_dir: train_images}
 
@@ -129,8 +136,9 @@ datasets:
     crop: bean
     field: field
     region: Uganda
-    licence: CC BY 4.0 (check)
+    licence: CC0 1.0
     commercial: true
+    doi: 10.7910/DVN/TCKVEW
     label: folder
 
   - id: ibean
@@ -144,6 +152,7 @@ datasets:
     licence: MIT
     commercial: true
     label: folder
+    url: https://github.com/AI-Lab-Makerere/ibean
 
   - id: tanzania_maize
     name: Labeled dataset of healthy and diseased maize (MLN, FAW) — Tanzania
@@ -152,8 +161,9 @@ datasets:
     crop: maize
     field: field
     region: Tanzania
-    licence: check
-    commercial: unknown
+    licence: CC BY 4.0
+    commercial: true
+    doi: 10.5281/zenodo.15685236
     label: folder
 
   - id: fieldplant
@@ -260,8 +270,9 @@ datasets:
     images: 3076
     field: field
     region: Indonesia
-    licence: CC BY 4.0 (check)
+    licence: CC BY 4.0
     commercial: true
+    doi: 10.17632/ptz377bwb8.1
     label: folder
 
   - id: rocole
@@ -298,8 +309,9 @@ datasets:
     images: 4000
     field: field
     region: Bangladesh
-    licence: CC BY 4.0 (check)
-    commercial: true
+    licence: CC BY-NC 3.0
+    commercial: false
+    doi: 10.17632/hxsnvwty3r.1
     label: folder
 
   - id: groundnut_leaf
@@ -309,8 +321,10 @@ datasets:
     version: 2
     crop: groundnut
     field: field
-    licence: CC BY 4.0 (check)
+    region: India
+    licence: CC BY 4.0
     commercial: true
+    doi: 10.17632/x6x5jkk873.2
     label: folder
     map: {"LEAF SPOT (EARLY AND LATE)": ""}   # early and late leaf spot mixed in one folder: cannot be split
 
@@ -321,8 +335,9 @@ datasets:
     version: 1
     crop: sorghum
     field: field
-    licence: CC BY 4.0 (check)
+    licence: CC BY 4.0
     commercial: true
+    doi: 10.17632/fgb3cmfrg2.1
     label: folder
 
   # ---------------------- data round 3 (Oct 2026): fruits ----------------------
@@ -336,6 +351,7 @@ datasets:
     host: mendeley
     ref: b4nrw5hyyc
     version: 1
+    doi: 10.17632/b4nrw5hyyc.1
     crop: mango
     images: 1500
     field: mixed
@@ -349,11 +365,12 @@ datasets:
     host: mendeley
     ref: ypttkp5fb5
     version: 1
+    doi: 10.17632/ypttkp5fb5.1
     crop: mango
     images: 3500
     field: field
-    region: India
-    licence: CC BY 4.0 (check)
+    region: Bangladesh
+    licence: CC BY 4.0
     commercial: true
     label: folder
     exclude: [augment]
@@ -363,6 +380,7 @@ datasets:
     host: mendeley
     ref: fn8dgf4hb5
     version: 1
+    doi: 10.17632/fn8dgf4hb5.1
     crop: mango
     images: 1319
     field: field
@@ -378,6 +396,7 @@ datasets:
     host: mendeley
     ref: fhbvmpcyy2
     version: 3
+    doi: 10.17632/fhbvmpcyy2.3
     field: field
     region: India (Rajasthan, Jammu)
     licence: CC BY 4.0
@@ -391,6 +410,7 @@ datasets:
     host: mendeley
     ref: fspx44mwfp
     version: 1
+    doi: 10.17632/fspx44mwfp.1
     crop: guava
     images: 3432
     field: mixed
@@ -406,6 +426,7 @@ datasets:
     host: mendeley
     ref: bkdkc4n835
     version: 1
+    doi: 10.17632/bkdkc4n835.1
     crop: guava
     images: 473
     field: field
@@ -420,6 +441,7 @@ datasets:
     host: mendeley
     ref: 3kwgxg4stb
     version: 1
+    doi: 10.17632/3kwgxg4stb.1
     crop: papaya
     images: 3626
     field: field
