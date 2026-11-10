@@ -21,9 +21,9 @@ version: 2.1.0
 date-released: "2026-11-06"
 url: "https://muler-21.github.io/sebel-hakim/"
 repository-code: "https://github.com/Muler-21/sebel-hakim"
-license:
-  - PolyForm-Noncommercial-1.0.0
-  - CC-BY-NC-4.0
+# Code: PolyForm Noncommercial 1.0.0. Images, text and question/knowledge content: CC BY-NC 4.0 (see LICENSE-CONTENT.md).
+# A single licence is given here because Zenodo accepts only one.
+license: PolyForm-Noncommercial-1.0.0
 keywords:
   - plant disease
   - crop disease detection
