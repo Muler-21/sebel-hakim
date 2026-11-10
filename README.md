@@ -14,6 +14,7 @@ what to do, starting with farm practices and using chemicals only as a last reso
 [![Works offline](https://img.shields.io/badge/works-offline-16261C)](#features)
 [![Field accuracy](https://img.shields.io/badge/field--photo%20accuracy-90.3%25-2E7D32)](#accuracy)
 [![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20AM%20%C2%B7%20FR%20%C2%B7%20SW%20%C2%B7%20IT-C9A227)](#features)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24115009.svg)](https://doi.org/10.5281/zenodo.24115009)
 [![Cite](https://img.shields.io/badge/cite-CITATION.cff-0A66C2)](#how-to-cite)
 [![Licence](https://img.shields.io/badge/licence-non--commercial-lightgrey)](#licence)
 [![ORCID](https://img.shields.io/badge/ORCID-0000--0001--6223--0037-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0000-0001-6223-0037)
@@ -131,7 +132,7 @@ If you use Sebel Hakim (the app, its trained model or its knowledge base) in res
 material or another project, please cite it:
 
 > Bitew, M. K. (2026). *Sebel Hakim: Free, offline AI diagnosis of crop diseases for African farmers*
-> (Version 2.1.0) [Computer software]. https://github.com/Muler-21/sebel-hakim
+> (Version 2.1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24115009
 
 ```bibtex
 @software{bitew_2026_sebel_hakim,
@@ -139,7 +140,9 @@ material or another project, please cite it:
   title   = {Sebel Hakim: Free, Offline {AI} Diagnosis of Crop Diseases for African Farmers},
   year    = {2026},
   version = {2.1.0},
-  url     = {https://github.com/Muler-21/sebel-hakim},
+  publisher = {Zenodo},
+  doi     = {10.5281/zenodo.24115009},
+  url     = {https://doi.org/10.5281/zenodo.24115009},
   note    = {Web app: https://muler-21.github.io/sebel-hakim/}
 }
 ```
