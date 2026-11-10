@@ -1,6 +1,6 @@
 # Licence for content and the trained model
 
-Copyright (c) 2026 Mulusew Kassa Bitew (Muler)
+Copyright (c) 2026 Mulusew Kassa Bitew
 
 Sebel Hakim is made of three kinds of material, each with its own licence:
 

@@ -20,7 +20,7 @@ what to do, starting with farm practices and using chemicals only as a last reso
 
 <img src="docs/img/screens.png" width="860" alt="Sebel Hakim on a phone: the photo screen, the disease library, and the About screen with the citation">
 
-**Created by [Mulusew Kassa Bitew (Muler)](https://orcid.org/0000-0001-6223-0037)** ·
+**Created by [Mulusew Kassa Bitew](https://orcid.org/0000-0001-6223-0037)** ·
 [How to cite](#how-to-cite) · [Data sources](#data-sources) · [Accuracy](#accuracy) · [Licence](#licence)
 
 </div>
@@ -353,7 +353,7 @@ free GPU time, and to the PyTorch, timm and ONNX Runtime communities.
 
 ## Author
 
-**Mulusew Kassa Bitew (Muler)** · ORCID [0000-0001-6223-0037](https://orcid.org/0000-0001-6223-0037) ·
-GitHub [Muler-21](https://github.com/Muler-21)
-
+**Mulusew Kassa Bitew**, Postdoctoral Research Fellow, University of Molise, Italy\
+ORCID [0000-0001-6223-0037](https://orcid.org/0000-0001-6223-0037) · GitHub [@Muler-21](https://github.com/Muler-21) · Website [muler-21.github.io](https://muler-21.github.io)\
+Other apps: [Research Integrity Compass](https://github.com/Muler-21/Research-Integrity-Compass-) · [Sebel Hakim](https://github.com/Muler-21/sebel-hakim) · [Genna Clash](https://github.com/Muler-21/genna-clash)\
 © 2026 Mulusew Kassa Bitew. See [Licence](#licence).
